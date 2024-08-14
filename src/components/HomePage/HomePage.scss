@@ -1,0 +1,164 @@
+@import '../../styles/utils/';
+
+.homepage {
+  &__container {
+    @include content-padding-inline;
+
+    max-width: 1440px;
+    margin: 0 auto;
+    padding-block: 88px;
+    max-width: 1200px;
+
+    @include on-desktop {
+      padding-block: 96px;
+    }
+  }
+
+  &__title-box {
+    width: 260px;
+    height: 281px;
+    background: url('../../../public/images/decor/boxing-glove.svg') left top /
+      100% 100% no-repeat;
+    margin: 0 auto;
+    padding: 90px 0 0 38px;
+    // padding-left: 38px;
+    margin-bottom: 89px;
+
+    @include on-tablet {
+      margin-bottom: 160px;
+      width: 512px;
+      height: 565px;
+      padding: 190px 0 0 101px;
+      margin-bottom: 40px;
+    }
+
+    @include on-desktop {
+      width: 615px;
+      height: 679px;
+      padding: 227px 0 0 121px;
+    }
+  }
+
+  &__main-info {
+    @include page-grid;
+
+    justify-items: center;
+    margin-bottom: 104px;
+
+    @include on-tablet {
+      margin-bottom: 160px;
+    }
+  }
+
+  &__main-text {
+    font-family: $second-font-family;
+    font-size: 20px;
+    margin-bottom: 48px;
+    & span {
+      color: $white-color;
+    }
+
+    @include on-tablet {
+      margin-bottom: 0;
+    }
+
+    @include on-desktop {
+      grid-column: span 2;
+    }
+  }
+
+  &__contact-button {
+    display: block;
+
+    @include on-tablet {
+      &--first {
+        align-self: end;
+        justify-self: end;
+
+        @include on-desktop {
+          grid-column: 4/5;
+        }
+      }
+    }
+
+    &--second {
+      margin: 0 auto;
+
+      @include on-tablet {
+        margin-right: 0;
+      }
+    }
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    gap: 80px;
+    margin-bottom: 104px;
+
+    @include on-tablet {
+      margin-bottom: 144px;
+    }
+  }
+
+  &__info-item {
+    // display: flex;
+    // flex-direction: column;
+    // gap: 24px;
+    @include page-grid;
+
+    @media (min-width: 800px) {
+      grid-template-columns: repeat(4, 1fr);
+      gap: 48px;
+    }
+  }
+
+  &__small-title {
+    font-family: $second-font-family;
+    color: $white-color;
+    font-size: 24px;
+    margin-bottom: 24px;
+    justify-self: start;
+
+    @include on-desktop {
+      font-size: 32px;
+    }
+  }
+
+  &__text {
+    justify-self: start;
+    // justify-content: start;
+    // align-content: start;
+
+    // & ul {
+    //   text-align-last: left;
+    // }
+    @include on-desktop {
+      grid-column: span 3;
+      font-size: 16px;
+
+      // align-items: start;
+      // justify-items: start;
+    }
+
+    @media (min-width: 800px) {
+      grid-column: 2/5;
+    }
+  }
+}
+
+.title {
+  font-family: $third-font-family;
+  color: $second-text-color;
+  // padding-left: 38px;
+  text-transform: uppercase;
+  font-size: 64px;
+
+  @include on-tablet {
+    font-size: 96px;
+  }
+
+  @include on-desktop {
+    font-size: 128px;
+  }
+}

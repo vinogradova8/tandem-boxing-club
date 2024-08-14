@@ -1,0 +1,18 @@
+[
+  {
+    "eng": {
+      "question": "How long does one lesson last?",
+      "answer": "1 hour"
+    },
+
+    "ukr": {
+      "question": "Скільки триває одне заняття?",
+      "answer": "1 година"
+    },
+
+    "deu": {
+      "question": "",
+      "answer": ""
+    }
+  }
+]

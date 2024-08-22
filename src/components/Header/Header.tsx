@@ -50,8 +50,21 @@ export const Header: React.FC = (
           <ul className="header__navigation-list">
             {links.map(link => (
               <li key={link[0]}>
+                {/* <NavLink
+                  to={link[1] === 'home' ? `/` : `/${link[1]}`}
+                  className={({ isActive }) =>
+                    cn('menu-link', {
+                      'menu-link--active': isActive,
+                    })
+                  }
+                  // className="menu-link__slider"
+                >
+                  <p className="menu-link__passive">{link[0]}</p>
+                  <p className="menu-link__active">{link[0]}</p>
+                </NavLink> */}
                 <NavLink
                   to={link[1] === 'home' ? `/` : `/${link[1]}`}
+                  // className="menu-link"
                   className={({ isActive }) =>
                     cn('menu-link', {
                       'menu-link--active': isActive,
@@ -59,7 +72,8 @@ export const Header: React.FC = (
                   }
                 >
                   <div className="menu-link__slider">
-                    <p>{link[0]}</p>
+                    <p className="menu-link__passive">{link[0]}</p>
+                    <p className="menu-link__active">{link[0]}</p>
                   </div>
                 </NavLink>
               </li>
@@ -68,52 +82,58 @@ export const Header: React.FC = (
         </nav>
 
         <div className="header__actions">
-          <div className="header__language-drop-down  language-drop-down">
-            <div className="language-drop-down__control-box">
-              <div className="language-drop-down__language">
-                {i18next.language.toUpperCase()}
+          <div className="header__language-and-profile">
+            <div className="header__language-drop-down  language-drop-down">
+              <div className="language-drop-down__control-box">
+                <div className="language-drop-down__language">
+                  {i18next.language.toUpperCase()}
+                </div>
+                <button
+                  type="button"
+                  className={cn('language-drop-down__trigger', {
+                    'language-drop-down__trigger--rotate-arrow':
+                      isLanguageDropDownVisible,
+                  })}
+                  onClick={() =>
+                    setIsLanguageDropDownVisible(!isLanguageDropDownVisible)
+                  }
+                ></button>
               </div>
-              <button
-                type="button"
-                className={cn('language-drop-down__trigger', {
-                  'language-drop-down__trigger--rotate-arrow':
+
+              <div
+                className={cn('language-drop-down__content', {
+                  'language-drop-down__content--visible':
                     isLanguageDropDownVisible,
                 })}
-                onClick={() =>
-                  setIsLanguageDropDownVisible(!isLanguageDropDownVisible)
-                }
-              ></button>
+              >
+                <ul className="language-drop-down__list">
+                  {languages.map(language => (
+                    <li
+                      key={language}
+                      className={cn('language-drop-down__item', {
+                        'language-drop-down__item--disabled':
+                          i18next.language === language,
+                      })}
+                      onClick={() => {
+                        i18next.changeLanguage(language);
+                        setIsLanguageDropDownVisible(
+                          !isLanguageDropDownVisible,
+                        );
+                      }}
+                    >
+                      {language.toUpperCase()}
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
 
-            <div
-              className={cn('language-drop-down__content', {
-                'language-drop-down__content--visible':
-                  isLanguageDropDownVisible,
-              })}
-            >
-              <ul className="language-drop-down__list">
-                {languages.map(language => (
-                  <li
-                    key={language}
-                    className={cn('language-drop-down__item', {
-                      'language-drop-down__item--disabled':
-                        i18next.language === language,
-                    })}
-                    onClick={() => {
-                      i18next.changeLanguage(language);
-                      setIsLanguageDropDownVisible(!isLanguageDropDownVisible);
-                    }}
-                  >
-                    {language.toUpperCase()}
-                  </li>
-                ))}
-              </ul>
-            </div>
+            <div className="header__profile"></div>
           </div>
 
           <button
             type="button"
-            className={cn('header__menu icon-menu', {
+            className={cn('header__menu', {
               'header__menu--is-active': isBurgerMenuOpen,
             })}
             onClick={() => {
@@ -153,7 +173,10 @@ export const Header: React.FC = (
                       app?.classList.remove('fixed');
                     }}
                   >
-                    <p>{link[0]}</p>
+                    <div className="menu-link__slider">
+                      <p className="menu-link__passive">{link[0]}</p>
+                      <p className="menu-link__active">{link[0]}</p>
+                    </div>
                   </NavLink>
                 </li>
               ))}

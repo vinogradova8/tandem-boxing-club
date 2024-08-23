@@ -24,6 +24,7 @@ createRoot(document.getElementById('root') as HTMLElement).render(
         <Route path="gallery" element={<Gallery />}></Route>
         <Route path="faq" element={<FAQ />}></Route>
         <Route path="сontacts" element={<Contacts />}></Route>
+        <Route path="profile" element={<p>Profile</p>}></Route>
         {/* <Route path="phones">
           <Route index element={<PhonesPage />}></Route>
           <Route

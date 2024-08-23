@@ -47,6 +47,7 @@ export const Header: React.FC = (
     const handleResize = () => {
       if (window.innerWidth > 640) {
         setIsBurgerMenuOpen(false);
+        app?.classList.remove('fixed');
       }
     };
 
@@ -55,7 +56,7 @@ export const Header: React.FC = (
     return () => {
       window.removeEventListener('resize', handleResize);
     };
-  }, [isBurgerMenuOpen]);
+  }, [app?.classList, isBurgerMenuOpen]);
 
   return (
     <header className="header">
@@ -142,7 +143,7 @@ export const Header: React.FC = (
               </div>
             </div>
 
-            <div className="header__profile"></div>
+            <NavLink to="/profile" className="header__profile"></NavLink>
           </div>
 
           <button
@@ -157,7 +158,6 @@ export const Header: React.FC = (
                 app?.classList.add('fixed');
               } else {
                 app?.classList.remove('fixed');
-                // window.removeEventListener('scroll', stopScrolling, true);
               }
             }}
           ></button>

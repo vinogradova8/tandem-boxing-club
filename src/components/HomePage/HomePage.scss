@@ -129,29 +129,25 @@
     justify-self: start;
 
     @include on-desktop {
-      font-size: 32px;
+      font-weight: 500;
     }
   }
 
   &__text {
     justify-self: start;
-    // justify-content: start;
-    // align-content: start;
 
-    // & ul {
-    //   text-align-last: left;
-    // }
     @include on-desktop {
       grid-column: span 3;
+      font-weight: 500;
       font-size: 16px;
 
       // align-items: start;
       // justify-items: start;
     }
 
-    @media (min-width: 800px) {
-      grid-column: 2/5;
-    }
+    // @media (min-width: 800px) {
+    //   grid-column: 2/5;
+    // }
   }
 }
 
@@ -269,8 +265,8 @@
   &__container {
     @include content-padding-inline;
 
-		max-width: 1400px;
-		margin: 0 auto;
+    max-width: 1400px;
+    margin: 0 auto;
   }
 }
 

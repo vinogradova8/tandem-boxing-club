@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './Header.scss';
 import { NavLink } from 'react-router-dom';
 import '../../i18n';
@@ -42,6 +42,13 @@ export const Header: React.FC = (
   const languages = [LOCALS.ENG, LOCALS.UKR, LOCALS.DEU];
 
   const app = document.querySelector('.app');
+  // const body = document.querySelector('body');
+
+  useEffect(() => {
+    if (window.innerWidth === 640) {
+      setIsBurgerMenuOpen(false);
+    }
+  }, [isBurgerMenuOpen]);
 
   return (
     <header className="header">

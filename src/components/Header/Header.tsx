@@ -42,12 +42,19 @@ export const Header: React.FC = (
   const languages = [LOCALS.ENG, LOCALS.UKR, LOCALS.DEU];
 
   const app = document.querySelector('.app');
-  // const body = document.querySelector('body');
 
   useEffect(() => {
-    if (window.innerWidth === 640) {
-      setIsBurgerMenuOpen(false);
-    }
+    const handleResize = () => {
+      if (window.innerWidth > 640) {
+        setIsBurgerMenuOpen(false);
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
   }, [isBurgerMenuOpen]);
 
   return (

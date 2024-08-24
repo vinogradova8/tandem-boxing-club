@@ -157,7 +157,7 @@ export const Slider: React.FC<Props> = ({ slides }) => {
                 }
               }}
               className="video__item"
-              poster="../../slider/slide-1.jpg"
+              poster={slide.poster}
               controls
               src={slide.media}
             ></video>

@@ -5,29 +5,34 @@ import { Slider } from '../Slider/Slider';
 import { Loader } from '../Loader';
 import '../../i18n';
 import { useTranslation } from 'react-i18next';
-import { getSlides } from '../../api/fetchClient';
-import { Slide } from '../../types/Slide';
+import { getSlidesImage, getSlidesVideo } from '../../api/fetchClient';
+import { SlideVideo } from '../../types/SlideVideo';
+import { SlideImage } from '../../types/SlideImage';
 
 export const Gallery: React.FC = ({}) => {
   const [loader, setLoader] = useState(false);
-  const [slides, setSlides] = useState<Slide[]>([]);
+  const [slidesVideo, setSlidesVideo] = useState<SlideVideo[]>([]);
+  const [slidesImage, setSlidesImage] = useState<SlideImage[]>([]);
   const [errorMessage, setErrorMessage] = useState(false);
   const { t } = useTranslation();
 
   useEffect(() => {
     setLoader(true);
 
-    getSlides()
-      .then(setSlides)
+    getSlidesImage()
+      .then(setSlidesImage)
+      .catch(error => {
+        setErrorMessage(true);
+        throw error;
+      });
+
+    getSlidesVideo()
+      .then(setSlidesVideo)
       .catch(error => {
         setErrorMessage(true);
         throw error;
       })
       .finally(() => setLoader(false));
-
-    setTimeout(() => {
-      setLoader(false);
-    }, 1000);
   }, []);
 
   return (
@@ -40,7 +45,10 @@ export const Gallery: React.FC = ({}) => {
 
           <div className="slider">
             <div className="slider__container">
-              <Slider slides={slides}></Slider>
+              <Slider
+                slidesVideo={slidesVideo}
+                slidesImage={slidesImage}
+              ></Slider>
             </div>
           </div>
 

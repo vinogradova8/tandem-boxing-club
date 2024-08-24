@@ -1,4 +1,5 @@
-import { Slide } from '../types/Slide';
+import { SlideImage } from '../types/SlideImage';
+import { SlideVideo } from '../types/SlideVideo';
 
 export const scrollToTop = () => {
   window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
@@ -31,4 +32,5 @@ export function get<T>(url: string): Promise<T> {
 }
 
 // export const getPharagrafs = () => get<Pharagraf[]>('/main-page-pharagraf');
-export const getSlides = () => get<Slide[]>('/slides');
+export const getSlidesVideo = () => get<SlideVideo[]>('/slides-video');
+export const getSlidesImage = () => get<SlideImage[]>('/slides-image');

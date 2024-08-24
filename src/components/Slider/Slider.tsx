@@ -3,7 +3,8 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Scrollbar, A11y, Pagination } from 'swiper/modules';
 import './Slider.scss';
 import 'swiper/css';
-import { Slide } from '../../types/Slide';
+import { SlideVideo } from '../../types/SlideVideo';
+import { SlideImage } from '../../types/SlideImage';
 // import 'swiper/swiper-bundle.css';
 
 // type Slide = {
@@ -11,10 +12,11 @@ import { Slide } from '../../types/Slide';
 // };
 
 type Props = {
-  slides: Slide[];
+  slidesVideo: SlideVideo[];
+  slidesImage: SlideImage[];
 };
 
-export const Slider: React.FC<Props> = ({ slides }) => {
+export const Slider: React.FC<Props> = ({ slidesVideo, slidesImage }) => {
   // const [numberOfSlidersPerPage, setNumberOfSlidersPerPage] = useState(3);
 
   // useEffect(() => {
@@ -92,17 +94,14 @@ export const Slider: React.FC<Props> = ({ slides }) => {
     <Swiper
       modules={[Scrollbar, A11y, Pagination]}
       effect={'coverflow'}
-      // navigation
       pagination={{ clickable: true }}
       scrollbar={{ draggable: true }}
       spaceBetween={50}
-      // slidesPerView={numberOfSlidersPerPage}
       touchRatio={3}
       grabCursor={true}
       slideToClickedSlide={true}
       height={100}
       breakpoints={{
-        // when window width is >= 640px
         240: {
           slidesPerView: 1.5,
         },
@@ -110,45 +109,24 @@ export const Slider: React.FC<Props> = ({ slides }) => {
         640: {
           slidesPerView: 3,
         },
-        // when window width is >= 768px
+
         1200: {
           slidesPerView: 5,
         },
       }}
-
-      // autoHeight={true}
-
-      // onSlideChange={() => console.log('slide change')}
-      // onSwiper={swiper => console.log(swiper)}
     >
       <SwiperSlide>
         <img src="../../slider/slide-1.jpg" alt="slide1" />
       </SwiperSlide>
-      <SwiperSlide className="slide">
-        <div className="video video--shadow">
-          <video
-            // ref={videoRef}
-            // onFocus={() => {
-            //   if (isPlaying && videoRef) {
-            //     videoRef?.current.pause();
-            //     setIsPlaying(false);
-            //   } else {
-            //     videoRef?.current.play();
-            //     setIsPlaying(true);
-            //   }
-            // }}
-            // onClick={e => {
-            //   e.target.classList.toggle('video--shadow');
-            // }}
-            className="video__item"
-            poster="../../slider/slide-1.jpg"
-            controls
-            src="../../slider/slide-2.mp4"
-          ></video>
-        </div>
-      </SwiperSlide>
-      {slides.map(slide => (
-        <SwiperSlide className="slide" key={slide.media}>
+
+      {slidesImage.map(slide => (
+        <SwiperSlide className="slide" key={slide.id}>
+          <img src={slide.media} alt={`image-${slide.id}`} />
+        </SwiperSlide>
+      ))}
+
+      {slidesVideo.map(slide => (
+        <SwiperSlide className="slide" key={slide.id}>
           <div className="video video--shadow">
             <video
               onClick={() => {

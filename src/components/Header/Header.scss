@@ -2,7 +2,7 @@
 
 .header {
   position: sticky;
-
+	z-index: 50;
   min-width: 320px;
   color: $main-text-color;
   background-color: $black-color;
@@ -274,7 +274,7 @@
     gap: 12px;
     align-items: center;
     font-size: 14px;
-
+		
     @include on-desktop {
       font-size: 16px;
     }

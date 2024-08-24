@@ -1,13 +1,20 @@
+import { Slide } from '../types/Slide';
+
 export const scrollToTop = () => {
   window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
 };
 
-type Pharagraf = {
-  title: string;
-  info: string;
-};
+// type Pharagraf = {
+//   title: string;
+//   info: string;
+// };
 
-const BASE_URL = 'http://localhost:1337/api';
+// type Slide = {
+//   media: string;
+// };
+
+// const BASE_URL = 'http://localhost:1337/api';
+const BASE_URL = 'https://vinogradova8.github.io/boxing/api';
 
 function wait(delay: number): Promise<void> {
   return new Promise(resolve => {
@@ -23,4 +30,5 @@ export function get<T>(url: string): Promise<T> {
     .then(response => response.json());
 }
 
-export const getPharagrafs = () => get<Pharagraf[]>('/main-page-pharagraf');
+// export const getPharagrafs = () => get<Pharagraf[]>('/main-page-pharagraf');
+export const getSlides = () => get<Slide[]>('/slides');

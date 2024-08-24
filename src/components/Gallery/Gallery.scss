@@ -1,1 +1,44 @@
 @import '../../styles/utils/';
+
+.gallery {
+  &__container {
+    @include content-padding-inline;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  &__title {
+    font-size: 32px;
+    text-align: center;
+    text-transform: uppercase;
+    padding-top: 50px;
+    margin-bottom: 40px;
+
+    @include on-desktop {
+      font-size: 44px;
+    }
+  }
+
+  &__contact-button {
+		display: block;
+    margin: 0 auto;
+		margin-bottom: 53px;
+
+    @include on-tablet {
+      margin-right: 0;
+    }
+  }
+}
+
+.slider {
+  border-top: 1px solid $gray-60-color;
+  border-bottom: 1px solid $gray-60-color;
+  padding-block: 54px;
+	margin-bottom: 104px;
+
+  &__container {
+    @include content-padding-inline;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+}

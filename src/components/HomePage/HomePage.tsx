@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './HomePage.scss';
 import '../../i18n';
 // import i18next from 'i18next';
 import { useTranslation } from 'react-i18next';
 import { Loader } from '../Loader';
+import { ModalWindow } from '../ModalWindow';
+import { ItemsContext } from '../../ItemsContext';
 // import { client } from '../../client';
 // import { getPharagrafs } from '../../api/fetchClient';
 
@@ -12,6 +14,8 @@ export const HomePage: React.FC = ({}) => {
 
   const [loader, setLoader] = useState(false);
 
+  const { isModalWindowOpen, setIsModalWindowOpen } = useContext(ItemsContext);
+
   useEffect(() => {
     setLoader(true);
 
@@ -19,6 +23,8 @@ export const HomePage: React.FC = ({}) => {
       setLoader(false);
     }, 1000);
   }, []);
+
+  const app = document.querySelector('.app');
 
   // const [info, setInfo] = useState([]);
 
@@ -53,6 +59,8 @@ export const HomePage: React.FC = ({}) => {
 
   return (
     <>
+      {isModalWindowOpen && <ModalWindow />}
+
       {loader ? (
         <Loader></Loader>
       ) : (
@@ -73,6 +81,11 @@ export const HomePage: React.FC = ({}) => {
                 </p>
 
                 <button
+                  onClick={() => {
+                    setIsModalWindowOpen(true);
+                    app?.classList.add('fixed');
+                    // document.body.style.overflow = `hidden`;
+                  }}
                   className="homepage__contact-button contact-button 
 					homepage__contact-button--first"
                 >
@@ -161,8 +174,6 @@ export const HomePage: React.FC = ({}) => {
           </div>
         </main>
       )}
-
-      {/* <button className="contact-button">Contact us</button> */}
     </>
   );
 };

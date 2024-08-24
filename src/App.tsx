@@ -6,6 +6,7 @@ import './i18n';
 import { Header } from './components/Header';
 import { Navigate, Outlet, useParams } from 'react-router-dom';
 import { Footer } from './components/Footer/Footer';
+import { ItemsProvider } from './ItemsContext';
 // import { useTranslation } from 'react-i18next';
 // import { Footer } from './components/Footer';
 // import { BurgerMenu } from './components/BurgerMenu';
@@ -24,10 +25,12 @@ export const App: React.FC = () => {
   }
 
   return (
-    <div className="app">
-      <Header />
-      <Outlet />
-      <Footer />
-    </div>
+    <ItemsProvider>
+      <div className="app">
+        <Header />
+        <Outlet />
+        <Footer />
+      </div>
+    </ItemsProvider>
   );
 };

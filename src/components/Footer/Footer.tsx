@@ -4,7 +4,7 @@ import { scrollToTop } from '../../api/fetchClient';
 
 export const Footer: React.FC = ({}) => {
   return (
-    <div className="footer">
+    <footer className="footer">
       <div className="footer__container">
         <ul className="footer__list">
           <li>
@@ -26,6 +26,6 @@ export const Footer: React.FC = ({}) => {
 
         <button className="button-top" onClick={scrollToTop}></button>
       </div>
-    </div>
+    </footer>
   );
 };

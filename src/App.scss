@@ -123,6 +123,13 @@ main {
   cursor: pointer;
   transition: all 0.3s ease 0s;
 
+  &--disabled {
+    opacity: 0.5;
+		&:hover {
+    outline: none;
+  }
+  }
+
   &:hover {
     outline: 3px solid $main-text-color;
   }

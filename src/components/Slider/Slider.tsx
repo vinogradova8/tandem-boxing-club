@@ -17,75 +17,6 @@ type Props = {
 };
 
 export const Slider: React.FC<Props> = ({ slidesVideo, slidesImage }) => {
-  // const [numberOfSlidersPerPage, setNumberOfSlidersPerPage] = useState(3);
-
-  // useEffect(() => {
-  //   const handleResize = () => {
-  //     if (window.innerWidth < 640) {
-  //       setNumberOfSlidersPerPage(1);
-  //     }
-
-  //     if (window.innerWidth < 1200) {
-  //       setNumberOfSlidersPerPage(3.5);
-  //     }
-
-  //     // if (window.innerWidth > 640) {
-  //     //   setNumberOfSlidersPerPage(3);
-  //     // }
-
-  //     // if (window.innerWidth > 1200) {
-  //     //   setNumberOfSlidersPerPage(5);
-  //     // }
-  //   };
-
-  //   window.addEventListener('resize', handleResize);
-
-  //   return () => {
-  //     window.removeEventListener('resize', handleResize);
-  //   };
-  // }, []);
-
-  // useEffect(() => {
-  //   const handleResize = () => {
-  //     if (window.innerWidth < 640) {
-  //       setNumberOfSlidersPerPage(1);
-  //     }
-
-  //     if (window.innerWidth < 1200) {
-  //       setNumberOfSlidersPerPage(3);
-  //     }
-
-  //     if (window.innerWidth > 640) {
-  //       setNumberOfSlidersPerPage(3);
-  //     }
-
-  //     if (window.innerWidth > 1200) {
-  //       setNumberOfSlidersPerPage(5);
-  //     }
-  //   };
-
-  //   window.addEventListener('resize', handleResize);
-
-  //   return () => {
-  //     window.removeEventListener('resize', handleResize);
-  //   };
-  // }, [numberOfSlidersPerPage]);
-
-  // useEffect(() => {
-  //   const handleResize = () => {
-  //     if (window.innerWidth > 640) {
-  //       setIsBurgerMenuOpen(false);
-  //       app?.classList.remove('fixed');
-  //     }
-  //   };
-
-  //   window.addEventListener('resize', handleResize);
-
-  //   return () => {
-  //     window.removeEventListener('resize', handleResize);
-  //   };
-  // }, [app?.classList, isBurgerMenuOpen]);
-
   const video = document.querySelector('.video');
   // const videoRef = useRef(null);
   // const [isPlaying, setIsPlaying] = useState(false);
@@ -115,13 +46,15 @@ export const Slider: React.FC<Props> = ({ slidesVideo, slidesImage }) => {
         },
       }}
     >
-      <SwiperSlide>
-        <img src="../../slider/slide-1.jpg" alt="slide1" />
-      </SwiperSlide>
-
       {slidesImage.map(slide => (
         <SwiperSlide className="slide" key={slide.id}>
-          <img src={slide.media} alt={`image-${slide.id}`} />
+          <div className="image image--shadow">
+            <img
+              className="image__item"
+              src={slide.media}
+              alt={`image-${slide.id}`}
+            />
+          </div>
         </SwiperSlide>
       ))}
 

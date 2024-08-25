@@ -7,23 +7,9 @@ import './ModalWindow.scss';
 import { ItemsContext } from '../../ItemsContext';
 import { useTranslation } from 'react-i18next';
 
-// import { Item } from '../../types/Item';
-// import { Price } from '../../types/Price';
-
-// type Props = {
-
-// };
-
 const portal = document.getElementById('portal') as HTMLElement;
 
-export const ModalWindow: React.FC = (
-  {
-    // setItems,
-    // setAllPrices,
-    // setIsModalWindowOpen,
-    // darkTheme,
-  },
-) => {
+export const ModalWindow: React.FC = ({}) => {
   const { setIsModalWindowOpen } = useContext(ItemsContext);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -32,34 +18,12 @@ export const ModalWindow: React.FC = (
   const [nameErrorMessage, setNameErrorMessage] = useState('');
   const [emailErrorMessage, setEmailErrorMessage] = useState('');
   const [bodyErrorMessage, setBodyErrorMessage] = useState('');
-  // const [isSubmitButtonDisabled, setIsSubmitButtonDisabled] = useState(true);
-
-  // const [hasNameError, setHasNameError] = useState(false);
-  // const [hasEmailError, setHasEmailError] = useState(false);
-  // const [hasBodyError, setHasBodyError] = useState(false);
 
   const regex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
 
-  // const hasNameError = !nameErrorMessage;
-  // const hasEmailError = !emailErrorMessage;
-  // const hasBodyError = !bodyErrorMessage;
-
   const app = document.querySelector('.app');
 
-  // const handleClearCart = () => {
-  //   setItems([]);
-  //   setAllPrices([]);
-  //   setIsModalWindowOpen(false);
-  //   document.body.style.overflow = ``;
-  // };
-
   const { t } = useTranslation();
-
-  // useEffect(() => {
-  //   document.addEventListener('load', () => {
-  //     setIsModalWindowOpen(false);
-  //   });
-  // }, [setIsModalWindowOpen]);
 
   const handleCloseModalWindow = () => {
     setIsModalWindowOpen(false);
@@ -84,12 +48,6 @@ export const ModalWindow: React.FC = (
     if (email && email.match(regex)) {
       setEmailErrorMessage('');
     }
-
-    // if (!email.includes('@')) {
-    //   setEmailErrorMessage("Email should include char '@'");
-    // } else {
-    //   setEmailErrorMessage('');
-    // }
 
     if (!body) {
       setBodyErrorMessage('Please enter your message');
@@ -132,6 +90,7 @@ export const ModalWindow: React.FC = (
               value={name}
               type="text"
               placeholder="Your name"
+              name="name"
               className={cn('input', {
                 danger: nameErrorMessage,
               })}
@@ -145,6 +104,7 @@ export const ModalWindow: React.FC = (
               value={email}
               type="text"
               placeholder="Your email"
+              name="email"
               className={cn('input', {
                 danger: emailErrorMessage,
               })}
@@ -157,6 +117,7 @@ export const ModalWindow: React.FC = (
               onChange={e => setBody(e.target.value)}
               value={body}
               placeholder="Message"
+              name="body"
               className={cn('textarea', {
                 danger: bodyErrorMessage,
               })}
@@ -199,19 +160,6 @@ export const ModalWindow: React.FC = (
             </ul>
           </div>
         </div>
-        {/* <p className="modal-window__text">
-          Checkout is not implemented yet. <br />
-          Do you want to clear the Cart?
-        </p>
-        <div className="modal-window__actions">
-          <button
-            className="add-to-cart-button"
-            onClick={handleCloseModalWindow}
-          >
-            Clear
-          </button>
-          <button className="add-to-cart-button">Cancel</button>
-        </div> */}
       </div>
     </div>,
     portal,

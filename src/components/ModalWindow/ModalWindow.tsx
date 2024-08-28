@@ -61,7 +61,14 @@ export const ModalWindow: React.FC = ({}) => {
       setBodyErrorMessage('');
     }
 
-    if (!name || !email || !body) {
+    if (
+      nameErrorMessage ||
+      emailErrorMessage ||
+      bodyErrorMessage ||
+      !name ||
+      !email ||
+      !body
+    ) {
       event.preventDefault();
     } else {
       return true;
@@ -117,7 +124,7 @@ export const ModalWindow: React.FC = ({}) => {
               onChange={e => setBody(e.target.value)}
               value={body}
               placeholder="Message"
-              name="body"
+              name="message"
               className={cn('textarea', {
                 danger: bodyErrorMessage,
               })}

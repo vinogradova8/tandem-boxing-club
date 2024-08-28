@@ -6,11 +6,12 @@ import '@fortawesome/fontawesome-free/css/all.css';
 import './index.scss';
 import { App } from './App';
 import { HomePage } from './components/HomePage';
-import { Support } from './components/Suppor';
+import { Support } from './components/Support';
 import { Team } from './components/Team';
 import { Gallery } from './components/Gallery';
 import { FAQ } from './components/FAQ';
 import { Contacts } from './components/Contacts';
+import { Profile } from './components/Profile';
 
 // createRoot(document.getElementById('root') as HTMLDivElement).render(<App />);
 
@@ -24,7 +25,7 @@ createRoot(document.getElementById('root') as HTMLElement).render(
         <Route path="gallery" element={<Gallery />}></Route>
         <Route path="faq" element={<FAQ />}></Route>
         <Route path="сontacts" element={<Contacts />}></Route>
-        <Route path="profile" element={<p>Profile</p>}></Route>
+        <Route path="profile" element={<Profile />}></Route>
         {/* <Route path="phones">
           <Route index element={<PhonesPage />}></Route>
           <Route

@@ -1,18 +1,37 @@
+// [
+//   {
+//     "eng": {
+//       "question": "",
+//       "short-answer": "",
+//       "full-answer": ""
+//     },
+
+//     "ukr": {
+//       "question": "",
+//       "short-answer": "",
+//       "full-answer": ""
+//     },
+
+//     "deu": {
+//       "question": "",
+//       "short-answer": "",
+//       "full-answer": ""
+//     }
+//   }
+// ]
+
 [
   {
-    "eng": {
-      "question": "How long does one lesson last?",
-      "answer": "1 hour"
-    },
+    "id": 1,
+    "question": "",
+    "short-answer": "",
+    "full-answer": ""
+  },
 
-    "ukr": {
-      "question": "Скільки триває одне заняття?",
-      "answer": "1 година"
-    },
-
-    "deu": {
-      "question": "",
-      "answer": ""
-    }
+  {
+    "id": 2,
+    "question": "",
+    "short-answer": "",
+    "full-answer": ""
   }
 ]

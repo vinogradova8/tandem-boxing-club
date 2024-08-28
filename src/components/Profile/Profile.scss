@@ -1,0 +1,23 @@
+@import '../../styles/utils';
+
+.profile {
+	height: 800px;
+
+	&__container {
+		@include content-padding-inline;
+
+		max-width: 1400px;
+		margin: 0 auto;
+	}
+}
+
+
+.form {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+input {
+	width: 300px;
+}

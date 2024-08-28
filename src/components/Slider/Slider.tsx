@@ -7,10 +7,6 @@ import { SlideVideo } from '../../types/SlideVideo';
 import { SlideImage } from '../../types/SlideImage';
 // import 'swiper/swiper-bundle.css';
 
-// type Slide = {
-//   image: string;
-// };
-
 type Props = {
   slidesVideo: SlideVideo[];
   slidesImage: SlideImage[];

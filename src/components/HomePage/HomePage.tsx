@@ -6,6 +6,8 @@ import { useTranslation } from 'react-i18next';
 import { Loader } from '../Loader';
 import { ModalWindow } from '../ModalWindow';
 import { ItemsContext } from '../../ItemsContext';
+import MarqueeText from 'react-marquee-text';
+
 // import { client } from '../../client';
 // import { getPharagrafs } from '../../api/fetchClient';
 
@@ -95,6 +97,10 @@ export const HomePage: React.FC = ({}) => {
             </div>
           </section>
 
+          <MarqueeText direction={'right'}>
+            Heres and instance with some options yall
+          </MarqueeText>
+
           <div className="homepage__info">
             <section className="homepage__info-item info-item">
               <div className="info-item__container">
@@ -168,7 +174,7 @@ export const HomePage: React.FC = ({}) => {
                 className="homepage__contact-button 
 					contact-button homepage__contact-button--second"
               >
-                Contact us
+                {t('Contact us')}
               </button>
             </div>
           </div>

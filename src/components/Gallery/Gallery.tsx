@@ -24,7 +24,8 @@ export const Gallery: React.FC = ({}) => {
       .catch(error => {
         setErrorMessage(true);
         throw error;
-      });
+      })
+      .finally(() => setLoader(false));
 
     getSlidesVideo()
       .then(setSlidesVideo)
@@ -35,11 +36,17 @@ export const Gallery: React.FC = ({}) => {
       .finally(() => setLoader(false));
   }, []);
 
+  // useEffect(() => {
+  //   if (slidesImage.length === 0 || slidesVideo.length === 0) {
+  //     setErrorMessage(true);
+  //   }
+  // }, [slidesImage.length, slidesVideo.length]);
+
   return (
     <>
-      {loader ? (
-        <Loader></Loader>
-      ) : (
+      {loader && !errorMessage && <Loader></Loader>}
+
+      {!loader && !errorMessage && (
         <section className="gallery">
           <h2 className="gallery__title">Our training</h2>
 
@@ -60,7 +67,7 @@ export const Gallery: React.FC = ({}) => {
         </section>
       )}
 
-      {!loader && errorMessage && <p>Something went wrong</p>}
+      {errorMessage && <p>False</p>}
     </>
   );
 };

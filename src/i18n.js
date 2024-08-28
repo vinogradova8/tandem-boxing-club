@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
-import Languagedetector from 'i18next-browser-languagedetector';
+// import Languagedetector from 'i18next-browser-languagedetector';
 import { LOCALS } from './i18n/constants';
 
 // the translations
@@ -129,10 +129,11 @@ const resources = {
 
 i18n
   .use(initReactI18next) // passes i18n down to react-i18next
-  .use(Languagedetector)
+  // .use(Languagedetector)
   .init({
     resources,
-    fallbackLng: LOCALS.UKR,
+    // fallbackLng: LOCALS.UKR,
+    lng: LOCALS.DEU,
 
     interpolation: {
       escapeValue: false, // react already safes from xss

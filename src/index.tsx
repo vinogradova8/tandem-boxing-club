@@ -12,6 +12,8 @@ import { Gallery } from './components/Gallery';
 import { FAQ } from './components/FAQ';
 import { Contacts } from './components/Contacts';
 import { Profile } from './components/Profile';
+import { Registration } from './components/Registration';
+import { Login } from './components/Login';
 
 // createRoot(document.getElementById('root') as HTMLDivElement).render(<App />);
 
@@ -25,6 +27,8 @@ createRoot(document.getElementById('root') as HTMLElement).render(
         <Route path="gallery" element={<Gallery />}></Route>
         <Route path="faq" element={<FAQ />}></Route>
         <Route path="сontacts" element={<Contacts />}></Route>
+        <Route path="login" element={<Login />}></Route>
+        <Route path="registration" element={<Registration />}></Route>
         <Route path="profile" element={<Profile />}></Route>
         {/* <Route path="phones">
           <Route index element={<PhonesPage />}></Route>

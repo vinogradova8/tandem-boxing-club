@@ -34,3 +34,23 @@ export function get<T>(url: string): Promise<T> {
 // export const getPharagrafs = () => get<Pharagraf[]>('/main-page-pharagraf');
 export const getSlidesVideo = () => get<SlideVideo[]>('/slides-video');
 export const getSlidesImage = () => get<SlideImage[]>('/slides-image');
+
+const USER_URL = '';
+
+export function getUser<T>(url: string): Promise<T> {
+  const fullURL = USER_URL + url + '.json';
+
+  return wait(1000)
+    .then(() => fetch(fullURL))
+    .then(response => response.json());
+}
+
+const FAQ_URL = '';
+
+export function getFAQ<T>(url: string): Promise<T> {
+  const fullURL = FAQ_URL + url + '.json';
+
+  return wait(1000)
+    .then(() => fetch(fullURL))
+    .then(response => response.json());
+}

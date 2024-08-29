@@ -6,7 +6,6 @@ import { useTranslation } from 'react-i18next';
 import { Loader } from '../Loader';
 import { ModalWindow } from '../ModalWindow';
 import { ItemsContext } from '../../ItemsContext';
-import MarqueeText from 'react-marquee-text';
 
 // import { client } from '../../client';
 // import { getPharagrafs } from '../../api/fetchClient';
@@ -96,10 +95,6 @@ export const HomePage: React.FC = ({}) => {
               </div>
             </div>
           </section>
-
-          <MarqueeText direction={'right'}>
-            Heres and instance with some options yall
-          </MarqueeText>
 
           <div className="homepage__info">
             <section className="homepage__info-item info-item">

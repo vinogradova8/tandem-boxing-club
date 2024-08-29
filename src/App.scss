@@ -34,9 +34,10 @@
 }
 
 body {
+	// display: flex;
   font-family: 'Inter';
   position: relative;
-  // height: 100vh;
+  
   // background-color: $gray-color;
   color: $main-text-color;
   font-weight: 400;
@@ -50,7 +51,8 @@ body {
 }
 
 main {
-  flex: 1 1 auto;
+  // flex: 1 1 auto;
+	// height: 100vh;
 }
 
 // .main-block {

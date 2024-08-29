@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './Header.scss';
 import { NavLink } from 'react-router-dom';
 import '../../i18n';
@@ -6,6 +6,7 @@ import { useTranslation } from 'react-i18next';
 import cn from 'classnames';
 import i18next from 'i18next';
 import { LOCALS } from '../../i18n/constants';
+import { ItemsContext } from '../../ItemsContext';
 // import { ItemsContext } from '../../ItemsContext';
 
 // type Props = {
@@ -40,6 +41,7 @@ export const Header: React.FC = (
   const [isBurgerMenuOpen, setIsBurgerMenuOpen] = useState(false);
 
   const languages = [LOCALS.ENG, LOCALS.UKR, LOCALS.DEU];
+  const { auth } = useContext(ItemsContext);
 
   const app = document.querySelector('.app');
 
@@ -65,18 +67,6 @@ export const Header: React.FC = (
           <ul className="header__navigation-list">
             {links.map(link => (
               <li key={link[0]}>
-                {/* <NavLink
-                  to={link[1] === 'home' ? `/` : `/${link[1]}`}
-                  className={({ isActive }) =>
-                    cn('menu-link', {
-                      'menu-link--active': isActive,
-                    })
-                  }
-                  // className="menu-link__slider"
-                >
-                  <p className="menu-link__passive">{link[0]}</p>
-                  <p className="menu-link__active">{link[0]}</p>
-                </NavLink> */}
                 <NavLink
                   to={link[1] === 'home' ? `/` : `/${link[1]}`}
                   // className="menu-link"
@@ -142,8 +132,11 @@ export const Header: React.FC = (
                 </ul>
               </div>
             </div>
-
-            <NavLink to="/profile" className="header__profile"></NavLink>
+            {auth.accessToken ? (
+              <NavLink to="/profile" className="header__profile"></NavLink>
+            ) : (
+              <NavLink to="/login" className="header__profile"></NavLink>
+            )}
           </div>
 
           <button

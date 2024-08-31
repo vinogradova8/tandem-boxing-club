@@ -5,6 +5,8 @@ import './Slider.scss';
 import 'swiper/css';
 import { SlideVideo } from '../../types/SlideVideo';
 import { SlideImage } from '../../types/SlideImage';
+import { VideoElement } from '../VideoElement';
+// import { useClickOutside } from '../../hooks/useClickOutside.js';
 // import 'swiper/swiper-bundle.css';
 
 type Props = {
@@ -13,7 +15,15 @@ type Props = {
 };
 
 export const Slider: React.FC<Props> = ({ slidesVideo, slidesImage }) => {
-  const video = document.querySelector('.video');
+  // const video = document.querySelector('.video');
+
+  // const videoRef = useRef<HTMLVideoElement>(null);
+
+  // useClickOutside(videoRef, () => {
+  //   if (videoRef.current) {
+  //     videoRef.current.pause();
+  //   }
+  // });
   // const videoRef = useRef(null);
   // const [isPlaying, setIsPlaying] = useState(false);
 
@@ -56,19 +66,7 @@ export const Slider: React.FC<Props> = ({ slidesVideo, slidesImage }) => {
 
       {slidesVideo.map(slide => (
         <SwiperSlide className="slide" key={slide.id}>
-          <div className="video video--shadow">
-            <video
-              onClick={() => {
-                if (video) {
-                  video.classList.toggle('video--shadow');
-                }
-              }}
-              className="video__item"
-              poster={slide.poster}
-              controls
-              src={slide.media}
-            ></video>
-          </div>
+          <VideoElement poster={slide.poster} media={slide.media} />
         </SwiperSlide>
       ))}
     </Swiper>

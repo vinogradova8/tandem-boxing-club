@@ -2,44 +2,54 @@ import React, { useContext, useState } from 'react';
 import './Registration.scss';
 import axios from '../../api/axios';
 import { ItemsContext } from '../../ItemsContext';
+import { NavLink } from 'react-router-dom';
+import { RoleName } from '../../types/RoleName';
 
 export const Registration: React.FC = ({}) => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
-  const [age, setAge] = useState('');
   const [login, setLogin] = useState('');
   const [password, setPassword] = useState('');
   const [controlPassword, setControlPassword] = useState('');
   const [success, setSuccess] = useState(false);
   const [errorMessage, setErrorMessage] = useState(false);
 
-  const { setAuth } = useContext(ItemsContext);
+  const { auth, setAuth } = useContext(ItemsContext);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     try {
-      const response = await axios.post(
+      await axios.post(
         '/register',
         JSON.stringify({
           firstName,
           lastName,
-          age,
           login,
           password,
-          controlPassword,
         }),
         {
           headers: { 'Content-Type': 'application/json' },
-          withCredentials: true,
         },
       );
 
-      const id = response.data.id;
-      const accessToken = response.data.accessToken;
-
-      setAuth({ login, password, id, accessToken });
       setSuccess(true);
+
+      const response = await axios.post(
+        '/login',
+        JSON.stringify({
+          login,
+          password,
+        }),
+        {
+          headers: { 'Content-Type': 'application/json' },
+        },
+      );
+
+      const accessToken = response.data.accessToken;
+      const role = response.data.role;
+
+      setAuth({ login, password, role, accessToken });
     } catch {
       setErrorMessage(true);
     }
@@ -50,7 +60,19 @@ export const Registration: React.FC = ({}) => {
       <div className="registration__container">
         <h2>REGISTRATION</h2>
         {success ? (
-          <p>Success!</p>
+          <>
+            <p>Success!</p>
+            <p>Go to your profile</p>
+            {auth.role === RoleName.ADMIN ? (
+              <NavLink to="/admin" className="header__profile">
+                Admin page
+              </NavLink>
+            ) : (
+              <NavLink to="/login" className="header__profile">
+                profile
+              </NavLink>
+            )}
+          </>
         ) : (
           <form onSubmit={handleSubmit} action="#">
             {errorMessage && <p>Registration failed</p>}
@@ -71,21 +93,6 @@ export const Registration: React.FC = ({}) => {
                 onChange={e => setLastName(e.target.value)}
                 type="text"
                 id="last-name"
-              />
-            </div>
-
-            {/* <div>
-            <label htmlFor="sex">Стать</label>
-            <input type="text" id="sex" />
-          </div> */}
-
-            <div>
-              <label htmlFor="age">Вік</label>
-              <input
-                value={age}
-                onChange={e => setAge(e.target.value)}
-                type="text"
-                id="sex"
               />
             </div>
 

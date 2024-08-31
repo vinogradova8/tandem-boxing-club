@@ -6,6 +6,7 @@ import '../../i18n';
 import './ModalWindow.scss';
 import { ItemsContext } from '../../ItemsContext';
 import { useTranslation } from 'react-i18next';
+import axios from 'axios';
 
 const portal = document.getElementById('portal') as HTMLElement;
 
@@ -19,7 +20,8 @@ export const ModalWindow: React.FC = ({}) => {
   const [emailErrorMessage, setEmailErrorMessage] = useState('');
   const [bodyErrorMessage, setBodyErrorMessage] = useState('');
 
-  const regex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
+  const EMAIL_REGEX = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
+  const NAME_REGEX = /^[a-zA-Zа-яА-Я]{2,22}$/g;
 
   const app = document.querySelector('.app');
 
@@ -31,9 +33,22 @@ export const ModalWindow: React.FC = ({}) => {
   };
 
   const handleSubmit = (event: React.FormEvent<HTMLElement>) => {
+    event.preventDefault();
+
     if (!name) {
       setNameErrorMessage('Please enter your name');
-    } else {
+    }
+
+    if (
+      name &&
+      (name.length < 2 || !name.match(NAME_REGEX) || name.length > 22)
+    ) {
+      setNameErrorMessage(
+        'Name should have from 2 to 22 chars and contain only letters',
+      );
+    }
+
+    if (name.match(NAME_REGEX) && name.length >= 2 && name.length <= 22) {
       setNameErrorMessage('');
     }
 
@@ -41,11 +56,11 @@ export const ModalWindow: React.FC = ({}) => {
       setEmailErrorMessage('Please enter your email');
     }
 
-    if (email && !email.match(regex)) {
+    if (email && !email.match(EMAIL_REGEX)) {
       setEmailErrorMessage('Invalid email address');
     }
 
-    if (email && email.match(regex)) {
+    if (email.match(EMAIL_REGEX)) {
       setEmailErrorMessage('');
     }
 
@@ -57,7 +72,7 @@ export const ModalWindow: React.FC = ({}) => {
       setBodyErrorMessage('Message should have at least 10 chars');
     }
 
-    if (body && body.length >= 10) {
+    if (body.length >= 10) {
       setBodyErrorMessage('');
     }
 
@@ -69,17 +84,19 @@ export const ModalWindow: React.FC = ({}) => {
       !email ||
       !body
     ) {
-      event.preventDefault();
-    } else {
-      return true;
+      return false;
     }
 
-    return false;
+    axios.post('', { name, email, body });
+    setIsModalWindowOpen(false);
+
+    return true;
   };
 
   return createPortal(
     <div className="modal-window">
       <div className="modal-window__container">
+        {/* <div className="modal-window__block"> */}
         <button
           onClick={handleCloseModalWindow}
           className="modal-window__close"
@@ -89,16 +106,17 @@ export const ModalWindow: React.FC = ({}) => {
         </button>
 
         <form onSubmit={handleSubmit} action="#" className="modal-window__form">
-          <p>{t('Contact us')}</p>
+          <p className="modal-window__title">{t('Contact us')}</p>
 
           <div>
             <input
+              autoComplete="off"
               onChange={e => setName(e.target.value)}
               value={name}
               type="text"
               placeholder="Your name"
               name="name"
-              className={cn('input', {
+              className={cn('modal-window__input', {
                 danger: nameErrorMessage,
               })}
             />
@@ -107,36 +125,38 @@ export const ModalWindow: React.FC = ({}) => {
 
           <div>
             <input
+              autoComplete="off"
               onChange={e => setEmail(e.target.value)}
               value={email}
               type="text"
               placeholder="Your email"
               name="email"
-              className={cn('input', {
+              className={cn('modal-window__input', {
                 danger: emailErrorMessage,
               })}
             />
             {emailErrorMessage && <p className="error">{emailErrorMessage}</p>}
           </div>
 
-          <div>
+          <div className="modal-window__textarea-box">
             <TextareaAutosize
               onChange={e => setBody(e.target.value)}
               value={body}
               placeholder="Message"
               name="message"
-              className={cn('textarea', {
+              className={cn('modal-window__textarea', {
                 danger: bodyErrorMessage,
               })}
               maxRows={6}
+              // cols={42}
             />
             {bodyErrorMessage && <p className="error">{bodyErrorMessage}</p>}
           </div>
 
           <button
             type="submit"
-            className={cn('modal-window__contact-button contact-button', {
-              // 'contact-button--disabled': isSubmitButtonDisabled,
+            className={cn('modal-window__button', {
+              'modal-window__button--disabled': !name || !email || !body,
             })}
             // disabled={isSubmitButtonDisabled}
           >
@@ -145,7 +165,7 @@ export const ModalWindow: React.FC = ({}) => {
         </form>
 
         <div className="modal-window__footer">
-          <p>or you can contact us via</p>
+          <p className="modal-window__text">or you can contact us via</p>
 
           <div>
             <ul className="modal-window__list">
@@ -167,6 +187,7 @@ export const ModalWindow: React.FC = ({}) => {
             </ul>
           </div>
         </div>
+        {/* </div> */}
       </div>
     </div>,
     portal,

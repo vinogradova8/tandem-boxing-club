@@ -2,6 +2,7 @@ import React, { useMemo } from 'react';
 
 import { useLocalStorage } from './hooks/useLocalStorage';
 import { Auth } from './types/Auth';
+import { RoleName } from './types/RoleName';
 
 type ItemsContextType = {
   isModalWindowOpen: boolean;
@@ -20,7 +21,7 @@ export const ItemsContext = React.createContext<ItemsContextType>({
   auth: {
     login: '',
     password: '',
-    id: 0,
+    role: RoleName.CUSTOMER,
     accessToken: '',
   },
   setAuth: () => {},
@@ -46,7 +47,7 @@ export const ItemsProvider: React.FC<Props> = ({ children }) => {
   const [auth, setAuth] = useLocalStorage('auth', {
     login: '',
     password: '',
-    id: 0,
+    role: RoleName.CUSTOMER,
     accessToken: '',
   });
 

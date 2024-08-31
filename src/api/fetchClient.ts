@@ -5,15 +5,6 @@ export const scrollToTop = () => {
   window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
 };
 
-// type Pharagraf = {
-//   title: string;
-//   info: string;
-// };
-
-// type Slide = {
-//   media: string;
-// };
-
 // const BASE_URL = 'http://localhost:1337/api';
 const BASE_URL = 'https://vinogradova8.github.io/boxing/api';
 
@@ -31,17 +22,20 @@ export function get<T>(url: string): Promise<T> {
     .then(response => response.json());
 }
 
-// export const getPharagrafs = () => get<Pharagraf[]>('/main-page-pharagraf');
 export const getSlidesVideo = () => get<SlideVideo[]>('/slides-video');
 export const getSlidesImage = () => get<SlideImage[]>('/slides-image');
 
 const USER_URL = '';
 
-export function getUser<T>(url: string): Promise<T> {
+export function getUser<T>(url: string, accessToken: string): Promise<T> {
   const fullURL = USER_URL + url + '.json';
 
   return wait(1000)
-    .then(() => fetch(fullURL))
+    .then(() =>
+      fetch(fullURL, {
+        headers: { Authorization: accessToken },
+      }),
+    )
     .then(response => response.json());
 }
 

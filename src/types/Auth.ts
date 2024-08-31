@@ -1,6 +1,8 @@
+import { RoleName } from './RoleName';
+
 export type Auth = {
   login: string;
   password: string;
-  id: number;
+  role: RoleName;
   accessToken: string;
 };

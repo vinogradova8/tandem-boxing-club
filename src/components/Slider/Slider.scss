@@ -125,16 +125,9 @@
       background-color: rgba(43, 38, 38, 0.5);
       z-index: 100;
     }
-
-    // &:hover {
-    // 	transform: scale(1.2);
-    // }
-
     &:hover::before,
     &:focus::before {
       display: none;
-      // width: 0;
-      // height: 0;
     }
   }
 

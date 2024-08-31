@@ -44,7 +44,7 @@ export const FAQ: React.FC = ({}) => {
                 </div>
               </div>
 
-              <div className="answer">{faq['full-answer']}</div>
+              <div className="answer">{faq.fullAnswer}</div>
             </div>
           </div>
         ))}

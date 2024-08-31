@@ -9,11 +9,9 @@ export const Profile: React.FC = ({}) => {
 
   const [user, setUser] = useState<User | null>(null);
 
-  const id = auth.id.toString();
-
   useEffect(() => {
-    getUser(id).then(() => setUser);
-  }, [id]);
+    getUser(`/${auth.login}`, auth.accessToken).then(() => setUser);
+  }, [auth.accessToken, auth.login]);
 
   return (
     <>
@@ -22,7 +20,6 @@ export const Profile: React.FC = ({}) => {
           <p>YOUR PROFILE</p>
           <p>{user?.firstName}</p>
           <p>{user?.lastName}</p>
-          <p>{user?.age}</p>
         </div>
       </main>
     </>

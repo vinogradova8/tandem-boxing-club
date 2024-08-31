@@ -7,6 +7,7 @@ import cn from 'classnames';
 import i18next from 'i18next';
 import { LOCALS } from '../../i18n/constants';
 import { ItemsContext } from '../../ItemsContext';
+import { RoleName } from '../../types/RoleName';
 // import { ItemsContext } from '../../ItemsContext';
 
 // type Props = {
@@ -132,9 +133,15 @@ export const Header: React.FC = (
                 </ul>
               </div>
             </div>
-            {auth.accessToken ? (
+            {auth.accessToken && auth.role === RoleName.ADMIN && (
+              <NavLink to="/admin" className="header__profile"></NavLink>
+            )}
+
+            {auth.accessToken && auth.role === RoleName.CUSTOMER && (
               <NavLink to="/profile" className="header__profile"></NavLink>
-            ) : (
+            )}
+
+            {!auth.accessToken && (
               <NavLink to="/login" className="header__profile"></NavLink>
             )}
           </div>

@@ -14,6 +14,7 @@ import { Contacts } from './components/Contacts';
 import { Profile } from './components/Profile';
 import { Registration } from './components/Registration';
 import { Login } from './components/Login';
+import { AdminPage } from './components/AdminPage';
 
 // createRoot(document.getElementById('root') as HTMLDivElement).render(<App />);
 
@@ -30,6 +31,7 @@ createRoot(document.getElementById('root') as HTMLElement).render(
         <Route path="login" element={<Login />}></Route>
         <Route path="registration" element={<Registration />}></Route>
         <Route path="profile" element={<Profile />}></Route>
+        <Route path="admin" element={<AdminPage />}></Route>
         {/* <Route path="phones">
           <Route index element={<PhonesPage />}></Route>
           <Route

@@ -7,9 +7,6 @@ import { Loader } from '../Loader';
 import { ModalWindow } from '../ModalWindow';
 import { ItemsContext } from '../../ItemsContext';
 
-// import { client } from '../../client';
-// import { getPharagrafs } from '../../api/fetchClient';
-
 export const HomePage: React.FC = ({}) => {
   const { t } = useTranslation();
 
@@ -26,37 +23,6 @@ export const HomePage: React.FC = ({}) => {
   }, []);
 
   const app = document.querySelector('.app');
-
-  // const [info, setInfo] = useState([]);
-
-  // useEffect(() => {
-  //   getPharagrafs().then(() => setInfo);
-  //   // .catch(error => {
-  //   //   setErrorMessage(true);
-  //   //   throw error;
-  //   // })
-  //   // .finally(() => setLoader(false));
-  // }, []);
-
-  // console.log(info);
-
-  // const getInfo = useCallback(async () => {
-  //   try {
-  //     const response = await client.getEntries({
-  //       content_type: 'componentHeroBanner',
-  //     });
-
-  //     const responseData = response.items;
-
-  //     console.log(responseData);
-  //   } catch (error) {
-  //     console.log('error');
-  //   }
-  // }, []);
-
-  // useEffect(() => {
-  //   getInfo();
-  // }, [getInfo]);
 
   return (
     <>
@@ -85,7 +51,6 @@ export const HomePage: React.FC = ({}) => {
                   onClick={() => {
                     setIsModalWindowOpen(true);
                     app?.classList.add('fixed');
-                    // document.body.style.overflow = `hidden`;
                   }}
                   className="homepage__contact-button contact-button 
 					homepage__contact-button--first"

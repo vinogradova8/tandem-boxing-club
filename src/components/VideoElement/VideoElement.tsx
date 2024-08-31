@@ -9,7 +9,6 @@ type Props = {
 
 export const VideoElement: React.FC<Props> = ({ poster, media }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
-  // const video = document.querySelector('.video');
 
   const [isVideoShadowed, setIsVideoShadowed] = useState(true);
 

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import TextareaAutosize from 'react-textarea-autosize';
 import cn from 'classnames';
@@ -20,8 +20,16 @@ export const ModalWindow: React.FC = ({}) => {
   const [emailErrorMessage, setEmailErrorMessage] = useState('');
   const [bodyErrorMessage, setBodyErrorMessage] = useState('');
 
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, []);
+
   const EMAIL_REGEX = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
-  const NAME_REGEX = /^[a-zA-Zа-яА-Я]{2,22}$/g;
+  const NAME_REGEX = /^[a-zA-Zа-яА-Яії\s]{2,22}$/g;
 
   const app = document.querySelector('.app');
 
@@ -110,6 +118,7 @@ export const ModalWindow: React.FC = ({}) => {
 
           <div>
             <input
+              ref={inputRef}
               autoComplete="off"
               onChange={e => setName(e.target.value)}
               value={name}
@@ -147,8 +156,7 @@ export const ModalWindow: React.FC = ({}) => {
               className={cn('modal-window__textarea', {
                 danger: bodyErrorMessage,
               })}
-              maxRows={6}
-              // cols={42}
+              maxRows={2}
             />
             {bodyErrorMessage && <p className="error">{bodyErrorMessage}</p>}
           </div>

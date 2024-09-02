@@ -20,6 +20,8 @@ export const ModalWindow: React.FC = ({}) => {
   const [emailErrorMessage, setEmailErrorMessage] = useState('');
   const [bodyErrorMessage, setBodyErrorMessage] = useState('');
 
+  const [errorMessage, setErrorMessage] = useState(false);
+
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
@@ -40,7 +42,7 @@ export const ModalWindow: React.FC = ({}) => {
     app?.classList.remove('fixed');
   };
 
-  const handleSubmit = (event: React.FormEvent<HTMLElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLElement>) => {
     event.preventDefault();
 
     if (!name) {
@@ -95,8 +97,23 @@ export const ModalWindow: React.FC = ({}) => {
       return false;
     }
 
-    axios.post('', { name, email, body });
-    setIsModalWindowOpen(false);
+    try {
+      await axios.post(
+        '',
+        JSON.stringify({
+          name,
+          email,
+          body,
+        }),
+        {
+          headers: { 'Content-Type': 'application/json' },
+        },
+      );
+
+      setIsModalWindowOpen(false);
+    } catch {
+      setErrorMessage(true);
+    }
 
     return true;
   };
@@ -104,7 +121,6 @@ export const ModalWindow: React.FC = ({}) => {
   return createPortal(
     <div className="modal-window">
       <div className="modal-window__container">
-        {/* <div className="modal-window__block"> */}
         <button
           onClick={handleCloseModalWindow}
           className="modal-window__close"
@@ -112,6 +128,7 @@ export const ModalWindow: React.FC = ({}) => {
         >
           Close
         </button>
+        {errorMessage && <p>Send message failed</p>}
 
         <form onSubmit={handleSubmit} action="#" className="modal-window__form">
           <p className="modal-window__title">{t('Contact us')}</p>
@@ -195,7 +212,6 @@ export const ModalWindow: React.FC = ({}) => {
             </ul>
           </div>
         </div>
-        {/* </div> */}
       </div>
     </div>,
     portal,

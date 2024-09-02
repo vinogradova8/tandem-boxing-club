@@ -5,9 +5,10 @@ import { Slider } from '../Slider/Slider';
 import { Loader } from '../Loader';
 import '../../i18n';
 import { useTranslation } from 'react-i18next';
-import { getSlidesImage, getSlidesVideo } from '../../api/fetchClient';
+// import { getSlidesImage, getSlidesVideo } from '../../api/fetchClient';
 import { SlideVideo } from '../../types/SlideVideo';
 import { SlideImage } from '../../types/SlideImage';
+import { gallery } from '../../api/axios';
 
 export const Gallery: React.FC = ({}) => {
   const [loader, setLoader] = useState(false);
@@ -16,39 +17,69 @@ export const Gallery: React.FC = ({}) => {
   const [errorMessage, setErrorMessage] = useState(false);
   const { t } = useTranslation();
 
+  const getVideo = async () => {
+    try {
+      const response = await gallery.get('/slides-video.json');
+
+      setSlidesVideo(response.data);
+    } catch {
+      setErrorMessage(true);
+    } finally {
+      setLoader(false);
+    }
+  };
+
+  const getImages = async () => {
+    try {
+      const response = await gallery.get('/slides-image.json');
+
+      setSlidesImage(response.data);
+    } catch {
+      setErrorMessage(true);
+    } finally {
+      setLoader(false);
+    }
+  };
+
   useEffect(() => {
     setLoader(true);
 
-    getSlidesImage()
-      .then(setSlidesImage)
-      .catch(error => {
-        setErrorMessage(true);
-        throw error;
-      })
-      .finally(() => setLoader(false));
+    getVideo();
+    getImages();
 
-    getSlidesVideo()
-      .then(setSlidesVideo)
-      .catch(error => {
-        setErrorMessage(true);
-        throw error;
-      })
-      .finally(() => setLoader(false));
+    // getSlidesImage()
+    //   .then(setSlidesImage)
+    //   .catch(error => {
+    //     setErrorMessage(true);
+    //     throw error;
+    //   })
+    //   .finally(() => setLoader(false));
+
+    // gallery
+    //   .get('/slides-video.json')
+    //   .then(() => setSlidesVideo)
+    //   .catch(error => {
+    //     setErrorMessage(true);
+    //     throw error;
+    //   })
+    //   .finally(() => setLoader(false));
+
+    // getSlidesVideo()
+    //   .then(setSlidesVideo)
+    //   .catch(error => {
+    //     setErrorMessage(true);
+    //     throw error;
+    //   })
+    //   .finally(() => setLoader(false));
   }, []);
-
-  // useEffect(() => {
-  //   if (slidesImage.length === 0 || slidesVideo.length === 0) {
-  //     setErrorMessage(true);
-  //   }
-  // }, [slidesImage.length, slidesVideo.length]);
 
   return (
     <>
       {loader && !errorMessage && <Loader></Loader>}
 
       {!loader && !errorMessage && (
-        <section className="gallery">
-          <h2 className="gallery__title">Our training</h2>
+        <main className="gallery">
+          <h2 className="gallery__title page-title">Our training</h2>
 
           <div className="slider">
             <div className="slider__container">
@@ -64,7 +95,7 @@ export const Gallery: React.FC = ({}) => {
               {t('Contact us')}
             </button>
           </div>
-        </section>
+        </main>
       )}
 
       {errorMessage && <p>False</p>}

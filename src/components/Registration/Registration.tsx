@@ -14,7 +14,7 @@ export const Registration: React.FC = ({}) => {
   const [success, setSuccess] = useState(false);
   const [errorMessage, setErrorMessage] = useState(false);
 
-  const { auth, setAuth } = useContext(ItemsContext);
+  const { user, setUser, setAccessToken } = useContext(ItemsContext);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -46,10 +46,21 @@ export const Registration: React.FC = ({}) => {
         },
       );
 
-      const accessToken = response.data.accessToken;
       const role = response.data.role;
+      const id = response.data.id;
+      const currentFirstName = response.data.firstName;
+      const currenLastName = response.data.lastName;
 
-      setAuth({ login, password, role, accessToken });
+      setUser({
+        id,
+        firstName: currentFirstName,
+        lastName: currenLastName,
+        role,
+        login,
+        password,
+      });
+
+      setAccessToken(response.data.accessToken);
     } catch {
       setErrorMessage(true);
     }
@@ -63,7 +74,7 @@ export const Registration: React.FC = ({}) => {
           <>
             <p>Success!</p>
             <p>Go to your profile</p>
-            {auth.role === RoleName.ADMIN ? (
+            {user.role === RoleName.ADMIN ? (
               <NavLink to="/admin" className="header__profile">
                 Admin page
               </NavLink>

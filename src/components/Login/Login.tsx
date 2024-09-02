@@ -11,7 +11,7 @@ export const Login: React.FC = ({}) => {
   const [success, setSuccess] = useState(false);
   const [errorMessage, setErrorMessage] = useState(false);
 
-  const { auth, setAuth } = useContext(ItemsContext);
+  const { user, setUser, setAccessToken } = useContext(ItemsContext);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -28,13 +28,14 @@ export const Login: React.FC = ({}) => {
         },
       );
 
-      const accessToken = response.data.accessToken;
       const role = response.data.role;
+      const id = response.data.id;
+      const firstName = response.data.firstName;
+      const lastName = response.data.lastName;
 
-      setAuth({ login, password, role, accessToken });
+      setUser({ id, firstName, lastName, role, login, password });
 
-      // console.log(JSON.stringify(response.data));
-      // setAccessToken(response.data.accessToken);
+      setAccessToken(response.data.accessToken);
       setSuccess(true);
     } catch {
       setErrorMessage(true);
@@ -50,7 +51,7 @@ export const Login: React.FC = ({}) => {
             <>
               <p>You are logged in!</p>
               <p>Go to your profile</p>
-              {auth.role === RoleName.ADMIN ? (
+              {user.role === RoleName.ADMIN ? (
                 <NavLink to="/admin" className="header__profile">
                   Admin page
                 </NavLink>

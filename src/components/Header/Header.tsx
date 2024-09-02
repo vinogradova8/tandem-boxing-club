@@ -42,7 +42,7 @@ export const Header: React.FC = (
   const [isBurgerMenuOpen, setIsBurgerMenuOpen] = useState(false);
 
   const languages = [LOCALS.ENG, LOCALS.UKR, LOCALS.DEU];
-  const { auth } = useContext(ItemsContext);
+  const { user, accessToken } = useContext(ItemsContext);
 
   const app = document.querySelector('.app');
 
@@ -133,15 +133,15 @@ export const Header: React.FC = (
                 </ul>
               </div>
             </div>
-            {auth.accessToken && auth.role === RoleName.ADMIN && (
+            {accessToken && user.role === RoleName.ADMIN && (
               <NavLink to="/admin" className="header__profile"></NavLink>
             )}
 
-            {auth.accessToken && auth.role === RoleName.CUSTOMER && (
+            {accessToken && user.role === RoleName.CUSTOMER && (
               <NavLink to="/profile" className="header__profile"></NavLink>
             )}
 
-            {!auth.accessToken && (
+            {!accessToken && (
               <NavLink to="/login" className="header__profile"></NavLink>
             )}
           </div>

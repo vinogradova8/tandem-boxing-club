@@ -27,6 +27,9 @@ export const Header: React.FC = (
 ) => {
   // const { favoriteProducts, items, amountOfItems } = useContext(ItemsContext);
   const { t } = useTranslation();
+
+  const { setLanguage } = useContext(ItemsContext);
+
   const links = [
     [t('Home'), 'home'],
     [t('Team'), 'team'],
@@ -125,6 +128,7 @@ export const Header: React.FC = (
                         setIsLanguageDropDownVisible(
                           !isLanguageDropDownVisible,
                         );
+                        setLanguage(language);
                       }}
                     >
                       {language.toUpperCase()}

@@ -47,6 +47,7 @@ const resources = {
         'This is an individualized approach to your goals. We offer private boxing training sessions tailored to your needs and fitness level. Our experienced coaches will help you achieve the best results—from improving your fitness to preparing for competitions. We train boxers who aspire to a career in the sport, ensuring you develop all the necessary skills and strategies for a successful performance in the ring. Our professional approach to training includes fight strategy, technique, endurance, and mental preparation.',
 
       Questions: 'HAVE QUESTIONS?',
+      Team: 'OUR TEAM',
     },
   },
   ukr: {
@@ -88,6 +89,7 @@ const resources = {
         'Це індивідуальний підхід до ваших цілей. Ми пропонуємо приватні тренування з боксу, адаптовані до ваших потреб і рівня підготовки. Наші досвідчені тренери допоможуть вам досягти найкращих результатів — від покращення фізичної форми до підготовки до змагань. Ми тренуємо боксерів, які прагнуть до спортивної кар`єри. Ви отримаєте всі необхідні навички та стратегії для успішного виступу на рингу. Професійний підхід до підготовки, включаючи стратегію бою, техніку, витривалість і ментальну підготовку.',
 
       Questions: 'Є ПИТАННЯ?',
+      Team: 'НАША КОМАНДА',
     },
   },
   deu: {
@@ -127,6 +129,9 @@ const resources = {
       'Section-3 title': 'Private Trainingseinheiten.',
       'Section-3 text':
         'Це індивідуальний підхід до ваших цілей. Ми пропонуємо приватні тренування з боксу, адаптовані до ваших потреб і рівня підготовки. Наші досвідчені тренери допоможуть вам досягти найкращих результатів — від покращення фізичної форми до підготовки до змагань. Ми тренуємо боксерів, які прагнуть до спортивної кар`єри. Ви отримаєте всі необхідні навички та стратегії для успішного виступу на рингу. Професійний підхід до підготовки, включаючи стратегію бою, техніку, витривалість і ментальну підготовку.',
+
+      Questions: 'HAVE QUESTIONS?',
+      Team: 'OUR TEAM',
     },
   },
 };

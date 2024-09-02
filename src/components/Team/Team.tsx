@@ -14,7 +14,7 @@ export const Team: React.FC = ({}) => {
 
   const getTeam = async () => {
     try {
-      const response = await team.get('/team-images.json');
+      const response = await team.get('/trainers.json');
 
       setTrainers(response.data);
     } catch {

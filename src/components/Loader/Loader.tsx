@@ -11,8 +11,8 @@ export const Loader: React.FC = () => {
       ></video> */}
       <img
         className="loaders__image"
-        // src="../images/loader/stars.gif"
-        src="https://vinogradova8.github.io/boxing/images/loader/stars.gif"
+        src="../images/loader/stars.gif"
+        // src="https://vinogradova8.github.io/boxing/images/loader/stars.gif"
         // src="https://vinogradova8.github.io/boxing/images/loader/spinner-transparent.gif"
         alt="Loading"
       />

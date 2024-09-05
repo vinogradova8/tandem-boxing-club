@@ -1,20 +1,116 @@
 @import '../../styles/utils/';
 
 .faq {
-	height: 1000px;
-}
+  // min-height: 100vh;
 
-.block {
-	padding-top: 200px;
-  &__container {
+  &__main {
+    border-bottom: 1px solid $gray-60-color;
+  }
+
+  &__questions {
+  }
+
+  &__main-container {
+    padding-block: 80px 64px;
+    background: url('../../../public/images/decor/faq-background-image.png')
+      center / cover no-repeat;
+
+    max-width: 1200px;
+    margin: 0 auto;
+
+    @include on-desktop {
+      padding-block: 80px 68px;
+      // background: url('../../../public/images/decor/faq-background-image.png') center / auto auto
+      //   no-repeat;
+    }
+  }
+
+  &__title {
+    margin-bottom: 112px;
+  }
+
+  &__input-container {
     @include content-padding-inline;
 
-    max-width: 1400px;
+    position: relative;
     margin: 0 auto;
+
+    // &::before {
+    // 	position: absolute;
+    //   display: inline-block;
+    //   content: '';
+    //   background: url('../../../public/images/icons/search.svg') no-repeat;
+    // 	top: 0;
+    // 	left: 0;
+    //   width: 24px;
+    //   height: 24px;
+    // }
+  }
+
+  &__label {
+    position: relative;
+
+    &::before {
+      position: absolute;
+      display: inline-block;
+      content: '';
+      background: url('../../../public/images/icons/search.svg') no-repeat;
+      top: 16px;
+      left: 16px;
+      width: 24px;
+      height: 24px;
+    }
+  }
+
+  &__input {
+    display: block;
+    padding: 16px 16px 16px 48px;
+    background-color: transparent;
+    border: 1px solid $gray-60-color;
+    border-radius: 16px;
+    width: 100%;
+    color: $gray-20-color;
+    margin-bottom: 4px;
+
+    &::before {
+      position: absolute;
+      display: inline-block;
+      content: '';
+      background: url('../../../public/images/icons/search.svg') no-repeat;
+      top: 0;
+      left: 0;
+      width: 24px;
+      height: 24px;
+    }
+
+    &::placeholder {
+      color: $gray-60-color;
+      font-family: $main-font-family;
+      font-size: 16px;
+    }
+  }
+
+  &__erroe-message {
+    margin-left: 40px;
+    position: relative;
+    // display: flex;
+    // align-items: center;
+    color: $error-color;
+
+    &::before {
+      position: absolute;
+      display: inline-block;
+      content: '';
+      background: url('../../../public/images/icons/attention.svg') no-repeat;
+      top: 0;
+      left: -24px;
+      width: 24px;
+      height: 24px;
+    }
   }
 }
 
-.question {
-  width: 100%;
-  white-space: nowrap;
-}
+// .block {
+//  height: 100%;
+//  flex: 1 1 auto ;
+// }

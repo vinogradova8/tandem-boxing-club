@@ -19,7 +19,9 @@ export const Gallery: React.FC = ({}) => {
 
   const getVideo = async () => {
     try {
-      const response = await gallery.get('/slides-video.json');
+      const response = await gallery.get('/slides-video.json', {
+        timeout: 5000,
+      });
 
       setSlidesVideo(response.data);
     } catch {
@@ -44,20 +46,16 @@ export const Gallery: React.FC = ({}) => {
   useEffect(() => {
     setLoader(true);
 
+    // setTimeout(() => {
+    //   getVideo();
+    //   getImages();
+    // }, 1000);
+
     getVideo();
     getImages();
 
     // getSlidesImage()
     //   .then(setSlidesImage)
-    //   .catch(error => {
-    //     setErrorMessage(true);
-    //     throw error;
-    //   })
-    //   .finally(() => setLoader(false));
-
-    // gallery
-    //   .get('/slides-video.json')
-    //   .then(() => setSlidesVideo)
     //   .catch(error => {
     //     setErrorMessage(true);
     //     throw error;
@@ -79,7 +77,7 @@ export const Gallery: React.FC = ({}) => {
 
       {!loader && !errorMessage && (
         <main className="gallery">
-          <h2 className="gallery__title page-title">Our training</h2>
+          <h2 className="gallery__title page-title">{t('Our Training')}</h2>
 
           <div className="slider">
             <div className="slider__container">

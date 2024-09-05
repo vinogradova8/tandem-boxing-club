@@ -1,0 +1,90 @@
+@import '../../styles/utils';
+
+.question-block {
+  border-bottom: 1px solid $gray-60-color;
+
+  &__container {
+    max-width: 1400px;
+    margin: 0 auto;
+    @include content-padding-inline;
+  }
+
+  &__answer {
+    // opacity: 0;
+    // animation: answer 2s linear 0s 1 normal forwards;
+    // height: 0px;
+    // transform: translateY(100%);
+    padding-bottom: 48px;
+    transition: all 0.3s ease 0s;
+
+    @keyframes answer {
+      0% {
+        height: 0px;
+        // height: 0%;
+      }
+      100% {
+        // opacity: 1;
+        // transform: translateY(0%);
+      }
+    }
+  }
+}
+
+.question {
+  font-family: $second-font-family;
+  font-size: 24px;
+  padding-block: 24px;
+
+  color: $gray-0-color;
+  cursor: pointer;
+
+  @include on-desktop {
+    font-weight: 500;
+    text-align: center;
+  }
+
+  &__stand {
+    @include on-desktop {
+      display: none;
+    }
+  }
+
+  &__running {
+    display: none;
+
+    @include on-desktop {
+      display: block;
+    }
+  }
+}
+
+.answer {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  color: $gray-60-color;
+
+  @include on-desktop {
+    font-weight: 500;
+    flex-direction: row;
+    gap: 40px;
+  }
+
+  &__short {
+    font-family: $second-font-family;
+    font-size: 24px;
+
+    @include on-desktop {
+      flex: 0 1 50%;
+      text-align: right;
+    }
+  }
+
+  &__full {
+    font-size: 16px;
+
+    @include on-desktop {
+      flex: 0 1 50%;
+    }
+  }
+}

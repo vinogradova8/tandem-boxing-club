@@ -12,33 +12,52 @@ export const Profile: React.FC = ({}) => {
 
   const { user, accessToken, setAccessToken } = useContext(ItemsContext);
 
-  const { login, password, firstName, lastName } = user;
+  const { email, password, firstName, lastName } = user;
 
-  const refreshToken = () => {
-    setInterval(async () => {
-      const response = await axios.post(
-        '/refresh',
-        JSON.stringify({
-          login,
-          password,
-        }),
-        {
-          headers: { Authorization: accessToken },
-        },
-      );
+  // const refreshToken = () => {
+  //   setInterval(async () => {
+  //     const response = await axios.post(
+  //       '/refresh',
+  //       JSON.stringify({
+  //         email,
+  //         password,
+  //       }),
+  //       {
+  //         headers: { Authorization: accessToken },
+  //       },
+  //     );
 
-      setAccessToken(response.data.accessToken);
-    }, 10800000);
+  //     setAccessToken(response.data.accessToken);
+  //   }, 10800000);
+  // };
+
+  // refreshToken();
+
+  const refreshToken = async () => {
+    const response = await axios.post(
+      '/refresh',
+      JSON.stringify({
+        email,
+        password,
+      }),
+      {
+        headers: { Authorization: accessToken },
+      },
+    );
+
+    setAccessToken(response.data.accessToken);
   };
 
-  refreshToken();
+  setInterval(() => {
+    refreshToken();
+  }, 10800000);
 
   const handleLogOut = async () => {
     try {
       const response = await axios.post(
         '/logout',
         JSON.stringify({
-          login,
+          email,
           password,
         }),
         {

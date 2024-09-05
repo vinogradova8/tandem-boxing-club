@@ -10,22 +10,7 @@ import { ItemsContext } from '../../ItemsContext';
 import { RoleName } from '../../types/RoleName';
 // import { ItemsContext } from '../../ItemsContext';
 
-// type Props = {
-//   setIsBurgerMenuOpen: (item: boolean) => void;
-//   isBurgerMenuOpen: boolean;
-//   darkTheme: boolean;
-//   setDarkTheme: React.Dispatch<React.SetStateAction<boolean>>;
-// };
-
-export const Header: React.FC = (
-  {
-    // setIsBurgerMenuOpen,
-    // isBurgerMenuOpen,
-    // darkTheme,
-    // setDarkTheme,
-  },
-) => {
-  // const { favoriteProducts, items, amountOfItems } = useContext(ItemsContext);
+export const Header: React.FC = ({}) => {
   const { t } = useTranslation();
 
   const { setLanguage } = useContext(ItemsContext);

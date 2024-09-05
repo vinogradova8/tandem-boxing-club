@@ -6,7 +6,7 @@
   height: 100%;
   left: 0;
   top: 0;
-  // background-color: rgba(130, 115, 115, 0.7);
+  background-color: rgba(31, 31, 34, 0.7);
 
   &__container {
     position: absolute;
@@ -152,6 +152,10 @@
       @include on-desktop {
         font-size: 16px;
       }
+    }
+
+    &:focus {
+      border-bottom: 1px solid $gray-40-color;
     }
   }
 

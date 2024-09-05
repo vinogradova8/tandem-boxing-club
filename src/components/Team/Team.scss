@@ -1,1 +1,124 @@
 @import '../../styles/utils/';
+
+.team {
+
+  &__title {
+    margin-bottom: 80px;
+  }
+
+  &__trainers {
+    
+
+    @include on-tablet {
+      border-top: 1px solid $gray-60-color;
+      border-bottom: 1px solid $gray-60-color;
+    }
+  }
+
+  &__trainers-container {
+    @include page-grid;
+   
+
+    @include on-tablet {
+      @include content-padding-inline;
+    }
+
+    @include on-desktop {
+      // border-top: 1px solid $gray-60-color;
+      // border-bottom: 1px solid $gray-60-color;
+
+      @include content-padding-inline;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+  }
+}
+
+.trainer {
+  border-top: 1px solid $gray-60-color;
+  border-bottom: 1px solid $gray-60-color;
+  width: 100%;
+
+  @include on-tablet {
+    border-top: none;
+    border-bottom: none;
+  }
+
+  @include on-desktop {
+    grid-column: span 2;
+  }
+
+  &__container {
+    @include content-padding-inline;
+
+    padding-block: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+
+    @include on-tablet {
+      padding-inline: 0;
+    }
+
+    @include on-desktop {
+      flex-direction: row;
+    }
+  }
+
+  &__photo {
+    @include on-desktop {
+      flex: 0 1 50%;
+    }
+
+    & img {
+      display: block;
+      margin: 0 auto;
+      height: 292px;
+      width: 230px;
+    }
+
+    @include on-desktop {
+      flex: 1 1 auto;
+    }
+  }
+
+  &__cotent {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+
+    @include on-desktop {
+      flex: 0 1 50%;
+    }
+  }
+
+  &__name {
+    font-family: $second-font-family;
+    font-size: 24px;
+    text-transform: uppercase;
+    color: $gray-20-color;
+
+    @include on-tablet {
+      font-weight: 500;
+    }
+  }
+
+  &__info {
+    justify-self: end;
+  }
+
+  &__level {
+    color: $gray-40-color;
+    font-family: $second-font-family;
+    font-size: 20px;
+    margin-bottom: 4px;
+
+    @include on-tablet {
+      font-weight: 500;
+    }
+  }
+
+  &__experience {
+    color: $gray-60-color;
+  }
+}

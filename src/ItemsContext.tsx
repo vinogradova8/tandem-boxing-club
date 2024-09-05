@@ -25,7 +25,7 @@ export const ItemsContext = React.createContext<ItemsContextType>({
     firstName: '',
     lastName: '',
     role: RoleName.CUSTOMER,
-    login: '',
+    email: '',
     password: '',
   },
   setUser: () => {},
@@ -64,7 +64,7 @@ export const ItemsProvider: React.FC<Props> = ({ children }) => {
     firstName: '',
     lastName: '',
     role: RoleName.CUSTOMER,
-    login: '',
+    email: '',
     password: '',
   });
 

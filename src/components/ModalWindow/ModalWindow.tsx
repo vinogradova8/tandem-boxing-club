@@ -31,7 +31,7 @@ export const ModalWindow: React.FC = ({}) => {
   }, []);
 
   const EMAIL_REGEX = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
-  const NAME_REGEX = /^[a-zA-Zа-яА-Яії\s]{2,22}$/g;
+  const NAME_REGEX = /^[a-zA-Zа-яА-Яії]{2,22}$/g;
 
   const app = document.querySelector('.app');
 

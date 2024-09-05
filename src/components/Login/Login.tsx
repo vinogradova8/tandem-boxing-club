@@ -6,7 +6,7 @@ import axios from '../../api/axios';
 import { RoleName } from '../../types/RoleName';
 
 export const Login: React.FC = ({}) => {
-  const [login, setLogin] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [success, setSuccess] = useState(false);
   const [errorMessage, setErrorMessage] = useState(false);
@@ -18,9 +18,9 @@ export const Login: React.FC = ({}) => {
 
     try {
       const response = await axios.post(
-        '/login',
+        '/auth/login',
         JSON.stringify({
-          login,
+          email,
           password,
         }),
         {
@@ -33,7 +33,7 @@ export const Login: React.FC = ({}) => {
       const firstName = response.data.firstName;
       const lastName = response.data.lastName;
 
-      setUser({ id, firstName, lastName, role, login, password });
+      setUser({ id, firstName, lastName, role, email, password });
 
       setAccessToken(response.data.accessToken);
       setSuccess(true);
@@ -68,8 +68,8 @@ export const Login: React.FC = ({}) => {
                 <div>
                   <label htmlFor="email">Логін (пошта)</label>
                   <input
-                    value={login}
-                    onChange={e => setLogin(e.target.value)}
+                    value={email}
+                    onChange={e => setEmail(e.target.value)}
                     type="email"
                     id="email"
                   />

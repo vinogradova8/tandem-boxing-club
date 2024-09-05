@@ -8,9 +8,9 @@ import { RoleName } from '../../types/RoleName';
 export const Registration: React.FC = ({}) => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
-  const [login, setLogin] = useState('');
+  const [email, setLogin] = useState('');
   const [password, setPassword] = useState('');
-  const [controlPassword, setControlPassword] = useState('');
+  const [repeatPassword, setRepeatPassword] = useState('');
   const [success, setSuccess] = useState(false);
   const [errorMessage, setErrorMessage] = useState(false);
 
@@ -21,12 +21,13 @@ export const Registration: React.FC = ({}) => {
 
     try {
       await axios.post(
-        '/register',
+        '/auth/registration',
         JSON.stringify({
           firstName,
           lastName,
-          login,
+          email,
           password,
+          repeatPassword,
         }),
         {
           headers: { 'Content-Type': 'application/json' },
@@ -36,9 +37,9 @@ export const Registration: React.FC = ({}) => {
       setSuccess(true);
 
       const response = await axios.post(
-        '/login',
+        '/auth/login',
         JSON.stringify({
-          login,
+          email,
           password,
         }),
         {
@@ -56,7 +57,7 @@ export const Registration: React.FC = ({}) => {
         firstName: currentFirstName,
         lastName: currenLastName,
         role,
-        login,
+        email,
         password,
       });
 
@@ -110,7 +111,7 @@ export const Registration: React.FC = ({}) => {
             <div>
               <label htmlFor="email">Логін (пошта)</label>
               <input
-                value={login}
+                value={email}
                 onChange={e => setLogin(e.target.value)}
                 type="email"
                 id="email"
@@ -130,8 +131,8 @@ export const Registration: React.FC = ({}) => {
             <div>
               <label htmlFor="password-control">Перевірка паролю</label>
               <input
-                value={controlPassword}
-                onChange={e => setControlPassword(e.target.value)}
+                value={repeatPassword}
+                onChange={e => setRepeatPassword(e.target.value)}
                 type="password"
                 id="password-control"
               />

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import './QuestionBlock.scss';
 import Marquee from 'react-fast-marquee';
 // import i18next from '../../i18n';
@@ -21,15 +21,36 @@ export const QuestionBlock: React.FC<Props> = ({
 
   const [isAnswerOpen, setIsAnswerOpen] = useState(false);
 
+  const item = useRef<HTMLDivElement>(null);
+
+  // useEffect(() => {
+  //   const handleClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+  //     if (item.current && !item.current.contains(e.target)) {
+  //       setIsAnswerOpen(false);
+  //     }
+  //   };
+
+  //   document.addEventListener('click', handleClick);
+
+  //   return () => {
+  //     document.removeEventListener('click', handleClick);
+  //   };
+  // }, [isAnswerOpen]);
+
   // const text =
   //   'IS BOXING SUITABLE FOR ME IF A BEGINNER AND HAVE NEVER PLAYED SPORT?     ';
 
   return (
-    <div className="question-block">
+    <div
+      ref={item}
+      // onClick={() => setIsAnswerOpen(!isAnswerOpen)}
+      className="question-block"
+    >
       <div className="question-block__container">
         <div
+          // ref={item}
           onClick={() => setIsAnswerOpen(!isAnswerOpen)}
-          onBlur={() => setIsAnswerOpen(false)}
+          // onBlur={() => setIsAnswerOpen(false)}
           className="question-block__question question"
         >
           {!isAnswerOpen && (

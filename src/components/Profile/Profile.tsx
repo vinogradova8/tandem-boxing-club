@@ -8,44 +8,23 @@ import { NavLink } from 'react-router-dom';
 
 export const Profile: React.FC = ({}) => {
   const [successLogOut, setSuccessLogOut] = useState(false);
-  const [errorMessage, setErrorMessage] = useState(false);
+  const [logoutErrorMessage, setLogoutErrorMessage] = useState(false);
+  const [refreshErrorMessage, setRefreshErrorMessage] = useState(false);
 
   const { user, accessToken, setAccessToken } = useContext(ItemsContext);
 
-  const { email, password, firstName, lastName } = user;
-
-  // const refreshToken = () => {
-  //   setInterval(async () => {
-  //     const response = await axios.post(
-  //       '/refresh',
-  //       JSON.stringify({
-  //         email,
-  //         password,
-  //       }),
-  //       {
-  //         headers: { Authorization: accessToken },
-  //       },
-  //     );
-
-  //     setAccessToken(response.data.accessToken);
-  //   }, 10800000);
-  // };
-
-  // refreshToken();
+  const { firstName, lastName } = user;
 
   const refreshToken = async () => {
-    const response = await axios.post(
-      '/refresh',
-      JSON.stringify({
-        email,
-        password,
-      }),
-      {
+    try {
+      const response = await axios.post('/auth/refresh', {
         headers: { Authorization: accessToken },
-      },
-    );
+      });
 
-    setAccessToken(response.data.accessToken);
+      setAccessToken(response.data.accessToken);
+    } catch {
+      setRefreshErrorMessage(true);
+    }
   };
 
   setInterval(() => {
@@ -54,21 +33,14 @@ export const Profile: React.FC = ({}) => {
 
   const handleLogOut = async () => {
     try {
-      const response = await axios.post(
-        '/logout',
-        JSON.stringify({
-          email,
-          password,
-        }),
-        {
-          headers: { Authorization: accessToken },
-        },
-      );
+      const response = await axios.post('/auth/logout', {
+        headers: { Authorization: accessToken },
+      });
 
       setAccessToken(response.data.accessToken);
       setSuccessLogOut(true);
     } catch {
-      setErrorMessage(true);
+      setLogoutErrorMessage(true);
     }
   };
 
@@ -76,7 +48,8 @@ export const Profile: React.FC = ({}) => {
     <>
       <main className="profile">
         <div className="profile__container">
-          {errorMessage && <p>Log out failed!</p>}
+          {refreshErrorMessage && <p>Something went wrong!</p>}
+          {logoutErrorMessage && <p>Log out failed!</p>}
           {successLogOut ? (
             <>
               <p>You are logged out!</p>

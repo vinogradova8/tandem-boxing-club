@@ -2,7 +2,7 @@ import React, { useMemo } from 'react';
 
 import { useLocalStorage } from './hooks/useLocalStorage';
 // import { Auth } from './types/Auth';
-import { RoleName } from './types/RoleName';
+// import { RoleName } from './types/RoleName';
 import { User } from './types/User';
 import { LOCALS } from './i18n/constants';
 
@@ -24,7 +24,7 @@ export const ItemsContext = React.createContext<ItemsContextType>({
     id: 0,
     firstName: '',
     lastName: '',
-    role: RoleName.CUSTOMER,
+    role: '',
     email: '',
     password: '',
   },
@@ -63,7 +63,7 @@ export const ItemsProvider: React.FC<Props> = ({ children }) => {
     id: 0,
     firstName: '',
     lastName: '',
-    role: RoleName.CUSTOMER,
+    role: '',
     email: '',
     password: '',
   });

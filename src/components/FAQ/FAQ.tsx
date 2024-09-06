@@ -10,23 +10,24 @@ import React, {
 } from 'react';
 import './FAQ.scss';
 import debounce from 'lodash.debounce';
-// import MarqueeText from 'react-marquee-text';
 // import { getFAQ } from '../../api/fetchClient';
 
 // import i18next from '../../i18n';
 
 // import { LOCALS } from '../../i18n/constants';
 import { useTranslation } from 'react-i18next';
-// import { Questions } from '../../types/Questions';
+import { Questions } from '../../types/Questions';
 import { QuestionBlock } from '../QuestionBlock';
 import { useSearchParams } from 'react-router-dom';
+import axios from '../../api/axios';
 
 export const FAQ: React.FC = ({}) => {
   const { t } = useTranslation();
-  // const [faqs, setFaqs] = useState<Questions[] | null>(null);
-  // const [query, setQuery] = useState('');
+  const [faqs, setFaqs] = useState<Questions[]>([]);
+
   const [searchParams, setSearchParams] = useSearchParams();
   const [appliedQuery, setAppliedQuery] = useState('');
+  const [errorMessage, setErrorMessage] = useState(false);
 
   const query = searchParams.get('query') || '';
 
@@ -40,24 +41,24 @@ export const FAQ: React.FC = ({}) => {
     }
   }, []);
 
-  const faqs = [
-    {
-      id: 1,
-      question:
-        'IS BOXING SUITABLE FOR ME IF A BEGINNER AND HAVE NEVER PLAYED SPORT?',
-      'answer-short': 'Absolutely',
-      'answer-full':
-        'Boxing is suitable for beginners, even if you`ve never played sports before. Boxing training is highly adaptable, meaning coaches can tailor workouts to match your current fitness level and gradually build your skills and endurance. Starting from the basics, you`ll learn proper techniques, improve your fitness, and build confidence at your own pace. Many people who are new to fitness find boxing to be a great way to get into shape, relieve stress, and develop a strong sense of discipline and focus. So, don`t worry about being a beginner—boxing can be a perfect fit for you!',
-    },
+  // const faqs = [
+  //   {
+  //     id: 1,
+  //     question:
+  //       'IS BOXING SUITABLE FOR ME IF A BEGINNER AND HAVE NEVER PLAYED SPORT?',
+  //     'answer-short': 'Absolutely',
+  //     'answer-full':
+  //       'Typically: For beginners: Training 2-3 times a week is often enough to see initial improvements in fitness, technique and overall condition. For intermediate boxers: To develop skills and endurance, it is usually recommended to train 3-5 times a week. This allows you to focus more on technique, sparring and conditioning. For advanced or competitive boxers: Training 5-6 times a week, or even daily, is a common practice. This includes a combination of boxing practice, strength training, conditioning and sparring. Consistency is key in boxing. Along with regular training, proper rest, nutrition and recovery are crucial for optimal progress and injury prevention.',
+  //   },
 
-    {
-      id: 2,
-      question: 'WHAT LEVEL OF FITNESS IS REQUIRED TO START TRAINING?',
-      'answer-short': 'Your wish is needed.',
-      'answer-full':
-        'You don`t need to have a high level of fitness to start boxing trainingBeginners are often welcome and the workouts can be adapted to suit different fitness levels. It`s helpful to have a basic level of cardiovascular fitness and general physical health, but boxing training alone will help improve your fitness over time. We`ll help you start at a pace that`s comfortable for you and gradually build your endurance and strength as you progress.',
-    },
-  ];
+  //   {
+  //     id: 2,
+  //     question: 'WHAT LEVEL OF FITNESS IS REQUIRED TO START TRAINING?',
+  //     'answer-short': 'Your wish is needed.',
+  //     'answer-full':
+  //       'You don`t need to have a high level of fitness to start boxing training. Beginners are often welcome and the workouts can be adapted to suit different fitness levels. It`s helpful to have a basic level of cardiovascular fitness and general physical health, but boxing training alone will help improve your fitness over time. We`ll help you start at a pace that`s comfortable for you and gradually build your endurance and strength as you progress.',
+  //   },
+  // ];
 
   window.addEventListener('load', () => {
     const params = new URLSearchParams(searchParams);
@@ -66,12 +67,6 @@ export const FAQ: React.FC = ({}) => {
 
     setSearchParams(params);
   });
-
-  const visibleFaqs = useMemo(() => {
-    return faqs.filter(faq =>
-      faq.question.toLowerCase().includes(appliedQuery.toLowerCase()),
-    );
-  }, [appliedQuery]);
 
   const handleSetQuerySearchParameter = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -90,19 +85,40 @@ export const FAQ: React.FC = ({}) => {
     [applyQuery, searchParams, setSearchParams],
   );
 
+  const getQuestions = async () => {
+    try {
+      const response = await axios.get('/questions');
+
+      setFaqs(response.data);
+    } catch {
+      setErrorMessage(true);
+    }
+  };
+
+  useEffect(() => {
+    getQuestions();
+  }, []);
+
   // useEffect(() => {
-  //   if (i18next.language === LOCALS.ENG) {
-  //     getFAQ('/questions/eng').then(() => setFaqs);
-  //   }
+  //   getFAQ('/questions').then(() => setFaqs);
+  //   // if (i18next.language === LOCALS.ENG) {
+  //   //   getFAQ('/questions/eng').then(() => setFaqs);
+  //   // }
 
-  //   if (i18next.language === LOCALS.DEU) {
-  //     getFAQ('/questions/deu').then(() => setFaqs);
-  //   }
+  //   // if (i18next.language === LOCALS.DEU) {
+  //   //   getFAQ('/questions/deu').then(() => setFaqs);
+  //   // }
 
-  //   if (i18next.language === LOCALS.UKR) {
-  //     getFAQ('/questions/ukr').then(() => setFaqs);
-  //   }
-  // }, [setFaqs, i18next.language]);
+  //   // if (i18next.language === LOCALS.UKR) {
+  //   //   getFAQ('/questions/ukr').then(() => setFaqs);
+  //   // }
+  // }, [setFaqs]);
+
+  const visibleFaqs = useMemo(() => {
+    return faqs.filter(faq =>
+      faq.question.toLowerCase().includes(appliedQuery.toLowerCase()),
+    );
+  }, [appliedQuery]);
 
   // const text =
   //   'IS BOXING SUITABLE FOR ME IF A BEGINNER AND HAVE NEVER PLAYED SPORT?';
@@ -126,7 +142,7 @@ export const FAQ: React.FC = ({}) => {
                 />
               </label>
 
-              {query && visibleFaqs.length === 0 && (
+              {query && visibleFaqs && visibleFaqs.length === 0 && (
                 <p className="faq__erroe-message">
                   Oops, sorry, we didn`t find your question. Please contact us
                   to get an answer.
@@ -137,51 +153,17 @@ export const FAQ: React.FC = ({}) => {
         </div>
 
         <div className="faq__questions">
+          {errorMessage && <p>Smth went wrong</p>}
           {visibleFaqs.map(faq => (
             <QuestionBlock
               key={faq.id}
               question={faq.question}
-              answerShort={faq['answer-short']}
-              answerFull={faq['answer-full']}
+              answerShort={faq.shortAnswer}
+              answerFull={faq.fullAnswer}
             />
           ))}
         </div>
-
-        {/* <div className="block"></div> */}
-
-        {/* {faqs?.map(faq => (
-          <div key={faq.id} className="block">
-            <div className="block__container">
-              <div className="question">
-                <div className="running-question">
-                  <Marquee>{`${faq.question} ${faq.question} ${faq.question} ${faq.question}`}</Marquee>
-                </div>
-              </div>
-
-              <div className="answer">{faq['full-answer']}</div>
-            </div>
-          </div>
-        ))} */}
       </main>
-
-      {/* {t('Home')}
-      <div>
-        {i18next.language === LOCALS.UKR &&
-          faq.map(item => (
-            <Fragment key={item.ukr.question}>
-              <p>{item.ukr.question}</p>
-              <p>{item.ukr.answer}</p>
-            </Fragment>
-          ))}
-
-        {i18next.language === LOCALS.ENG &&
-          faq.map(item => (
-            <Fragment key={item.ukr.question}>
-              <p>{item.eng.question}</p>
-              <p>{item.eng.answer}</p>
-            </Fragment>
-          ))}
-      </div> */}
     </>
   );
 };

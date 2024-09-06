@@ -33,6 +33,8 @@ export const Login: React.FC = ({}) => {
       const firstName = response.data.firstName;
       const lastName = response.data.lastName;
 
+      // console.log(response.data);
+
       setUser({ id, firstName, lastName, role, email, password });
 
       setAccessToken(response.data.accessToken);
@@ -52,13 +54,9 @@ export const Login: React.FC = ({}) => {
               <p>You are logged in!</p>
               <p>Go to your profile</p>
               {user.role === RoleName.ADMIN ? (
-                <NavLink to="/admin" className="header__profile">
-                  Admin page
-                </NavLink>
+                <NavLink to="/admin">Admin page</NavLink>
               ) : (
-                <NavLink to="/profile" className="header__profile">
-                  profile
-                </NavLink>
+                <NavLink to="/profile">profile</NavLink>
               )}
             </>
           ) : (

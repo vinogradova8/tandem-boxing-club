@@ -39,10 +39,10 @@ export function getUser<T>(url: string, accessToken: string): Promise<T> {
     .then(response => response.json());
 }
 
-const FAQ_URL = '';
+const FAQ_URL = 'http://localhost:8088';
 
 export function getFAQ<T>(url: string): Promise<T> {
-  const fullURL = FAQ_URL + url + '.json';
+  const fullURL = FAQ_URL + url;
 
   return wait(1000)
     .then(() => fetch(fullURL))

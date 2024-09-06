@@ -1,10 +1,10 @@
-import { RoleName } from './RoleName';
+// import { RoleName } from './RoleName';
 
 export type User = {
   id: number;
   firstName: string;
   lastName: string;
-  role: RoleName;
+  role: string;
   email: string;
   password: string;
 };

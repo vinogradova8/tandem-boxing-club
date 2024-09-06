@@ -61,6 +61,14 @@ export const Registration: React.FC = ({}) => {
         password,
       });
 
+      // setUser({
+      //   id,
+      //   firstName: currentFirstName,
+      //   lastName: currenLastName,
+      //   email,
+      //   password,
+      // });
+
       setAccessToken(response.data.accessToken);
     } catch {
       setErrorMessage(true);
@@ -76,14 +84,14 @@ export const Registration: React.FC = ({}) => {
             <p>Success!</p>
             <p>Go to your profile</p>
             {user.role === RoleName.ADMIN ? (
-              <NavLink to="/admin" className="header__profile">
-                Admin page
-              </NavLink>
+              <NavLink to="/admin">Admin page</NavLink>
             ) : (
-              <NavLink to="/login" className="header__profile">
-                profile
-              </NavLink>
+              <NavLink to="/login">profile</NavLink>
             )}
+
+            {/* <NavLink to="/login">
+              profile
+            </NavLink> */}
           </>
         ) : (
           <form onSubmit={handleSubmit} action="#">

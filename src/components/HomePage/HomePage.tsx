@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect } from 'react';
 import './HomePage.scss';
 import '../../i18n';
 // import i18next from 'i18next';
@@ -10,16 +10,15 @@ import { ItemsContext } from '../../ItemsContext';
 export const HomePage: React.FC = ({}) => {
   const { t } = useTranslation();
 
-  const [loader, setLoader] = useState(false);
+  // const [loader, setLoader] = useState(false);
 
   const { isModalWindowOpen, setIsModalWindowOpen } = useContext(ItemsContext);
 
   useEffect(() => {
-    setLoader(true);
-
-    setTimeout(() => {
-      setLoader(false);
-    }, 1000);
+    // setLoader(true);
+    // setTimeout(() => {
+    //   setLoader(false);
+    // }, 1000);
   }, []);
 
   const app = document.querySelector('.app');
@@ -28,7 +27,7 @@ export const HomePage: React.FC = ({}) => {
     <>
       {isModalWindowOpen && <ModalWindow />}
 
-      {loader ? (
+      {false ? (
         <Loader></Loader>
       ) : (
         <main className="homepage">
@@ -65,7 +64,7 @@ export const HomePage: React.FC = ({}) => {
             <section className="homepage__info-item info-item">
               <div className="info-item__container">
                 <div className="info-item__content info-item__content--1">
-                  <h2 className="homepage__small-title">
+                  <h2 className="homepage__small-title small-title">
                     {t('Section-1 title')}
                   </h2>
 
@@ -79,7 +78,7 @@ export const HomePage: React.FC = ({}) => {
             <section className="homepage__info-item info-item">
               <div className="info-item__container">
                 <div className="info-item__content info-item__content--2">
-                  <h2 className="homepage__small-title">
+                  <h2 className="homepage__small-title small-title">
                     {t('Section-2 title')}
                   </h2>
 
@@ -92,7 +91,7 @@ export const HomePage: React.FC = ({}) => {
             <section className="homepage__info-item info-item">
               <div className="info-item__container">
                 <div className="info-item__content info-item__content--3">
-                  <h2 className="homepage__small-title">
+                  <h2 className="homepage__small-title small-title">
                     {t('Section-3 title')}
                   </h2>
 
@@ -104,7 +103,7 @@ export const HomePage: React.FC = ({}) => {
             <section className="homepage__info-item info-item">
               <div className="info-item__container">
                 <div className="info-item__content info-item__content--4">
-                  <h2 className="homepage__small-title">
+                  <h2 className="homepage__small-title small-title">
                     {t('Section-4 title')}
                   </h2>
 
@@ -123,20 +122,18 @@ export const HomePage: React.FC = ({}) => {
                     </ul>
                   </p>
                 </div>
-                <div className="decor decor--4"></div>
+                <div className="decor decor--3"></div>
               </div>
             </section>
           </div>
 
-          <div className="homepage__contact-us contact-us">
-            <div className="contact-us__container">
-              <button
-                className="homepage__contact-button 
+          <div className="homepage__contact-us-bottom contact-us-bottom">
+            <button
+              className="homepage__contact-button 
 					contact-button homepage__contact-button--second"
-              >
-                {t('Contact us')}
-              </button>
-            </div>
+            >
+              {t('Contact us')}
+            </button>
           </div>
         </main>
       )}

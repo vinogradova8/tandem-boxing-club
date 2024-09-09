@@ -77,7 +77,7 @@ export const Gallery: React.FC = ({}) => {
 
       {!loader && !errorMessage && (
         <main className="gallery">
-          <h2 className="gallery__title page-title">{t('Our Training')}</h2>
+          <h2 className="gallery__title big-title">{t('Our Training')}</h2>
 
           <div className="slider">
             <div className="slider__container">
@@ -88,8 +88,17 @@ export const Gallery: React.FC = ({}) => {
             </div>
           </div>
 
-          <div className="gallery__container">
+          {/* <div className="gallery__container">
             <button className="gallery__contact-button contact-button">
+              {t('Contact us')}
+            </button>
+          </div> */}
+
+          <div className="support__contact-us-bottom contact-us-bottom">
+            <button
+              className="support__contact-button 
+					contact-button"
+            >
               {t('Contact us')}
             </button>
           </div>

@@ -24,7 +24,7 @@
 // }
 
 .app {
-	min-height: 100vh;
+  min-height: 100vh;
   font-family: $main-font-family;
   background-color: $black-color;
   display: flex;
@@ -149,12 +149,54 @@ main {
   gap: 5px;
 }
 
-.page-title {
-  font-size: 32px;
-  text-align: center;
-  text-transform: uppercase;
+// .page-title {
+//   font-size: 32px;
+//   text-align: center;
+//   text-transform: uppercase;
+
+//   @include on-tablet {
+//     font-size: 44px;
+//   }
+// }
+
+.small-title {
+  font-family: $second-font-family;
+  font-size: 24px;
+
+  @include on-desktop {
+    font-weight: 500;
+  }
+}
+
+.contact-us-bottom {
+  padding-top: 104px;
+  padding-bottom: 53px;
+  max-width: 1400px;
+  margin: 0 auto;
+
+  @include content-padding-inline;
 
   @include on-tablet {
-    font-size: 44px;
+    padding-bottom: 66px;
   }
+
+  @include on-desktop {
+    padding-bottom: 87px;
+  }
+}
+
+.big-title {
+	font-family: $second-font-family;
+	font-weight: 500;
+	font-size: 30px;
+	text-align: center;
+  text-transform: uppercase;
+
+	@include on-tablet {
+		font-size: 44px;
+	}
+
+	@include on-desktop {
+		font-size: 56px;
+	}
 }

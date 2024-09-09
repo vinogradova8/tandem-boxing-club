@@ -8,13 +8,27 @@
   }
 
   &__title {
-    margin-bottom: 40px;
+    padding-top: 86px;
+    padding-bottom: 40px;
+
+    @include on-tablet {
+      padding-top: 80px;
+    }
   }
 
   &__contact-button {
-		display: block;
+    display: block;
     margin: 0 auto;
-		margin-bottom: 53px;
+    margin-bottom: 53px;
+
+    @include on-tablet {
+      margin-right: 0;
+    }
+  }
+
+  &__contact-button {
+    display: block;
+    margin: 0 auto;
 
     @include on-tablet {
       margin-right: 0;
@@ -26,7 +40,7 @@
   border-top: 1px solid $gray-60-color;
   border-bottom: 1px solid $gray-60-color;
   padding-block: 54px;
-	margin-bottom: 104px;
+  margin-bottom: 104px;
 
   &__container {
     @include content-padding-inline;

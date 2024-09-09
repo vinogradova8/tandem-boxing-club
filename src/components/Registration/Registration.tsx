@@ -23,9 +23,9 @@ export const Registration: React.FC = ({}) => {
       await axios.post(
         '/auth/registration',
         JSON.stringify({
+          email,
           firstName,
           lastName,
-          email,
           password,
           repeatPassword,
         }),
@@ -54,10 +54,10 @@ export const Registration: React.FC = ({}) => {
 
       setUser({
         id,
+        email,
         firstName: currentFirstName,
         lastName: currenLastName,
         role,
-        email,
         password,
       });
 

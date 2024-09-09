@@ -89,7 +89,7 @@ export const FAQ: React.FC = ({}) => {
     try {
       const response = await axios.get('/questions');
 
-      setFaqs(response.data);
+      setFaqs(response.data.QuestionDto);
     } catch {
       setErrorMessage(true);
     }
@@ -128,7 +128,7 @@ export const FAQ: React.FC = ({}) => {
       <main className="faq">
         <div className="faq__main">
           <div className="faq__main-container">
-            <h2 className="faq__title page-title">{t('Questions')}</h2>
+            <h2 className="faq__title big-title">{t('Questions')}</h2>
 
             <div className="faq__input-container">
               <label className="faq__label">
@@ -162,6 +162,15 @@ export const FAQ: React.FC = ({}) => {
               answerFull={faq.fullAnswer}
             />
           ))}
+        </div>
+
+        <div className="faq__contact-us-bottom contact-us-bottom">
+          <button
+            className="faq__contact-button 
+					contact-button"
+          >
+            {t('Contact us')}
+          </button>
         </div>
       </main>
     </>

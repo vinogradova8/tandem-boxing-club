@@ -122,15 +122,9 @@
   }
 
   &__small-title {
-    font-family: $second-font-family;
-    color: $white-color;
-    font-size: 24px;
+    color: $gray-0-color;
     margin-bottom: 24px;
     justify-self: start;
-
-    @include on-desktop {
-      font-weight: 500;
-    }
   }
 
   &__text {
@@ -212,7 +206,6 @@
 }
 
 .decor {
-  // display: none;
 
   @include on-tablet {
     &--1 {
@@ -233,7 +226,7 @@
       left: 38px;
     }
 
-    &--4 {
+    &--3 {
       position: absolute;
       background-image: url('../../../public/images/decor/decor-bag.png');
       width: 212px;
@@ -244,7 +237,7 @@
   }
 
   @include on-desktop {
-    &--4 {
+    &--3 {
       right: 55%;
     }
   }
@@ -262,12 +255,12 @@
     padding-bottom: 87px;
   }
 
-  &__container {
-    @include content-padding-inline;
+  // &__container {
+  //   @include content-padding-inline;
 
-    max-width: 1400px;
-    margin: 0 auto;
-  }
+  //   max-width: 1400px;
+  //   margin: 0 auto;
+  // }
 }
 
 .title {

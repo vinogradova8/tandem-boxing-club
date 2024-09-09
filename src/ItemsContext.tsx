@@ -22,10 +22,10 @@ export const ItemsContext = React.createContext<ItemsContextType>({
   setIsModalWindowOpen: () => {},
   user: {
     id: 0,
+    email: '',
     firstName: '',
     lastName: '',
     role: '',
-    email: '',
     password: '',
   },
   setUser: () => {},
@@ -61,10 +61,10 @@ export const ItemsProvider: React.FC<Props> = ({ children }) => {
   // const [isAuth, setIsAuth] = useLocalStorage('isAuth', false);
   const [user, setUser] = useLocalStorage('user', {
     id: 0,
+    email: '',
     firstName: '',
     lastName: '',
     role: '',
-    email: '',
     password: '',
   });
 

@@ -1,1 +1,94 @@
 @import '../../styles/utils/';
+
+.support {
+  &__main {
+    border-bottom: 1px solid $gray-60-color;
+  }
+  &__main-container {
+    background: url('../../../public/images/decor/support-background-image.png')
+      center / cover no-repeat;
+    height: 375px;
+    max-width: 1200px;
+    margin: 0 auto;
+
+    @include on-tablet {
+      height: 308px;
+      background: url('../../../public/images/decor/support-background-image.png')
+        center 22% / 180% auto no-repeat;
+    }
+
+    @include on-desktop {
+      // background: url('../../../public/images/decor/support-background-image.png')
+      //   center 22% / 225% auto no-repeat;
+    }
+  }
+
+  &__small-title {
+    color: $gray-40-color;
+  }
+
+  &__text {
+    color: $gray-60-color;
+  }
+
+  &__contact-button {
+    display: block;
+    margin: 0 auto;
+
+    @include on-tablet {
+      margin-right: 0;
+    }
+  }
+
+	&__title {
+		padding-top: 102px;
+
+		@include on-tablet {
+			padding-top: 86px;
+		}
+
+		@include on-desktop {
+			padding-top: 80px;
+		}
+	}
+}
+
+.decor {
+  @include on-tablet {
+    &--4 {
+      position: absolute;
+      background-image: url('../../../public/images/decor/decor-tape-ball.png');
+      width: 175px;
+      height: 142px;
+      bottom: 0;
+      right: 40px;
+
+      @include on-desktop {
+        right: 80px;
+      }
+    }
+
+    &--5 {
+      position: absolute;
+      background-image: url('../../../public/images/decor/decor-awards-1.png');
+      width: 268px;
+      height: 216px;
+      transform: translateX(-50%);
+      bottom: -45px;
+      left: 25%;
+
+      @media (min-width: 800px) {
+        bottom: -25px;
+      }
+    }
+
+    &--6 {
+      position: absolute;
+      background-image: url('../../../public/images/decor/decor-punching-bag.png');
+      width: 131px;
+      height: 399px;
+      top: -52px;
+      right: 17%;
+    }
+  }
+}

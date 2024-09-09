@@ -17,27 +17,41 @@ export const Profile: React.FC = ({}) => {
 
   const refreshToken = async () => {
     try {
-      const response = await axios.post('/auth/refresh', {
-        headers: { Authorization: accessToken },
-      });
+      const response = await axios.post(
+        '/auth/refresh',
+        {},
+        {
+          headers: { Authorization: `Bearer ${accessToken}` },
+        },
+      );
 
-      setAccessToken(response.data.accessToken);
+      setAccessToken(response.data.token);
     } catch {
       setRefreshErrorMessage(true);
     }
   };
 
-  setInterval(() => {
+  const startTokenRefresh = () => {
     refreshToken();
-  }, 10800000);
+
+    setInterval(() => {
+      refreshToken();
+    }, 180000);
+  };
+
+  startTokenRefresh();
 
   const handleLogOut = async () => {
     try {
-      const response = await axios.post('/auth/logout', {
-        headers: { Authorization: accessToken },
-      });
+      const response = await axios.post(
+        '/auth/logout',
+        {},
+        {
+          headers: { Authorization: `Bearer ${accessToken}` },
+        },
+      );
 
-      setAccessToken(response.data.accessToken);
+      setAccessToken(response.data.token);
       setSuccessLogOut(true);
     } catch {
       setLogoutErrorMessage(true);
@@ -61,9 +75,13 @@ export const Profile: React.FC = ({}) => {
           ) : (
             <>
               <p>YOUR PROFILE</p>
+              <p>{accessToken}</p>
+              <p>{user.email}</p>
               <p>{firstName}</p>
               <p>{lastName}</p>
-              <button onClick={handleLogOut}>Log out</button>
+              <button className="logout-button" onClick={handleLogOut}>
+                Log out
+              </button>
             </>
           )}
         </div>

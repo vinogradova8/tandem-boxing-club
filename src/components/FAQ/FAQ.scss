@@ -20,13 +20,17 @@
 
     @include on-desktop {
       padding-block: 80px 68px;
-      // background: url('../../../public/images/decor/faq-background-image.png') center / auto auto
-      //   no-repeat;
+      background: url('../../../public/images/decor/faq-background-image.png')
+        center 22% / 180% auto no-repeat;
     }
   }
 
   &__title {
     margin-bottom: 112px;
+
+		@include on-tablet {
+			margin-bottom: 142px;
+		}
   }
 
   &__input-container {
@@ -106,6 +110,15 @@
       left: -24px;
       width: 24px;
       height: 24px;
+    }
+  }
+
+  &__contact-button {
+    display: block;
+    margin: 0 auto;
+
+    @include on-tablet {
+      margin-right: 0;
     }
   }
 }

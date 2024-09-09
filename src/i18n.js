@@ -26,6 +26,14 @@ const resources = {
       'Section-1 text':
         'Boxing is not only a sport, but also a way of self-improvement that has many positive aspects for a person`s physical and mental health.Boxing training develops strength, endurance, reaction time and coordination.In addition to physical benefits, boxing also has a positive effect on the mental state of a person.Regular training helps to reduce stress, improve mood and increase self- esteem.The ability to control your emotions and withstand physical activity helps you develop self- discipline, self- confidence and resilience.',
 
+      'Section-2 title': 'Group workouts.',
+      'Section-2 text':
+        'Boxing training in a group creates an atmosphere of support and teamwork. Participants overcome difficulties together, motivate each other and reach new sporting heights. The combination of teamwork, motivation and shared challenges drives everyone forward, helping each participant reach new heights in their sport. The group environment reinforces your efforts and accelerates your progress.',
+
+      'Section-3 title': 'Private',
+      'Section-3 text':
+        'This is an individualized approach to your goals. We offer private boxing training sessions tailored to your needs and fitness level. Our experienced coaches will help you achieve the best results—from improving your fitness to preparing for competitions. We train boxers who aspire to a career in the sport, ensuring you develop all the necessary skills and strategies for a successful performance in the ring. Our professional approach to training includes fight strategy, technique, endurance, and mental preparation.',
+
       'Section-4 title': 'About work out',
       'Section-4 text-1': '1. Physical endurance',
       'Section-4 text-2': '2. Strength and muscle tone',
@@ -38,17 +46,28 @@ const resources = {
       'Section-4 text-9': '9. Stress tolerance',
       'Section-4 text-10': '10. Social skills',
 
-      'Section-2 title': 'Group workouts.',
-      'Section-2 text':
-        'Boxing training in a group creates an atmosphere of support and teamwork. Participants overcome difficulties together, motivate each other and reach new sporting heights. The combination of teamwork, motivation and shared challenges drives everyone forward, helping each participant reach new heights in their sport. The group environment reinforces your efforts and accelerates your progress.',
+      'Support-Section-1 title': 'Advantages of co-operation',
+      'Support-Section-1 text':
+        'Modern challenges:<br>Negative effects of the development of computerisation and mobile technologies;<br>Increase in time spent by young people on social networks, computer and mobile games;<br>Decrease in physical activity of the population;<br>Strengthening the role of sport, prevention of physical and mental illness;<br>Austria not represented in the boxing programme at the Olympic Games.<br>Planned positive effect of opening a boxing club:<br>(a) Involvement of children and young people in Klagenfurt and the surrounding towns in boxing;<br>b) Improvement of the physical and mental health of the population;<br>c) Minimum investment in financial and material terms;<br>d) Promotion of local Austrian boxing champions, increasing their status and recognition;<br>e) Development of Olympic sport in the region with further representation of Austria in the region prestigious European and world tournaments.',
+      // (a) Involvement of children and young people in Klagenfurt and the surrounding towns in boxing;
+      // b) Improvement of the physical and mental health of the population;
+      // c) Minimum investment in financial and material terms;
+      // d) Promotion of local Austrian boxing champions, increasing their status and recognition;
+      // e) Development of Olympic sport in the region with further representation of Austria in the region prestigious European and world tournaments.',
 
-      'Section-3 title': 'Private',
-      'Section-3 text':
-        'This is an individualized approach to your goals. We offer private boxing training sessions tailored to your needs and fitness level. Our experienced coaches will help you achieve the best results—from improving your fitness to preparing for competitions. We train boxers who aspire to a career in the sport, ensuring you develop all the necessary skills and strategies for a successful performance in the ring. Our professional approach to training includes fight strategy, technique, endurance, and mental preparation.',
+      'Support-Section-2 title': 'Our results',
+
+      'Support-Section-2 text':
+        'Since January 2023 we support trainers of boxing clubs (Klagenfurt Boxing Club). <br>During this time:<br>Еrhonoured the champion of Austria 2024.<br>Increased the number of trainees in the club (from 20 people per training session to 35-40 people).<br>Has helped to bring the Klagenfurt boxing club into the TOP 3 boxing clubs in Austria (statistics on results of the Austrian Championship)',
+
+      'Support-Section-3 title': 'What do we need',
+      'Support-Section-3 text':
+        'In the initial phase of the development of the Boxing Club We need the following support:<br>Payment of the cost of renting premises suitable for housing a boxing club the following properties:<br>- Main room for setting up the ring, bags, warm-up area and functional area Training <br>-250-350 m²;<br>- Two changing rooms;<br>- Two shower rooms;<br>- toilet;<br>- Coaching room for trainers - 15-20 m²;<br>- Storage room for equipment - 10 m²;<br>- Practical location in places where there are many people.<br>- Expensive equipment (approx. 6500 euros). Ring (approx. 12,000 euros).<br>All other expenses related to paying trainers, cleaning and purchasing equipment, advertising, maintaining social pages, etc. are paid by us.',
 
       Questions: 'HAVE QUESTIONS?',
       'Our Team': 'YOUR TRAINERS',
       'Our Training': 'OUR TRAINING',
+      'Support Us': 'SUPPORT US',
     },
   },
   ukr: {
@@ -92,6 +111,7 @@ const resources = {
       Questions: 'Є ПИТАННЯ?',
       'Our Team': 'ВАШІ ТРЕНЕРИ',
       'Our Training': 'НАШЕ ТРЕНУВАННЯ',
+      'Support Us': 'ПІДТРИМАТИ НАС',
     },
   },
   deu: {
@@ -112,6 +132,14 @@ const resources = {
       'Section-1 text':
         'Boxen ist nicht nur ein Sport, sondern auch ein Weg der Selbstverbesserung, der viele positive Aspekte für die physische und psychische Gesundheit eines Menschen hat. Das Boxtraining entwickelt Kraft, Ausdauer, Reaktionszeit und Koordination. Neben den körperlichen Vorteilen wirkt sich das Boxen auch positiv auf die Psyche des Menschen aus. Regelmäßiges Training hilft, Stress abzubauen, die Stimmung zu verbessern und das Selbstwertgefühl zu steigern. Die Fähigkeit, seine Emotionen zu kontrollieren und körperliche Anstrengung auszuhalten, trägt zur Entwicklung von Selbstdisziplin, Selbstvertrauen und Widerstandsfähigkeit bei.',
 
+      'Section-2 title': 'Gruppentrainings.',
+      'Section-2 text':
+        'Das Boxtraining in der Gruppe schafft eine Atmosphäre der Unterstützung und des Teamworks. Die Teilnehmer überwinden Schwierigkeiten gemeinsam, motivieren sich gegenseitig und erreichen neue sportliche Höchstleistungen. Die Kombination aus Teamwork, Motivation und gemeinsamen Herausforderungen treibt alle an und hilft jedem Teilnehmer, neue sportliche Höchstleistungen zu erzielen. Das Gruppenumfeld verstärkt Ihre Bemühungen und beschleunigt Ihre Fortschritte.',
+
+      'Section-3 title': 'Private Trainingseinheiten.',
+      'Section-3 text':
+        'Це індивідуальний підхід до ваших цілей. Ми пропонуємо приватні тренування з боксу, адаптовані до ваших потреб і рівня підготовки. Наші досвідчені тренери допоможуть вам досягти найкращих результатів — від покращення фізичної форми до підготовки до змагань. Ми тренуємо боксерів, які прагнуть до спортивної кар`єри. Ви отримаєте всі необхідні навички та стратегії для успішного виступу на рингу. Професійний підхід до підготовки, включаючи стратегію бою, техніку, витривалість і ментальну підготовку.',
+
       'Section-4 title': 'Wie die Ausbildung verläuft.',
       'Section-4 text-1': '1. Körperliche Ausdauer',
       'Section-4 text-2': '2. Kraft und Muskeltonus',
@@ -124,17 +152,10 @@ const resources = {
       'Section-4 text-9': '9. Stresstoleranz',
       'Section-4 text-10': '10. Soziale Fähigkeiten',
 
-      'Section-2 title': 'Gruppentrainings.',
-      'Section-2 text':
-        'Das Boxtraining in der Gruppe schafft eine Atmosphäre der Unterstützung und des Teamworks. Die Teilnehmer überwinden Schwierigkeiten gemeinsam, motivieren sich gegenseitig und erreichen neue sportliche Höchstleistungen. Die Kombination aus Teamwork, Motivation und gemeinsamen Herausforderungen treibt alle an und hilft jedem Teilnehmer, neue sportliche Höchstleistungen zu erzielen. Das Gruppenumfeld verstärkt Ihre Bemühungen und beschleunigt Ihre Fortschritte.',
-
-      'Section-3 title': 'Private Trainingseinheiten.',
-      'Section-3 text':
-        'Це індивідуальний підхід до ваших цілей. Ми пропонуємо приватні тренування з боксу, адаптовані до ваших потреб і рівня підготовки. Наші досвідчені тренери допоможуть вам досягти найкращих результатів — від покращення фізичної форми до підготовки до змагань. Ми тренуємо боксерів, які прагнуть до спортивної кар`єри. Ви отримаєте всі необхідні навички та стратегії для успішного виступу на рингу. Професійний підхід до підготовки, включаючи стратегію бою, техніку, витривалість і ментальну підготовку.',
-
       Questions: 'HAVE QUESTIONS?',
       'Our Team': 'YOUR TRAINERS',
       'Our Training': 'OUR TRAINING',
+      'Support Us': 'SUPPORT US',
     },
   },
 };

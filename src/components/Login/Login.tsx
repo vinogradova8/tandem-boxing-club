@@ -3,7 +3,7 @@ import './Login.scss';
 import { NavLink } from 'react-router-dom';
 import { ItemsContext } from '../../ItemsContext';
 import axios from '../../api/axios';
-import { RoleName } from '../../types/RoleName';
+// import { RoleName } from '../../types/RoleName';
 
 export const Login: React.FC = ({}) => {
   const [email, setEmail] = useState('');
@@ -28,16 +28,18 @@ export const Login: React.FC = ({}) => {
         },
       );
 
-      const role = response.data.role;
-      const id = response.data.id;
-      const firstName = response.data.firstName;
-      const lastName = response.data.lastName;
+      const role = response.data.userDto.role;
+      const id = response.data.userDto.id;
+      const firstName = response.data.userDto.firstName;
+      const lastName = response.data.userDto.lastName;
 
-      // console.log(response.data);
+      setUser({ id, email, firstName, lastName, role, password });
 
-      setUser({ id, firstName, lastName, role, email, password });
+      // console.log(accessToken);
 
-      setAccessToken(response.data.accessToken);
+      // setUser(response.data);
+
+      setAccessToken(response.data.token);
       setSuccess(true);
     } catch {
       setErrorMessage(true);
@@ -53,11 +55,12 @@ export const Login: React.FC = ({}) => {
             <>
               <p>You are logged in!</p>
               <p>Go to your profile</p>
-              {user.role === RoleName.ADMIN ? (
+              {user.role === 'ADMIN' ? (
                 <NavLink to="/admin">Admin page</NavLink>
               ) : (
                 <NavLink to="/profile">profile</NavLink>
               )}
+              {/* {accessToken && <NavLink to="/profile">profile</NavLink>} */}
             </>
           ) : (
             <>

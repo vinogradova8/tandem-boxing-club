@@ -7,7 +7,7 @@ import cn from 'classnames';
 import i18next from 'i18next';
 import { LOCALS } from '../../i18n/constants';
 import { ItemsContext } from '../../ItemsContext';
-import { RoleName } from '../../types/RoleName';
+// import { RoleName } from '../../types/RoleName';
 // import { ItemsContext } from '../../ItemsContext';
 
 export const Header: React.FC = ({}) => {
@@ -122,11 +122,11 @@ export const Header: React.FC = ({}) => {
                 </ul>
               </div>
             </div>
-            {accessToken && user.role === RoleName.ADMIN && (
+            {accessToken && user.role === 'ADMIN' && (
               <NavLink to="/admin" className="header__profile"></NavLink>
             )}
 
-            {accessToken && user.role === RoleName.CUSTOMER && (
+            {accessToken && user.role === 'CUSTOMER' && (
               <NavLink to="/profile" className="header__profile"></NavLink>
             )}
 

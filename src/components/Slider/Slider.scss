@@ -40,6 +40,7 @@
 .video {
   // position: relative;
   overflow: hidden;
+  max-height: 300px;
   transition: all 0.3s ease 0s;
   // padding-bottom: 170%;
   // overflow: auto;
@@ -107,6 +108,7 @@
   // position: relative;
   overflow: hidden;
   transition: all 0.3s ease 0s;
+  max-height: 300px;
   // padding-bottom: 170%;
   // overflow: auto;
   // max-height: 300px;
@@ -162,5 +164,10 @@
   }
 }
 
-// .swiper-slide-active {
-// }
+.swiper-scrollbar {
+  display: none;
+
+  @include on-tablet {
+    display: block;
+  }
+}

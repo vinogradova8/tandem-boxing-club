@@ -33,22 +33,34 @@ export const Slider: React.FC<Props> = ({ slidesVideo, slidesImage }) => {
       effect={'coverflow'}
       pagination={{ clickable: true }}
       scrollbar={{ draggable: true }}
-      spaceBetween={50}
+      // spaceBetween={55}
       touchRatio={3}
       grabCursor={true}
       slideToClickedSlide={true}
       height={100}
       breakpoints={{
         240: {
+          spaceBetween: 20,
           slidesPerView: 1.5,
         },
 
+        450: {
+          slidesPerView: 2.5,
+        },
+
         640: {
-          slidesPerView: 3,
+          spaceBetween: 55,
+          slidesPerView: 4,
+        },
+
+        800: {
+          spaceBetween: 55,
+          slidesPerView: 5,
         },
 
         1200: {
-          slidesPerView: 5,
+          spaceBetween: 55,
+          slidesPerView: 6.5,
         },
       }}
     >

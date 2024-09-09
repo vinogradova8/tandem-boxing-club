@@ -29,10 +29,7 @@ export const Team: React.FC = ({}) => {
 
   useEffect(() => {
     setLoader(true);
-
-    setTimeout(() => {
-      getTeam();
-    }, 1000);
+    getTeam();
   }, []);
 
   const trainersFromServer = useMemo(() => {
@@ -46,7 +43,9 @@ export const Team: React.FC = ({}) => {
       ) : (
         <main className="team">
           <div className="team__title-container">
-            <h2 className="team__title page-title">{t('Our Team')}</h2>
+            <h2 className="team__title page-title big-title">
+              {t('Our Team')}
+            </h2>
           </div>
 
           <div className="team__trainers">
@@ -75,6 +74,15 @@ export const Team: React.FC = ({}) => {
           </div>
 
           <div className="team__certificate"></div>
+
+          <div className="support__contact-us-bottom contact-us-bottom">
+            <button
+              className="support__contact-button 
+					contact-button"
+            >
+              {t('Contact us')}
+            </button>
+          </div>
         </main>
       )}
     </>

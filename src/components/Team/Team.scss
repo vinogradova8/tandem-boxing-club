@@ -3,7 +3,13 @@
 .team {
 
   &__title {
-    margin-bottom: 80px;
+    padding-top: 80px;
+    padding-bottom: 80px;
+
+    @include on-tablet {
+      padding-top: 86px;
+			padding-bottom: 40px;
+    }
   }
 
   &__trainers {
@@ -30,6 +36,15 @@
       @include content-padding-inline;
       max-width: 1400px;
       margin: 0 auto;
+    }
+  }
+
+	&__contact-button {
+		display: block;
+    margin: 0 auto;
+
+    @include on-tablet {
+      margin-right: 0;
     }
   }
 }

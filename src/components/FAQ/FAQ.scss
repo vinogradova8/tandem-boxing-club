@@ -13,15 +13,19 @@
   &__main-container {
     padding-block: 80px 64px;
     background: url('../../../public/images/decor/faq-background-image.png')
-      center / cover no-repeat;
-
+      center / 400% no-repeat;
     max-width: 1200px;
     margin: 0 auto;
 
+		@include on-tablet {
+			background: url('../../../public/images/decor/faq-background-image.png')
+      center / cover no-repeat;
+		}
+
     @include on-desktop {
-      padding-block: 80px 68px;
+      padding-block: 72px 68px;
       background: url('../../../public/images/decor/faq-background-image.png')
-        center 22% / 180% auto no-repeat;
+        center 72% / 180% auto no-repeat;
     }
   }
 

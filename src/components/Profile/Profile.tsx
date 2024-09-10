@@ -21,7 +21,10 @@ export const Profile: React.FC = ({}) => {
         '/auth/refresh',
         {},
         {
-          headers: { Authorization: `Bearer ${accessToken}` },
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+            'Access-Control-Allow-Origin': 'http://localhost:3000',
+          },
         },
       );
 

@@ -1,5 +1,5 @@
 export type Trainer = {
-  id: number;
+  id: string;
   language: string;
   media: string;
   name: string;

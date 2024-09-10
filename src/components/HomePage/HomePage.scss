@@ -172,9 +172,32 @@
 
     margin: 0 auto;
     max-width: 1400px;
+
+    // transform: translateX(-100%);
+
+    // animation: block 1s linear 0s 1 normal forwards;
+
+    // @keyframes block {
+    //   100% {
+    //     transform: translateX(0);
+    //   }
+    // }
   }
 
   &__content {
+    // &--1,
+    // &--3 {
+    //   transform: translateX(-100%);
+
+    //   animation: block 0.5s linear 0s 1 normal forwards;
+
+    //   @keyframes block {
+    //     100% {
+    //       transform: translateX(0);
+    //     }
+    //   }
+    // }
+
     &--4 {
       justify-self: start;
     }
@@ -206,7 +229,6 @@
 }
 
 .decor {
-
   @include on-tablet {
     &--1 {
       position: absolute;

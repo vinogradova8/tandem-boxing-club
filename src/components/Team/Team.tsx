@@ -52,7 +52,11 @@ export const Team: React.FC = ({}) => {
             <div className="team__trainers-container">
               {errorMessage && <p>Failer to load info about our team</p>}
               {trainersFromServer.map(trainer => (
-                <div key={trainer.id} className="trainer">
+                <div
+                  key={trainer.id}
+                  id={`my${trainer.id}`}
+                  className="trainer"
+                >
                   <div className="trainer__container">
                     <div className="trainer__photo">
                       <img src={trainer.media} alt="Trainer" />

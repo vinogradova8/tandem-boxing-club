@@ -1,20 +1,17 @@
 @import '../../styles/utils/';
 
 .team {
-
   &__title {
     padding-top: 80px;
     padding-bottom: 80px;
 
     @include on-tablet {
       padding-top: 86px;
-			padding-bottom: 40px;
+      padding-bottom: 40px;
     }
   }
 
   &__trainers {
-    
-
     @include on-tablet {
       border-top: 1px solid $gray-60-color;
       border-bottom: 1px solid $gray-60-color;
@@ -23,10 +20,48 @@
 
   &__trainers-container {
     @include page-grid;
-   
+
+    // transform: translateX(-100%);
+    column-gap: 0px;
+
+    animation: block 0s linear 0s 1 normal forwards;
+
+    @keyframes block {
+      // 90% {
+      //   column-gap: 20px;
+      // }
+
+      100% {
+        column-gap: 0px;
+      }
+    }
 
     @include on-tablet {
       @include content-padding-inline;
+
+      // &:nth-child(odd) {
+      //   transform: translateX(-100%);
+      //   animation: block-left 0.5s linear 0s 1 normal forwards;
+      // }
+
+      // &:nth-child(even) {
+      //   transform: translateX(100%);
+      //   animation: block-right 0.5s linear 0s 1 normal forwards;
+      // }
+
+      // @keyframes block-left {
+      //   100% {
+      //     transform: translateX(0);
+      //     border-right: 1px solid $gray-40-color;
+      //   }
+      // }
+
+      // @keyframes block-right {
+      //   100% {
+      //     transform: translateX(0);
+      //     border-left: 1px solid $gray-40-color;
+      //   }
+      // }
     }
 
     @include on-desktop {
@@ -39,8 +74,8 @@
     }
   }
 
-	&__contact-button {
-		display: block;
+  &__contact-button {
+    display: block;
     margin: 0 auto;
 
     @include on-tablet {
@@ -135,5 +170,57 @@
 
   &__experience {
     color: $gray-60-color;
+  }
+}
+
+#my1 {
+  transform: translateX(-100%);
+  animation:
+    block-left 0.5s linear 0s 1 normal forwards,
+    border-right 1s linear 0s 1 normal forwards;
+}
+
+#my2 {
+  transform: translateX(100%);
+  animation:
+    block-right 0.5s linear 0s 1 normal forwards,
+    border-left 1s linear 0s 1 normal forwards;
+}
+
+@keyframes block-right {
+  // 90% {
+  //   border-right: 1px solid $gray-40-color;
+  // }
+
+  100% {
+    transform: translateX(0);
+    // border-right: none;
+  }
+}
+
+@keyframes block-left {
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes border-right {
+  90% {
+    border-right: 1px solid $gray-40-color;
+  }
+
+  100% {
+    border-right: none;
+  }
+}
+
+@keyframes border-left {
+  90% {
+    border-left: 1px solid $gray-40-color;
+  }
+
+  100% {
+    border-left: none;
   }
 }

@@ -27,6 +27,7 @@ export const FAQ: React.FC = ({}) => {
 
   const [searchParams, setSearchParams] = useSearchParams();
   const [appliedQuery, setAppliedQuery] = useState('');
+  const [whichAnswerIsOpen, setWhichAnswerIsOpen] = useState(0);
   const [errorMessage, setErrorMessage] = useState(false);
 
   const query = searchParams.get('query') || '';
@@ -46,16 +47,24 @@ export const FAQ: React.FC = ({}) => {
   //     id: 1,
   //     question:
   //       'IS BOXING SUITABLE FOR ME IF A BEGINNER AND HAVE NEVER PLAYED SPORT?',
-  //     'answer-short': 'Absolutely',
-  //     'answer-full':
+  //     shortAnswer: 'Absolutely',
+  //     fullAnswer:
   //       'Typically: For beginners: Training 2-3 times a week is often enough to see initial improvements in fitness, technique and overall condition. For intermediate boxers: To develop skills and endurance, it is usually recommended to train 3-5 times a week. This allows you to focus more on technique, sparring and conditioning. For advanced or competitive boxers: Training 5-6 times a week, or even daily, is a common practice. This includes a combination of boxing practice, strength training, conditioning and sparring. Consistency is key in boxing. Along with regular training, proper rest, nutrition and recovery are crucial for optimal progress and injury prevention.',
   //   },
 
   //   {
   //     id: 2,
   //     question: 'WHAT LEVEL OF FITNESS IS REQUIRED TO START TRAINING?',
-  //     'answer-short': 'Your wish is needed.',
-  //     'answer-full':
+  //     shortAnswer: 'Your wish is needed.',
+  //     fullAnswer:
+  //       'You don`t need to have a high level of fitness to start boxing training. Beginners are often welcome and the workouts can be adapted to suit different fitness levels. It`s helpful to have a basic level of cardiovascular fitness and general physical health, but boxing training alone will help improve your fitness over time. We`ll help you start at a pace that`s comfortable for you and gradually build your endurance and strength as you progress.',
+  //   },
+
+  //   {
+  //     id: 3,
+  //     question: 'WHAT LEVEL OF FITNESS IS REQUIRED TO START TRAINING?',
+  //     shortAnswer: 'Your wish is needed.',
+  //     fullAnswer:
   //       'You don`t need to have a high level of fitness to start boxing training. Beginners are often welcome and the workouts can be adapted to suit different fitness levels. It`s helpful to have a basic level of cardiovascular fitness and general physical health, but boxing training alone will help improve your fitness over time. We`ll help you start at a pace that`s comfortable for you and gradually build your endurance and strength as you progress.',
   //   },
   // ];
@@ -120,9 +129,6 @@ export const FAQ: React.FC = ({}) => {
     );
   }, [appliedQuery]);
 
-  // const text =
-  //   'IS BOXING SUITABLE FOR ME IF A BEGINNER AND HAVE NEVER PLAYED SPORT?';
-
   return (
     <>
       <main className="faq">
@@ -157,9 +163,12 @@ export const FAQ: React.FC = ({}) => {
           {visibleFaqs.map(faq => (
             <QuestionBlock
               key={faq.id}
+              id={faq.id}
               question={faq.question}
-              answerShort={faq.shortAnswer}
-              answerFull={faq.fullAnswer}
+              shortAnswer={faq.shortAnswer}
+              fullAnswer={faq.fullAnswer}
+              whichAnswerIsOpen={whichAnswerIsOpen}
+              setWhichAnswerIsOpen={setWhichAnswerIsOpen}
             />
           ))}
         </div>

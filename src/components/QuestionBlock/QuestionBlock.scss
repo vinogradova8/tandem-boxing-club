@@ -2,39 +2,34 @@
 
 .question-block {
   border-bottom: 1px solid $gray-60-color;
+  background-color: #000;
+  z-index: 100;
+
+  // &--open {
+  //   animation: answer 2s linear 0s 1 normal forwards;
+  // }
+
+  // @keyframes answer {
+  //   100% {
+  //     height: 100%;
+  //   }
+  // }
 
   &__container {
+    z-index: 100;
+    overflow: hidden;
     max-width: 1400px;
     margin: 0 auto;
     @include content-padding-inline;
   }
-
-  &__answer {
-    // opacity: 0;
-    // animation: answer 2s linear 0s 1 normal forwards;
-    // height: 0px;
-    // transform: translateY(100%);
-    padding-bottom: 48px;
-    transition: all 0.3s ease 0s;
-
-    @keyframes answer {
-      0% {
-        height: 0px;
-        // height: 0%;
-      }
-      100% {
-        // opacity: 1;
-        // transform: translateY(0%);
-      }
-    }
-  }
 }
 
 .question {
+  z-index: 100;
   font-family: $second-font-family;
   font-size: 24px;
   padding-block: 24px;
-
+  background-color: #000;
   color: $gray-0-color;
   cursor: pointer;
 
@@ -51,40 +46,11 @@
 
   &__running {
     display: none;
+    background-color: #000;
 
     @include on-desktop {
       display: block;
-    }
-  }
-}
-
-.answer {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  color: $gray-60-color;
-
-  @include on-desktop {
-    font-weight: 500;
-    flex-direction: row;
-    gap: 40px;
-  }
-
-  &__short {
-    font-family: $second-font-family;
-    font-size: 24px;
-
-    @include on-desktop {
-      flex: 0 1 50%;
-      text-align: right;
-    }
-  }
-
-  &__full {
-    font-size: 16px;
-
-    @include on-desktop {
-      flex: 0 1 50%;
+      z-index: 100;
     }
   }
 }

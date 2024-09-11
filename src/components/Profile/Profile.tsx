@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useCallback, useContext, useEffect, useState } from 'react';
 import './Profile.scss';
 import { ItemsContext } from '../../ItemsContext';
 import axios from '../../api/axios';
@@ -15,7 +15,7 @@ export const Profile: React.FC = ({}) => {
 
   const { firstName, lastName } = user;
 
-  const refreshToken = async () => {
+  const refreshToken = useCallback(async () => {
     try {
       const response = await axios.post(
         '/auth/refresh',
@@ -28,13 +28,34 @@ export const Profile: React.FC = ({}) => {
         },
       );
 
+      // Assuming you need to set the new access token from the response
+
       setAccessToken(response.data.token);
     } catch {
       setRefreshErrorMessage(true);
     }
-  };
+  }, [accessToken, setAccessToken, setRefreshErrorMessage]);
 
-  console.log(accessToken, 'accessToken');
+  // const refreshToken = async () => {
+  //   try {
+  //     const response = await axios.post(
+  //       '/auth/refresh',
+  //       {},
+  //       {
+  //         headers: {
+  //           Authorization: `Bearer ${accessToken}`,
+  //           'Access-Control-Allow-Origin': 'http://localhost:3000',
+  //         },
+  //       },
+  //     );
+
+  //     setAccessToken(response.data.token);
+  //   } catch {
+  //     setRefreshErrorMessage(true);
+  //   }
+  // };
+
+  // console.log(accessToken, 'accessToken');
 
   // const startTokenRefresh = useCallback(() => {
   //   const refreshToken = async () => {
@@ -81,16 +102,14 @@ export const Profile: React.FC = ({}) => {
 
   const handleLogOut = async () => {
     try {
-      const response = await axios.post(
+      await axios.post(
         '/auth/logout',
         {},
         {
           headers: { Authorization: `Bearer ${accessToken}` },
         },
       );
-
-      // setAccessToken(response.data.token);
-      setAccessToken(response.data.token);
+      setAccessToken('');
       setSuccessLogOut(true);
     } catch {
       setLogoutErrorMessage(true);

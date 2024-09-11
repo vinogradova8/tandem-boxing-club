@@ -21,7 +21,7 @@ export const HomePage: React.FC = ({}) => {
     // }, 1000);
   }, []);
 
-  const app = document.querySelector('.app');
+  // const app = document.querySelector('.app');
 
   return (
     <>
@@ -49,7 +49,7 @@ export const HomePage: React.FC = ({}) => {
                 <button
                   onClick={() => {
                     setIsModalWindowOpen(true);
-                    app?.classList.add('fixed');
+                    // app?.classList.add('fixed');
                   }}
                   className="homepage__contact-button contact-button 
 					homepage__contact-button--first"

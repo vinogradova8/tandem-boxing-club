@@ -20,6 +20,8 @@ import { Questions } from '../../types/Questions';
 import { QuestionBlock } from '../QuestionBlock';
 import { useSearchParams } from 'react-router-dom';
 import axios from '../../api/axios';
+import i18next from 'i18next';
+import { LOCALS } from '../../i18n/constants';
 
 export const FAQ: React.FC = ({}) => {
   const { t } = useTranslation();
@@ -94,40 +96,65 @@ export const FAQ: React.FC = ({}) => {
     [applyQuery, searchParams, setSearchParams],
   );
 
-  const getQuestions = async () => {
+  const getQuestionsEng = async () => {
     try {
-      const response = await axios.get('/questions');
+      const response = await axios.get('/questions/eng');
 
-      setFaqs(response.data.QuestionDto);
+      setFaqs(response.data);
+    } catch {
+      setErrorMessage(true);
+    }
+  };
+
+  const getQuestionsDeu = async () => {
+    try {
+      const response = await axios.get('/questions/deu');
+
+      setFaqs(response.data);
+    } catch {
+      setErrorMessage(true);
+    }
+  };
+
+  const getQuestionsUkr = async () => {
+    try {
+      const response = await axios.get('/questions/ukr');
+
+      setFaqs(response.data);
     } catch {
       setErrorMessage(true);
     }
   };
 
   useEffect(() => {
-    getQuestions();
-  }, []);
+    if (i18next.language === LOCALS.ENG) {
+      getQuestionsEng();
+    }
 
-  // useEffect(() => {
-  //   getFAQ('/questions').then(() => setFaqs);
-  //   // if (i18next.language === LOCALS.ENG) {
-  //   //   getFAQ('/questions/eng').then(() => setFaqs);
-  //   // }
+    if (i18next.language === LOCALS.DEU) {
+      getQuestionsDeu();
+    }
 
-  //   // if (i18next.language === LOCALS.DEU) {
-  //   //   getFAQ('/questions/deu').then(() => setFaqs);
-  //   // }
-
-  //   // if (i18next.language === LOCALS.UKR) {
-  //   //   getFAQ('/questions/ukr').then(() => setFaqs);
-  //   // }
-  // }, [setFaqs]);
+    if (i18next.language === LOCALS.UKR) {
+      getQuestionsUkr();
+    }
+  }, [i18next.language]);
 
   const visibleFaqs = useMemo(() => {
+    // if (query === '') {
+    //   return faqs;
+    // }
+
     return faqs.filter(faq =>
       faq.question.toLowerCase().includes(appliedQuery.toLowerCase()),
     );
-  }, [appliedQuery]);
+  }, [appliedQuery, faqs]);
+
+  // const resultProducts = useMemo(() => {
+  //   return sortedProducts.filter(prod =>
+  //     prod.name.toLowerCase().includes(appliedQuery.toLowerCase()),
+  //   );
+  // }, [appliedQuery, sortedProducts]);
 
   return (
     <>
@@ -148,7 +175,7 @@ export const FAQ: React.FC = ({}) => {
                 />
               </label>
 
-              {query && visibleFaqs && visibleFaqs.length === 0 && (
+              {appliedQuery && visibleFaqs && visibleFaqs.length === 0 && (
                 <p className="faq__erroe-message">
                   Oops, sorry, we didn`t find your question. Please contact us
                   to get an answer.
@@ -160,7 +187,7 @@ export const FAQ: React.FC = ({}) => {
 
         <div className="faq__questions">
           {errorMessage && <p>Smth went wrong</p>}
-          {visibleFaqs.map(faq => (
+          {faqs.map(faq => (
             <QuestionBlock
               key={faq.id}
               id={faq.id}
@@ -185,3 +212,18 @@ export const FAQ: React.FC = ({}) => {
     </>
   );
 };
+
+// useEffect(() => {
+//   getFAQ('/questions').then(() => setFaqs);
+//   // if (i18next.language === LOCALS.ENG) {
+//   //   getFAQ('/questions/eng').then(() => setFaqs);
+//   // }
+
+//   // if (i18next.language === LOCALS.DEU) {
+//   //   getFAQ('/questions/deu').then(() => setFaqs);
+//   // }
+
+//   // if (i18next.language === LOCALS.UKR) {
+//   //   getFAQ('/questions/ukr').then(() => setFaqs);
+//   // }
+// }, [setFaqs]);

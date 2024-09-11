@@ -32,13 +32,14 @@ export const Header: React.FC = ({}) => {
   const languages = [LOCALS.ENG, LOCALS.UKR, LOCALS.DEU];
   const { user, accessToken } = useContext(ItemsContext);
 
-  const app = document.querySelector('.app');
+  // const app = document.querySelector('.app');
+  const bodyTag = document.querySelector('body');
 
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth > 640) {
         setIsBurgerMenuOpen(false);
-        app?.classList.remove('fixed');
+        bodyTag?.classList.remove('fixed');
       }
     };
 
@@ -47,7 +48,7 @@ export const Header: React.FC = ({}) => {
     return () => {
       window.removeEventListener('resize', handleResize);
     };
-  }, [app?.classList, isBurgerMenuOpen]);
+  }, [bodyTag?.classList, isBurgerMenuOpen]);
 
   return (
     <header className="header">
@@ -144,9 +145,9 @@ export const Header: React.FC = ({}) => {
               setIsBurgerMenuOpen(!isBurgerMenuOpen);
 
               if (!isBurgerMenuOpen) {
-                app?.classList.add('fixed');
+                bodyTag?.classList.add('fixed');
               } else {
-                app?.classList.remove('fixed');
+                bodyTag?.classList.remove('fixed');
               }
             }}
           ></button>
@@ -173,7 +174,7 @@ export const Header: React.FC = ({}) => {
                     }
                     onClick={() => {
                       setIsBurgerMenuOpen(false);
-                      app?.classList.remove('fixed');
+                      bodyTag?.classList.remove('fixed');
                     }}
                   >
                     <div className="menu-link__slider">

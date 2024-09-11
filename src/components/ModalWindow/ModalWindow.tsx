@@ -11,7 +11,7 @@ import axios from 'axios';
 const portal = document.getElementById('portal') as HTMLElement;
 
 export const ModalWindow: React.FC = ({}) => {
-  const { setIsModalWindowOpen } = useContext(ItemsContext);
+  const { setIsModalWindowOpen, isModalWindowOpen } = useContext(ItemsContext);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [body, setBody] = useState('');
@@ -30,16 +30,29 @@ export const ModalWindow: React.FC = ({}) => {
     }
   }, []);
 
+  const bodyTag = document.querySelector('body');
+
+  useEffect(() => {
+    if (isModalWindowOpen) {
+      bodyTag?.classList.add('fixed');
+    }
+
+    if (!isModalWindowOpen) {
+      bodyTag?.classList.remove('fixed');
+    }
+  }, [bodyTag?.classList, isModalWindowOpen]);
+
   const EMAIL_REGEX = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
   const NAME_REGEX = /^[a-zA-Zа-яА-Яії]{2,22}$/g;
 
-  const app = document.querySelector('.app');
+  // const app = document.querySelector('.app');
 
   const { t } = useTranslation();
 
   const handleCloseModalWindow = () => {
     setIsModalWindowOpen(false);
-    app?.classList.remove('fixed');
+    // app?.classList.remove('fixed');
+    bodyTag?.classList.remove('fixed');
   };
 
   const handleSubmit = async (event: React.FormEvent<HTMLElement>) => {

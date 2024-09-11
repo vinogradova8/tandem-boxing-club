@@ -8,11 +8,11 @@ type Props = {
 
 export const AnswerBlock: React.FC<Props> = ({ shortAnswer, fullAnswer }) => {
   useEffect(() => {
-    const question = document.querySelector('.question-block');
+    // const question = document.querySelector('.question-block');
     const answer = document.querySelector('.answer');
 
     answer?.classList.add('answer--open');
-    question?.classList.add('question--open');
+    // question?.classList.add('question--open');
   }, []);
 
   return (

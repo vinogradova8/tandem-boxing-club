@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './Profile.scss';
 import { ItemsContext } from '../../ItemsContext';
 import axios from '../../api/axios';
@@ -34,15 +34,50 @@ export const Profile: React.FC = ({}) => {
     }
   };
 
-  const startTokenRefresh = () => {
-    refreshToken();
+  console.log(accessToken, 'accessToken');
 
-    setInterval(() => {
+  // const startTokenRefresh = useCallback(() => {
+  //   const refreshToken = async () => {
+  //     try {
+  //       const response = await axios.post(
+  //         '/auth/refresh',
+  //         {},
+  //         {
+  //           headers: {
+  //             Authorization: `Bearer ${accessToken}`,
+  //             'Access-Control-Allow-Origin': 'http://localhost:3000',
+  //           },
+  //         },
+  //       );
+
+  //       setAccessToken(response.data.token);
+  //     } catch {
+  //       setRefreshErrorMessage(true);
+  //     }
+  //   };
+  // }, [accessToken, setAccessToken]);
+
+  // const startTokenRefresh = () => {
+  //   refreshToken();
+
+  //   setInterval(() => {
+  //     refreshToken();
+  //   }, 180000);
+  // };
+
+  useEffect(() => {
+    if (accessToken) {
       refreshToken();
-    }, 180000);
-  };
 
-  startTokenRefresh();
+      setInterval(() => {
+        refreshToken();
+      }, 180000);
+    }
+
+    // if (accessToken !== '') {
+    //   startTokenRefresh();
+    // }
+  }, [accessToken, refreshToken]);
 
   const handleLogOut = async () => {
     try {
@@ -54,6 +89,7 @@ export const Profile: React.FC = ({}) => {
         },
       );
 
+      // setAccessToken(response.data.token);
       setAccessToken(response.data.token);
       setSuccessLogOut(true);
     } catch {
@@ -71,9 +107,7 @@ export const Profile: React.FC = ({}) => {
             <>
               <p>You are logged out!</p>
               <p>Go to</p>
-              <NavLink to="/login" className="header__profile">
-                log in page
-              </NavLink>
+              <NavLink to="/login">log in page</NavLink>
             </>
           ) : (
             <>

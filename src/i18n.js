@@ -49,11 +49,6 @@ const resources = {
       'Support-Section-1 title': 'Advantages of co-operation',
       'Support-Section-1 text':
         'Modern challenges:<br>Negative effects of the development of computerisation and mobile technologies;<br>Increase in time spent by young people on social networks, computer and mobile games;<br>Decrease in physical activity of the population;<br>Strengthening the role of sport, prevention of physical and mental illness;<br>Austria not represented in the boxing programme at the Olympic Games.<br>Planned positive effect of opening a boxing club:<br>(a) Involvement of children and young people in Klagenfurt and the surrounding towns in boxing;<br>b) Improvement of the physical and mental health of the population;<br>c) Minimum investment in financial and material terms;<br>d) Promotion of local Austrian boxing champions, increasing their status and recognition;<br>e) Development of Olympic sport in the region with further representation of Austria in the region prestigious European and world tournaments.',
-      // (a) Involvement of children and young people in Klagenfurt and the surrounding towns in boxing;
-      // b) Improvement of the physical and mental health of the population;
-      // c) Minimum investment in financial and material terms;
-      // d) Promotion of local Austrian boxing champions, increasing their status and recognition;
-      // e) Development of Olympic sport in the region with further representation of Austria in the region prestigious European and world tournaments.',
 
       'Support-Section-2 title': 'Our results',
 

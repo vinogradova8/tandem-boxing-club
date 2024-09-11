@@ -94,10 +94,6 @@ export const Profile: React.FC = ({}) => {
         refreshToken();
       }, 180000);
     }
-
-    // if (accessToken !== '') {
-    //   startTokenRefresh();
-    // }
   }, [accessToken, refreshToken]);
 
   const handleLogOut = async () => {
@@ -109,6 +105,8 @@ export const Profile: React.FC = ({}) => {
           headers: { Authorization: `Bearer ${accessToken}` },
         },
       );
+
+      // setAccessToken(response.data.token);
       setAccessToken('');
       setSuccessLogOut(true);
     } catch {

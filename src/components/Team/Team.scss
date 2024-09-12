@@ -82,6 +82,23 @@
       margin-right: 0;
     }
   }
+
+  &__certificate {
+    max-width: 1400px;
+    margin: 0 auto;
+
+    @include content-padding-inline;
+
+    img {
+      padding-top: 48px;
+      display: block;
+      margin: 0 auto;
+
+			@include on-tablet {
+				cursor: pointer;
+			}
+    }
+  }
 }
 
 .trainer {
@@ -199,7 +216,6 @@
 }
 
 @keyframes block-left {
-
   100% {
     transform: translateX(0);
   }

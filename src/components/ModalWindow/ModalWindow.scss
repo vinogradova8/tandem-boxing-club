@@ -10,7 +10,6 @@
 
   &__container {
     position: absolute;
-    overflow: auto;
     z-index: 40;
     top: 5vh;
     left: 50%;
@@ -25,11 +24,12 @@
     width: 80%;
     min-width: 279px;
     max-width: 450px;
-
+		overflow: auto;
     animation: modal-window 1s linear 0s 1 normal forwards;
 
     @include on-tablet {
       width: 500px;
+			overflow: hidden;
     }
 
     @keyframes modal-window {
@@ -41,26 +41,6 @@
         max-height: 100%;
       }
     }
-
-    // &--dark-theme {
-    //   background-color: $dark-bg-color;
-    //   color: $bg-color;
-    // }
-  }
-
-  .input {
-    // height: 56px;
-    // margin-bottom: 10px;
-  }
-
-  .textarea {
-    // outline: none;
-    // display: block;
-    // min-width: 100%;
-    // resize: both;
-    // min-height: 56px;
-    // line-height: 150%;
-    // overflow: auto;
   }
 
   &__close {

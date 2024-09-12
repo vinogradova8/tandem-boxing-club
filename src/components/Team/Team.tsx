@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-param-reassign */
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useContext, useEffect, useMemo, useState } from 'react';
 import './Team.scss';
 import { gallery } from '../../api/axios';
 import { Trainer } from '../../types/Trainer';
@@ -8,12 +8,19 @@ import { useTranslation } from 'react-i18next';
 import { Loader } from '../Loader';
 import '../../i18n';
 import i18next from 'i18next';
+import { ItemsContext } from '../../ItemsContext';
+import { CertificateWindow } from '../CertificateWindow';
 
 export const Team: React.FC = ({}) => {
   const [loader, setLoader] = useState(false);
   const [trainers, setTrainers] = useState<Trainer[]>([]);
   const [errorMessage, setErrorMessage] = useState(false);
   const { t } = useTranslation();
+
+  const { setIsCertificateWindowOpen, isCertificateWindowOpen } =
+    useContext(ItemsContext);
+
+  const bodyTag = document.querySelector('body');
 
   const getTeam = async () => {
     try {
@@ -36,12 +43,29 @@ export const Team: React.FC = ({}) => {
     return trainers.filter(trainer => trainer.language === i18next.language);
   }, [trainers, i18next.language]);
 
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 640) {
+        setIsCertificateWindowOpen(false);
+        bodyTag?.classList.remove('fixed');
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, [bodyTag?.classList, isCertificateWindowOpen]);
+
   return (
     <>
       {loader ? (
         <Loader></Loader>
       ) : (
         <main className="team">
+          {isCertificateWindowOpen && <CertificateWindow />}
+
           <div className="team__title-container">
             <h2 className="team__title page-title big-title">
               {t('Our Team')}
@@ -77,7 +101,18 @@ export const Team: React.FC = ({}) => {
             </div>
           </div>
 
-          <div className="team__certificate"></div>
+          <div className="team__certificate">
+            <img
+              onClick={() => {
+                if (window.innerWidth > 640) {
+                  setIsCertificateWindowOpen(true);
+                }
+              }}
+              src="../images/certificates/certificate-small.png"
+              alt="Certificate"
+            />
+            <div className="team__certificat-container"></div>
+          </div>
 
           <div className="support__contact-us-bottom contact-us-bottom">
             <button

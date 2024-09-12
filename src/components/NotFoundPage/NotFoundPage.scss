@@ -1,0 +1,76 @@
+@import '../../styles/utils/';
+
+.not-found-page {
+  background: url('../../../public/images/decor/not-found-page-background-image.png')
+    center / cover no-repeat;
+  padding-top: 120px;
+
+  @include on-tablet {
+    padding-top: 20px;
+  }
+
+  @include on-desktop {
+    padding-top: 97px;
+  }
+  &__container {
+    position: relative;
+    margin: 0 auto;
+    text-align: center;
+    border-radius: 12px;
+    border: 1px solid $main-text-color;
+    padding: 40px 48.5px 174px;
+    max-width: 280px;
+
+    @include on-tablet {
+      max-width: 500px;
+      padding: 40px 48.5px 222px;
+    }
+
+    & img {
+      position: absolute;
+      display: inline-block;
+      width: 70px;
+      height: 70px;
+      right: 44px;
+      top: 120px;
+
+      @include on-tablet {
+        width: 100px;
+        height: 100px;
+        right: 106px;
+        top: 108px;
+      }
+    }
+
+    // &__decor {
+    //   background: url('../../../public/images/decor/decor-nock-out.png') center /
+    //     cover no-repeat;
+    //   height: 126px;
+    //   width: 126px;
+    // }
+  }
+
+  &__main-text {
+  }
+
+  &__text {
+    font-size: 16px;
+    color: $gray-60-color;
+  }
+}
+
+.not-found-page-decor {
+  position: absolute;
+  background: url('../../../public/images/decor/decor-nock-out.png') center /
+    cover no-repeat;
+  left: 14.5px;
+  bottom: 24px;
+  height: 78px;
+  width: 250px;
+
+  @include on-tablet {
+    height: 126px;
+    width: 403px;
+    left: 40px;
+  }
+}

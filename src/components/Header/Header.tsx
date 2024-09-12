@@ -32,7 +32,6 @@ export const Header: React.FC = ({}) => {
   const languages = [LOCALS.ENG, LOCALS.UKR, LOCALS.DEU];
   const { user, accessToken } = useContext(ItemsContext);
 
-  // const app = document.querySelector('.app');
   const bodyTag = document.querySelector('body');
 
   useEffect(() => {

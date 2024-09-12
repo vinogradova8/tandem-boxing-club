@@ -1,0 +1,96 @@
+@import '../../styles/utils/';
+
+@import '../../styles/utils';
+
+.certificate-window {
+  position: fixed;
+  width: 100vw;
+  // max-width: 1400px;
+  // margin: 0 auto;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background-color: rgba(31, 31, 34, 0.7);
+
+  &__container {
+		height: 100%;
+    @include content-padding-inline;
+
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  &__box {
+    position: absolute;
+    z-index: 40;
+    top: 15%;
+    left: 50%;
+    border-radius: 12px;
+    background-color: $black-color;
+    border: 1px solid $main-text-color;
+    padding: 24px;
+    transform: translate(-50%);
+    display: flex;
+    flex-direction: column;
+    // gap: 40px;
+    // width: 50%;
+		max-width: 1200px;
+    // min-width: 279px;
+    // max-width: 1200px;
+    // margin: 0 auto;
+    // overflow: auto;
+    animation: modal-window 1s linear 0s 1 normal forwards;
+
+    & img {
+      display: block;
+      margin: 0 auto;
+      opacity: 0;
+
+      
+
+      animation: certificate 0.5s linear 1s 1 normal forwards;
+
+			@include on-tablet {
+        padding: 10px 30px;
+      }
+
+			@include on-desktop {
+        padding: 20px 60px;
+      }
+
+      @keyframes certificate {
+        100% {
+          opacity: 1;
+        }
+      }
+    }
+
+    @keyframes modal-window {
+      0% {
+        max-height: 0;
+      }
+
+      100% {
+        max-height: 100%;
+      }
+    }
+  }
+
+  &__close {
+    cursor: pointer;
+    display: flex;
+    position: relative;
+    align-self: end;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+
+    &::before {
+      position: absolute;
+      content: '';
+      background: url('../../../public/images/icons/close.svg') no-repeat;
+      width: 100%;
+      height: 100%;
+    }
+  }
+}

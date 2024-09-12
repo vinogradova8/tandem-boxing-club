@@ -9,6 +9,8 @@ import { LOCALS } from './i18n/constants';
 type ItemsContextType = {
   isModalWindowOpen: boolean;
   setIsModalWindowOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  isCertificateWindowOpen: boolean;
+  setIsCertificateWindowOpen: React.Dispatch<React.SetStateAction<boolean>>;
   accessToken: string;
   setAccessToken: React.Dispatch<React.SetStateAction<string>>;
   user: User;
@@ -20,6 +22,8 @@ type ItemsContextType = {
 export const ItemsContext = React.createContext<ItemsContextType>({
   isModalWindowOpen: false,
   setIsModalWindowOpen: () => {},
+  isCertificateWindowOpen: false,
+  setIsCertificateWindowOpen: () => {},
   user: {
     id: 0,
     email: '',
@@ -42,6 +46,11 @@ type Props = {
 export const ItemsProvider: React.FC<Props> = ({ children }) => {
   const [isModalWindowOpen, setIsModalWindowOpen] = useLocalStorage(
     'isModalWindowOpen',
+    false,
+  );
+
+  const [isCertificateWindowOpen, setIsCertificateWindowOpen] = useLocalStorage(
+    'isCertificateWindowOpen',
     false,
   );
 
@@ -78,6 +87,8 @@ export const ItemsProvider: React.FC<Props> = ({ children }) => {
       setAccessToken,
       language,
       setLanguage,
+      isCertificateWindowOpen,
+      setIsCertificateWindowOpen,
     }),
     [
       isModalWindowOpen,
@@ -88,8 +99,8 @@ export const ItemsProvider: React.FC<Props> = ({ children }) => {
       setAccessToken,
       language,
       setLanguage,
-      // auth,
-      // setAuth,
+      isCertificateWindowOpen,
+      setIsCertificateWindowOpen,
     ],
   );
 

@@ -2,7 +2,7 @@ import React, { useCallback, useContext, useEffect, useState } from 'react';
 import './Profile.scss';
 import { ItemsContext } from '../../ItemsContext';
 import axios from '../../api/axios';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 // import { User } from '../../types/User';
 // import { getUser } from '../../api/fetchClient';
 
@@ -14,6 +14,8 @@ export const Profile: React.FC = ({}) => {
   const { user, accessToken, setAccessToken } = useContext(ItemsContext);
 
   const { firstName, lastName } = user;
+
+  const navigate = useNavigate();
 
   const refreshToken = useCallback(async () => {
     try {
@@ -28,73 +30,21 @@ export const Profile: React.FC = ({}) => {
         },
       );
 
-      // Assuming you need to set the new access token from the response
-
       setAccessToken(response.data.token);
     } catch {
       setRefreshErrorMessage(true);
     }
   }, [accessToken, setAccessToken, setRefreshErrorMessage]);
 
-  // const refreshToken = async () => {
-  //   try {
-  //     const response = await axios.post(
-  //       '/auth/refresh',
-  //       {},
-  //       {
-  //         headers: {
-  //           Authorization: `Bearer ${accessToken}`,
-  //           'Access-Control-Allow-Origin': 'http://localhost:3000',
-  //         },
-  //       },
-  //     );
-
-  //     setAccessToken(response.data.token);
-  //   } catch {
-  //     setRefreshErrorMessage(true);
-  //   }
-  // };
-
-  // console.log(accessToken, 'accessToken');
-
-  // const startTokenRefresh = useCallback(() => {
-  //   const refreshToken = async () => {
-  //     try {
-  //       const response = await axios.post(
-  //         '/auth/refresh',
-  //         {},
-  //         {
-  //           headers: {
-  //             Authorization: `Bearer ${accessToken}`,
-  //             'Access-Control-Allow-Origin': 'http://localhost:3000',
-  //           },
-  //         },
-  //       );
-
-  //       setAccessToken(response.data.token);
-  //     } catch {
-  //       setRefreshErrorMessage(true);
-  //     }
-  //   };
-  // }, [accessToken, setAccessToken]);
-
-  // const startTokenRefresh = () => {
-  //   refreshToken();
-
-  //   setInterval(() => {
-  //     refreshToken();
-  //   }, 180000);
-  // };
-
   useEffect(() => {
-    if (accessToken) {
+    const refreshTokenInterval = setInterval(() => {
       refreshToken();
+    }, 180000);
 
-      setInterval(() => {
-        refreshToken();
-      }, 180000);
-    }
-  }, [accessToken, refreshToken]);
+    return () => {
+      clearInterval(refreshTokenInterval);
+    };
+  }, [refreshToken]);
 
   const handleLogOut = async () => {
     try {
@@ -106,9 +56,9 @@ export const Profile: React.FC = ({}) => {
         },
       );
 
-      // setAccessToken(response.data.token);
       setAccessToken('');
       setSuccessLogOut(true);
+      navigate('/login');
     } catch {
       setLogoutErrorMessage(true);
     }

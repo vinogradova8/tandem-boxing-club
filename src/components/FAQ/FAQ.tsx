@@ -22,9 +22,12 @@ import { useSearchParams } from 'react-router-dom';
 import axios from '../../api/axios';
 import i18next from 'i18next';
 import { LOCALS } from '../../i18n/constants';
+import { NotFoundPage } from '../NotFoundPage';
+import { Loader } from '../Loader';
 
 export const FAQ: React.FC = ({}) => {
   const { t } = useTranslation();
+  const [loader, setLoader] = useState(false);
   const [faqs, setFaqs] = useState<Questions[]>([]);
 
   const [searchParams, setSearchParams] = useSearchParams();
@@ -103,6 +106,8 @@ export const FAQ: React.FC = ({}) => {
       setFaqs(response.data);
     } catch {
       setErrorMessage(true);
+    } finally {
+      setLoader(false);
     }
   };
 
@@ -113,6 +118,8 @@ export const FAQ: React.FC = ({}) => {
       setFaqs(response.data);
     } catch {
       setErrorMessage(true);
+    } finally {
+      setLoader(false);
     }
   };
 
@@ -123,10 +130,14 @@ export const FAQ: React.FC = ({}) => {
       setFaqs(response.data);
     } catch {
       setErrorMessage(true);
+    } finally {
+      setLoader(false);
     }
   };
 
   useEffect(() => {
+    setLoader(true);
+
     if (i18next.language === LOCALS.ENG) {
       getQuestionsEng();
     }
@@ -141,10 +152,6 @@ export const FAQ: React.FC = ({}) => {
   }, [i18next.language]);
 
   const visibleFaqs = useMemo(() => {
-    // if (query === '') {
-    //   return faqs;
-    // }
-
     return faqs.filter(faq =>
       faq.question.toLowerCase().includes(appliedQuery.toLowerCase()),
     );
@@ -158,57 +165,62 @@ export const FAQ: React.FC = ({}) => {
 
   return (
     <>
-      <main className="faq">
-        <div className="faq__main">
-          <div className="faq__main-container">
-            <h2 className="faq__title big-title">{t('Questions')}</h2>
+      {!errorMessage && loader && <Loader />}
+      {errorMessage ? (
+        <NotFoundPage message="Something went wrong" />
+      ) : (
+        <main className="faq">
+          <div className="faq__main">
+            <div className="faq__main-container">
+              <h2 className="faq__title big-title">{t('Questions')}</h2>
 
-            <div className="faq__input-container">
-              <label className="faq__label">
-                <input
-                  ref={inputRef}
-                  className="faq__input"
-                  type="text"
-                  value={query}
-                  onChange={handleSetQuerySearchParameter}
-                  placeholder="Start writing your question"
-                />
-              </label>
+              <div className="faq__input-container">
+                <label className="faq__label">
+                  <input
+                    ref={inputRef}
+                    className="faq__input"
+                    type="text"
+                    value={query}
+                    onChange={handleSetQuerySearchParameter}
+                    placeholder="Start writing your question"
+                  />
+                </label>
 
-              {appliedQuery && visibleFaqs && visibleFaqs.length === 0 && (
-                <p className="faq__erroe-message">
-                  Oops, sorry, we didn`t find your question. Please contact us
-                  to get an answer.
-                </p>
-              )}
+                {appliedQuery && visibleFaqs && visibleFaqs.length === 0 && (
+                  <p className="faq__erroe-message">
+                    Oops, sorry, we didn`t find your question. Please contact us
+                    to get an answer.
+                  </p>
+                )}
+              </div>
             </div>
           </div>
-        </div>
 
-        <div className="faq__questions">
-          {errorMessage && <p>Smth went wrong</p>}
-          {faqs.map(faq => (
-            <QuestionBlock
-              key={faq.id}
-              id={faq.id}
-              question={faq.question}
-              shortAnswer={faq.shortAnswer}
-              fullAnswer={faq.fullAnswer}
-              whichAnswerIsOpen={whichAnswerIsOpen}
-              setWhichAnswerIsOpen={setWhichAnswerIsOpen}
-            />
-          ))}
-        </div>
+          <div className="faq__questions">
+            {errorMessage && <p>Smth went wrong</p>}
+            {faqs.map(faq => (
+              <QuestionBlock
+                key={faq.id}
+                id={faq.id}
+                question={faq.question}
+                shortAnswer={faq.shortAnswer}
+                fullAnswer={faq.fullAnswer}
+                whichAnswerIsOpen={whichAnswerIsOpen}
+                setWhichAnswerIsOpen={setWhichAnswerIsOpen}
+              />
+            ))}
+          </div>
 
-        <div className="faq__contact-us-bottom contact-us-bottom">
-          <button
-            className="faq__contact-button 
+          <div className="faq__contact-us-bottom contact-us-bottom">
+            <button
+              className="faq__contact-button 
 					contact-button"
-          >
-            {t('Contact us')}
-          </button>
-        </div>
-      </main>
+            >
+              {t('Contact us')}
+            </button>
+          </div>
+        </main>
+      )}
     </>
   );
 };

@@ -15,6 +15,7 @@ import { Profile } from './components/Profile';
 import { Registration } from './components/Registration';
 import { Login } from './components/Login';
 import { AdminPage } from './components/AdminPage';
+import { NotFoundPage } from './components/NotFoundPage';
 
 // createRoot(document.getElementById('root') as HTMLDivElement).render(<App />);
 
@@ -32,6 +33,16 @@ createRoot(document.getElementById('root') as HTMLElement).render(
         <Route path="registration" element={<Registration />}></Route>
         <Route path="profile" element={<Profile />}></Route>
         <Route path="admin" element={<AdminPage />}></Route>
+
+        <Route
+          path="*"
+          element={<NotFoundPage message="Page not found" />}
+          // element={
+          //   <h3 style={{ padding: 30 }} className="title">
+          //     Page not found
+          //   </h3>
+          // }
+        ></Route>
         {/* <Route path="phones">
           <Route index element={<PhonesPage />}></Route>
           <Route
@@ -57,14 +68,15 @@ createRoot(document.getElementById('root') as HTMLElement).render(
         <Route path="favorites" element={<Favorites />}></Route> */}
       </Route>
 
-      <Route
+      {/* <Route
         path="*"
-        element={
-          <h3 style={{ padding: 30 }} className="title">
-            Page not found
-          </h3>
-        }
-      ></Route>
+        element={<NotFoundPage />}
+        // element={
+        //   <h3 style={{ padding: 30 }} className="title">
+        //     Page not found
+        //   </h3>
+        // }
+      ></Route> */}
     </Routes>
   </HashRouter>,
 );

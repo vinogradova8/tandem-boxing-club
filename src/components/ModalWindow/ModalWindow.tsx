@@ -51,7 +51,6 @@ export const ModalWindow: React.FC = ({}) => {
 
   const handleCloseModalWindow = () => {
     setIsModalWindowOpen(false);
-    // app?.classList.remove('fixed');
     bodyTag?.classList.remove('fixed');
   };
 

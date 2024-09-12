@@ -58,6 +58,7 @@
     width: 24px;
     height: 24px;
     padding: 0;
+		z-index: 11;
     &::before {
       position: absolute;
       content: '';
@@ -144,7 +145,7 @@
     background-color: rgba(31, 31, 34, 0.7);
     opacity: 0;
     animation: burger 1s linear 0s 1 normal forwards;
-		z-index: 40;
+		z-index: 10;
 
     @keyframes burger {
       100% {

@@ -13,8 +13,8 @@ type ItemsContextType = {
   setIsCertificateWindowOpen: React.Dispatch<React.SetStateAction<boolean>>;
   accessToken: string;
   setAccessToken: React.Dispatch<React.SetStateAction<string>>;
-  user: User | null;
-  setUser: React.Dispatch<React.SetStateAction<User | null>>;
+  user: User;
+  setUser: React.Dispatch<React.SetStateAction<User>>;
   language: string;
   setLanguage: React.Dispatch<React.SetStateAction<string>>;
 };
@@ -24,15 +24,15 @@ export const ItemsContext = React.createContext<ItemsContextType>({
   setIsModalWindowOpen: () => {},
   isCertificateWindowOpen: false,
   setIsCertificateWindowOpen: () => {},
-  // user: {
-  //   id: 0,
-  //   email: '',
-  //   firstName: '',
-  //   lastName: '',
-  //   role: '',
-  //   password: '',
-  // },
-  user: null,
+  user: {
+    id: 0,
+    email: '',
+    firstName: '',
+    lastName: '',
+    role: '',
+    password: '',
+  },
+  // user: null,
   setUser: () => {},
   accessToken: '',
   setAccessToken: () => {},
@@ -69,16 +69,16 @@ export const ItemsProvider: React.FC<Props> = ({ children }) => {
   const [language, setLanguage] = useLocalStorage('language', LOCALS.ENG);
 
   // const [isAuth, setIsAuth] = useLocalStorage('isAuth', false);
-  // const [user, setUser] = useLocalStorage('user', {
-  //   id: 0,
-  //   email: '',
-  //   firstName: '',
-  //   lastName: '',
-  //   role: '',
-  //   password: '',
-  // });
+  const [user, setUser] = useLocalStorage('user', {
+    id: 0,
+    email: '',
+    firstName: '',
+    lastName: '',
+    role: '',
+    password: '',
+  });
 
-  const [user, setUser] = useLocalStorage('user', null);
+  // const [user, setUser] = useLocalStorage('user', null);
 
   const value = useMemo(
     () => ({

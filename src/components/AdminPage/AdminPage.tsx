@@ -10,13 +10,12 @@ import { Question } from '../../types/Questions';
 import { Loader } from '../Loader';
 import { NotFoundPage } from '../NotFoundPage';
 import cn from 'classnames';
-import { Message } from '../../types/Message';
+// import { Message } from '../../types/Message';
 
 export const AdminPage: React.FC = ({}) => {
   const navigate = useNavigate();
 
-  const { accessToken, setAccessToken, user, setUser } =
-    useContext(ItemsContext);
+  const { accessToken, setAccessToken, user } = useContext(ItemsContext);
 
   const [logoutErrorMessage, setLogoutErrorMessage] = useState(false);
   const [refreshErrorMessage, setRefreshErrorMessage] = useState(false);
@@ -24,8 +23,8 @@ export const AdminPage: React.FC = ({}) => {
   const [errorMessage, setErrorMessage] = useState(false);
 
   const [faqs, setFaqs] = useState<Question[]>([]);
-  const [questionsFromUsers, setQuestionsFromUsers] = useState<Message[]>([]);
-  const [errorQuestionsFromUsers, setErrorQuestionsFromUsers] = useState(false);
+  // const [questionsFromUsers, setQuestionsFromUsers] = useState<Message[]>([]);
+  // const [errorQuestionsFromUsers, setErrorQuestionsFromUsers] = useState(false);
 
   const [loader, setLoader] = useState(false);
 
@@ -96,7 +95,7 @@ export const AdminPage: React.FC = ({}) => {
       );
 
       setAccessToken('');
-      setUser(null);
+      // setUser(null);
       navigate('/login');
     } catch {
       setLogoutErrorMessage(true);
@@ -139,17 +138,17 @@ export const AdminPage: React.FC = ({}) => {
     }
   };
 
-  const getQuestionsFromUsers = async () => {
-    try {
-      const response = await axios.get('/messages');
+  // const getQuestionsFromUsers = async () => {
+  //   try {
+  //     const response = await axios.get('/messages');
 
-      setQuestionsFromUsers(response.data);
-    } catch {
-      setErrorQuestionsFromUsers(true);
-    } finally {
-      setLoader(false);
-    }
-  };
+  //     setQuestionsFromUsers(response.data);
+  //   } catch {
+  //     setErrorQuestionsFromUsers(true);
+  //   } finally {
+  //     setLoader(false);
+  //   }
+  // };
 
   useEffect(() => {
     setLoader(true);
@@ -167,9 +166,9 @@ export const AdminPage: React.FC = ({}) => {
     }
   }, [i18next.language]);
 
-  useEffect(() => {
-    getQuestionsFromUsers();
-  }, []);
+  // useEffect(() => {
+  //   getQuestionsFromUsers();
+  // }, []);
 
   return (
     <>
@@ -179,7 +178,7 @@ export const AdminPage: React.FC = ({}) => {
       ) : (
         <main className="admin-page">
           <div className="admin-page__container">
-            <h2 className="big-title">AdminPage</h2>
+            <h2 className="big-title">Admin Page</h2>
             <div className="admin-page__info">
               {/* <p>{accessToken}</p> */}
               <h3>Personal info</h3>
@@ -423,9 +422,12 @@ export const AdminPage: React.FC = ({}) => {
             </ul> */}
               {!hideQuestionsFromUsers && (
                 <ul className="contact-form-questions__list">
-                  <li className="contact-form-questions__item contact-form-item">
+                  <li
+                    className="contact-form-questions__item 
+									contact-form-item"
+                  >
                     <div className="contact-form-item__data">
-                      <p className="contact-form-item__name">ім'я</p>
+                      <p className="contact-form-item__name">ім&aposя</p>
                       <p className="contact-form-item__email">email-1</p>
                       <p className="contact-form-item__message">
                         Lorem ipsum dolor sit amet consectetur adipisicing elit.
@@ -439,9 +441,12 @@ export const AdminPage: React.FC = ({}) => {
                     </button>
                   </li>
 
-                  <li className="contact-form-questions__item contact-form-item">
+                  <li
+                    className="contact-form-questions__item 
+									contact-form-item"
+                  >
                     <div className="contact-form-item__data">
-                      <p className="contact-form-item__name">ім'я</p>
+                      <p className="contact-form-item__name">ім&aposя</p>
                       <p className="contact-form-item__email">email-2</p>
                       <p className="contact-form-item__message">
                         Lorem ipsum dolor sit amet consectetur adipisicing elit.
@@ -455,9 +460,12 @@ export const AdminPage: React.FC = ({}) => {
                     </button>
                   </li>
 
-                  <li className="contact-form-questions__item contact-form-item">
+                  <li
+                    className="contact-form-questions__item 
+									contact-form-item"
+                  >
                     <div className="contact-form-item__data">
-                      <p className="contact-form-item__name">ім'я</p>
+                      <p className="contact-form-item__name">ім&aposя</p>
                       <p className="contact-form-item__email">email-3</p>
                       <p className="contact-form-item__message">
                         Lorem, ipsum dolor sit amet consectetur adipisicing

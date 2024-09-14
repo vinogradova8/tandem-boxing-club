@@ -11,8 +11,7 @@ export const Profile: React.FC = ({}) => {
   const [logoutErrorMessage, setLogoutErrorMessage] = useState(false);
   const [refreshErrorMessage, setRefreshErrorMessage] = useState(false);
 
-  const { user, setUser, accessToken, setAccessToken } =
-    useContext(ItemsContext);
+  const { user, accessToken, setAccessToken } = useContext(ItemsContext);
 
   // const { firstName, lastName } = user;
 
@@ -58,7 +57,7 @@ export const Profile: React.FC = ({}) => {
       );
 
       setAccessToken('');
-      setUser(null);
+      // setUser(null);
       setSuccessLogOut(true);
       navigate('/login');
     } catch {

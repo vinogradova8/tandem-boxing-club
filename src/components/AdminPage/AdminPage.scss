@@ -1,1 +1,136 @@
 @import '../../styles/utils/';
+
+.admin-page {
+  &__container {
+    @include content-padding-inline;
+
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  &__info {
+    padding-bottom: 40px;
+  }
+
+  &__faqs {
+    margin-bottom: 40px;
+  }
+}
+
+.admin-faqs {
+  &__header {
+    display: flex;
+    gap: 20px;
+    padding-bottom: 30px;
+  }
+
+  &__hide-button {
+    color: $main-text-color;
+    border: 1px solid $gray-20-color;
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 40px;
+  }
+
+  &__item {
+  }
+}
+
+.faq-item {
+  display: flex;
+  border: 1px solid $gray-20-color;
+
+  &__question {
+    flex: 0 1 20%;
+    border: 1px solid $gray-20-color;
+    padding: 15px;
+  }
+
+  &__short-answer {
+    flex: 0 1 20%;
+    border: 1px solid $gray-20-color;
+    padding: 15px;
+  }
+
+  &__full-answer {
+    flex: 0 1 50%;
+    border: 1px solid $gray-20-color;
+    padding: 15px;
+  }
+
+  &__actions {
+    flex: 0 1 10%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    border: 1px solid $gray-20-color;
+    padding: 15px;
+  }
+
+  &__delete {
+    color: $main-text-color;
+    border: 1px solid $gray-20-color;
+  }
+
+  &__update {
+    color: $main-text-color;
+    border: 1px solid $gray-20-color;
+  }
+}
+
+.edit {
+  background-color: palevioletred;
+}
+
+.edit-form {
+  &__question {
+    width: 1000px;
+  }
+
+  &__actions {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+  }
+
+  &__save-button {
+    color: $main-text-color;
+    border: 1px solid $gray-20-color;
+  }
+
+  &__cancel-button {
+    color: $main-text-color;
+    border: 1px solid $gray-20-color;
+  }
+}
+
+.contact-form-questions {
+  &__header {
+    display: flex;
+    gap: 20px;
+    padding-bottom: 30px;
+  }
+}
+
+.contact-form-item {
+  display: flex;
+  border: 1px solid $gray-20-color;
+  margin-bottom: 15px;
+
+  &__data {
+    flex: 0 1 90%;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid $gray-20-color;
+  }
+
+  &__delete {
+    color: $main-text-color;
+    border: 1px solid $gray-20-color;
+    flex: 0 0 10%;
+  }
+}

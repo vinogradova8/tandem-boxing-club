@@ -1,4 +1,4 @@
-export type Questions = {
+export type Question = {
   id: number;
   question: string;
   shortAnswer: string;

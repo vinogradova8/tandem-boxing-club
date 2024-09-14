@@ -16,23 +16,25 @@ import debounce from 'lodash.debounce';
 
 // import { LOCALS } from '../../i18n/constants';
 import { useTranslation } from 'react-i18next';
-import { Questions } from '../../types/Questions';
-import { QuestionBlock } from '../QuestionBlock';
+import { Question } from '../../types/Questions';
 import { useSearchParams } from 'react-router-dom';
 import axios from '../../api/axios';
 import i18next from 'i18next';
 import { LOCALS } from '../../i18n/constants';
 import { NotFoundPage } from '../NotFoundPage';
 import { Loader } from '../Loader';
+import { Accordion } from '../Accordion';
 
 export const FAQ: React.FC = ({}) => {
   const { t } = useTranslation();
   const [loader, setLoader] = useState(false);
-  const [faqs, setFaqs] = useState<Questions[]>([]);
+  const [faqs, setFaqs] = useState<Question[]>([]);
 
   const [searchParams, setSearchParams] = useSearchParams();
   const [appliedQuery, setAppliedQuery] = useState('');
-  const [whichAnswerIsOpen, setWhichAnswerIsOpen] = useState(0);
+  // const [whichAnswerIsOpen, setWhichAnswerIsOpen] = useState<number | null>(
+  //   null,
+  // );
   const [errorMessage, setErrorMessage] = useState(false);
 
   const query = searchParams.get('query') || '';
@@ -157,12 +159,6 @@ export const FAQ: React.FC = ({}) => {
     );
   }, [appliedQuery, faqs]);
 
-  // const resultProducts = useMemo(() => {
-  //   return sortedProducts.filter(prod =>
-  //     prod.name.toLowerCase().includes(appliedQuery.toLowerCase()),
-  //   );
-  // }, [appliedQuery, sortedProducts]);
-
   return (
     <>
       {!errorMessage && loader && <Loader />}
@@ -198,7 +194,7 @@ export const FAQ: React.FC = ({}) => {
 
           <div className="faq__questions">
             {errorMessage && <p>Smth went wrong</p>}
-            {faqs.map(faq => (
+            {/* {visibleFaqs.map(faq => (
               <QuestionBlock
                 key={faq.id}
                 id={faq.id}
@@ -208,7 +204,9 @@ export const FAQ: React.FC = ({}) => {
                 whichAnswerIsOpen={whichAnswerIsOpen}
                 setWhichAnswerIsOpen={setWhichAnswerIsOpen}
               />
-            ))}
+            ))} */}
+
+            <Accordion faqs={visibleFaqs} />
           </div>
 
           <div className="faq__contact-us-bottom contact-us-bottom">

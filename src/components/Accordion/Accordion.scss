@@ -1,0 +1,86 @@
+@import '../../styles/utils/';
+
+.accordion {
+  background-color: #000;
+
+  &__item {
+    border-bottom: 1px solid $gray-60-color;
+  }
+
+  &__item-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    @include content-padding-inline;
+  }
+
+  &__collapse {
+    height: 0;
+    overflow: hidden;
+    transition: height 1s;
+
+    &.open {
+      height: auto;
+    }
+  }
+}
+
+.question {
+  font-family: $second-font-family;
+  font-size: 24px;
+  padding-block: 24px;
+  background-color: #000;
+  color: $gray-0-color;
+  cursor: pointer;
+
+  @include on-desktop {
+    font-weight: 500;
+    text-align: center;
+  }
+
+  &__stand {
+    @include on-desktop {
+      display: none;
+    }
+  }
+
+  &__running {
+    display: none;
+    background-color: #000;
+
+    @include on-desktop {
+      display: block;
+    }
+  }
+}
+
+.answer {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  color: $gray-60-color;
+	padding-bottom: 48px;
+
+  @include on-desktop {
+    font-weight: 500;
+    flex-direction: row;
+    gap: 40px;
+  }
+
+  &__short {
+    font-family: $second-font-family;
+    font-size: 24px;
+
+    @include on-desktop {
+      flex: 0 1 50%;
+      text-align: right;
+    }
+  }
+
+  &__full {
+    font-size: 16px;
+
+    @include on-desktop {
+      flex: 0 1 50%;
+    }
+  }
+}

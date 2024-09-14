@@ -83,7 +83,7 @@ export const Registration: React.FC = ({}) => {
           <>
             <p>Success!</p>
             <p>Go to your profile</p>
-            {user.role === RoleName.ADMIN ? (
+            {user?.role === RoleName.ADMIN ? (
               <NavLink to="/admin">Admin page</NavLink>
             ) : (
               <NavLink to="/login">profile</NavLink>

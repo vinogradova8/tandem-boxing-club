@@ -111,11 +111,11 @@ export const ModalWindow: React.FC = ({}) => {
 
     try {
       await axios.post(
-        '',
+        '/messages',
         JSON.stringify({
           name,
           email,
-          body,
+          mesage: body,
         }),
         {
           headers: { 'Content-Type': 'application/json' },

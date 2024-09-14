@@ -11,9 +11,10 @@ export const Profile: React.FC = ({}) => {
   const [logoutErrorMessage, setLogoutErrorMessage] = useState(false);
   const [refreshErrorMessage, setRefreshErrorMessage] = useState(false);
 
-  const { user, accessToken, setAccessToken } = useContext(ItemsContext);
+  const { user, setUser, accessToken, setAccessToken } =
+    useContext(ItemsContext);
 
-  const { firstName, lastName } = user;
+  // const { firstName, lastName } = user;
 
   const navigate = useNavigate();
 
@@ -57,6 +58,7 @@ export const Profile: React.FC = ({}) => {
       );
 
       setAccessToken('');
+      setUser(null);
       setSuccessLogOut(true);
       navigate('/login');
     } catch {
@@ -80,9 +82,9 @@ export const Profile: React.FC = ({}) => {
             <>
               <p>YOUR PROFILE</p>
               <p>{accessToken}</p>
-              <p>{user.email}</p>
-              <p>{firstName}</p>
-              <p>{lastName}</p>
+              <p>{user?.email}</p>
+              <p>{user?.firstName}</p>
+              <p>{user?.lastName}</p>
               <button className="logout-button" onClick={handleLogOut}>
                 Log out
               </button>

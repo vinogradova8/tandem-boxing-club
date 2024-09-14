@@ -122,11 +122,11 @@ export const Header: React.FC = ({}) => {
                 </ul>
               </div>
             </div>
-            {accessToken && user.role === 'ADMIN' && (
+            {accessToken && user?.role === 'ADMIN' && (
               <NavLink to="/admin" className="header__profile"></NavLink>
             )}
 
-            {accessToken && user.role === 'CUSTOMER' && (
+            {accessToken && user?.role === 'CUSTOMER' && (
               <NavLink to="/profile" className="header__profile"></NavLink>
             )}
 

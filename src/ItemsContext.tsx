@@ -11,6 +11,8 @@ type ItemsContextType = {
   setIsModalWindowOpen: React.Dispatch<React.SetStateAction<boolean>>;
   isCertificateWindowOpen: boolean;
   setIsCertificateWindowOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  isBurgerWindowOpen: boolean;
+  setIsBurgerWindowOpen: React.Dispatch<React.SetStateAction<boolean>>;
   accessToken: string;
   setAccessToken: React.Dispatch<React.SetStateAction<string>>;
   user: User | null;
@@ -24,6 +26,8 @@ export const ItemsContext = React.createContext<ItemsContextType>({
   setIsModalWindowOpen: () => {},
   isCertificateWindowOpen: false,
   setIsCertificateWindowOpen: () => {},
+  isBurgerWindowOpen: false,
+  setIsBurgerWindowOpen: () => {},
   // user: {
   //   id: 0,
   //   email: '',
@@ -55,6 +59,11 @@ export const ItemsProvider: React.FC<Props> = ({ children }) => {
     false,
   );
 
+  const [isBurgerWindowOpen, setIsBurgerWindowOpen] = useLocalStorage(
+    'isCertificateWindowOpen',
+    false,
+  );
+
   const [accessToken, setAccessToken] = useLocalStorage('accessToken', '');
 
   const [language, setLanguage] = useLocalStorage('language', LOCALS.ENG);
@@ -82,6 +91,8 @@ export const ItemsProvider: React.FC<Props> = ({ children }) => {
       setLanguage,
       isCertificateWindowOpen,
       setIsCertificateWindowOpen,
+      isBurgerWindowOpen,
+      setIsBurgerWindowOpen,
     }),
     [
       isModalWindowOpen,
@@ -94,6 +105,8 @@ export const ItemsProvider: React.FC<Props> = ({ children }) => {
       setLanguage,
       isCertificateWindowOpen,
       setIsCertificateWindowOpen,
+      isBurgerWindowOpen,
+      setIsBurgerWindowOpen,
     ],
   );
 

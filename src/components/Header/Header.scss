@@ -188,13 +188,16 @@
   display: inline-block;
   font-family: $main-font-family;
   font-weight: 400;
-  // padding-top: 2px;
-  // font-size: 14px;
   letter-spacing: 1px;
   color: $main-text-color;
   height: 19px;
   overflow: hidden;
-  z-index: 100;
+  // z-index: 100;
+
+	@include on-desktop {
+		font-size: 18px;
+		height: 24px;
+	}
 
   // transition: transform 0.3s ease 0s;
   //   &:hover {
@@ -209,10 +212,6 @@
   // @include on-desktop {
   // 	height: 24px;
   //   font-size: 20px;
-  // }
-
-  // &--burger {
-  //   font-size: 24px;
   // }
 
   // @media (min-width: 900px) {

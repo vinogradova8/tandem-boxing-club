@@ -6,7 +6,7 @@ import '../../i18n';
 import './ModalWindow.scss';
 import { ItemsContext } from '../../ItemsContext';
 import { useTranslation } from 'react-i18next';
-import axios from 'axios';
+import axios from '../../api/axios';
 
 const portal = document.getElementById('portal') as HTMLElement;
 
@@ -115,7 +115,7 @@ export const ModalWindow: React.FC = ({}) => {
         JSON.stringify({
           name,
           email,
-          mesage: body,
+          message: body,
         }),
         {
           headers: { 'Content-Type': 'application/json' },
@@ -130,6 +130,82 @@ export const ModalWindow: React.FC = ({}) => {
     return true;
   };
 
+  // const submitForm = async () => {
+  //   // event.preventDefault();
+
+  //   if (!name) {
+  //     setNameErrorMessage('Please enter your name');
+  //   }
+
+  //   if (
+  //     name &&
+  //     (name.length < 2 || !name.match(NAME_REGEX) || name.length > 22)
+  //   ) {
+  //     setNameErrorMessage(
+  //       'Name should have from 2 to 22 chars and contain only letters',
+  //     );
+  //   }
+
+  //   if (name.match(NAME_REGEX) && name.length >= 2 && name.length <= 22) {
+  //     setNameErrorMessage('');
+  //   }
+
+  //   if (!email) {
+  //     setEmailErrorMessage('Please enter your email');
+  //   }
+
+  //   if (email && !email.match(EMAIL_REGEX)) {
+  //     setEmailErrorMessage('Invalid email address');
+  //   }
+
+  //   if (email.match(EMAIL_REGEX)) {
+  //     setEmailErrorMessage('');
+  //   }
+
+  //   if (!body) {
+  //     setBodyErrorMessage('Please enter your message');
+  //   }
+
+  //   if (body && body.length < 10) {
+  //     setBodyErrorMessage('Message should have at least 10 chars');
+  //   }
+
+  //   if (body.length >= 10) {
+  //     setBodyErrorMessage('');
+  //   }
+
+  //   if (
+  //     nameErrorMessage ||
+  //     emailErrorMessage ||
+  //     bodyErrorMessage ||
+  //     !name ||
+  //     !email ||
+  //     !body
+  //   ) {
+  //     return false;
+  //   }
+
+  //   try {
+  //     await axios.post(
+  //       '/messages',
+  //       JSON.stringify({
+  //         name,
+  //         email,
+  //         message: body,
+  //       }),
+  //       {
+  //         headers: { 'Content-Type': 'application/json' },
+  //       },
+  //     );
+
+  //     setIsModalWindowOpen(false);
+  //   } catch {
+  //     setErrorMessage(true);
+  //   }
+
+  //   return true;
+  // };
+
   return createPortal(
     <div className="modal-window">
       <div className="modal-window__container">
@@ -142,7 +218,11 @@ export const ModalWindow: React.FC = ({}) => {
         </button>
         {errorMessage && <p>Send message failed</p>}
 
-        <form onSubmit={handleSubmit} action="#" className="modal-window__form">
+        <form
+          onSubmit={handleSubmit}
+          // action="http://localhost:8088/messages"
+          className="modal-window__form"
+        >
           <p className="modal-window__title">{t('Contact us')}</p>
 
           <div>
@@ -191,6 +271,7 @@ export const ModalWindow: React.FC = ({}) => {
           </div>
 
           <button
+            // onClick={submitForm}
             type="submit"
             className={cn('modal-window__button', {
               'modal-window__button--disabled': !name || !email || !body,

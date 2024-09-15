@@ -10,12 +10,13 @@ import { Question } from '../../types/Questions';
 import { Loader } from '../Loader';
 import { NotFoundPage } from '../NotFoundPage';
 import cn from 'classnames';
-// import { Message } from '../../types/Message';
+import { Message } from '../../types/Message';
 
 export const AdminPage: React.FC = ({}) => {
   const navigate = useNavigate();
 
-  const { accessToken, setAccessToken, user } = useContext(ItemsContext);
+  const { accessToken, setAccessToken, user, setUser } =
+    useContext(ItemsContext);
 
   const [logoutErrorMessage, setLogoutErrorMessage] = useState(false);
   const [refreshErrorMessage, setRefreshErrorMessage] = useState(false);
@@ -23,8 +24,8 @@ export const AdminPage: React.FC = ({}) => {
   const [errorMessage, setErrorMessage] = useState(false);
 
   const [faqs, setFaqs] = useState<Question[]>([]);
-  // const [questionsFromUsers, setQuestionsFromUsers] = useState<Message[]>([]);
-  // const [errorQuestionsFromUsers, setErrorQuestionsFromUsers] = useState(false);
+  const [questionsFromUsers, setQuestionsFromUsers] = useState<Message[]>([]);
+  const [errorQuestionsFromUsers, setErrorQuestionsFromUsers] = useState(false);
 
   const [loader, setLoader] = useState(false);
 
@@ -95,7 +96,7 @@ export const AdminPage: React.FC = ({}) => {
       );
 
       setAccessToken('');
-      // setUser(null);
+      setUser(null);
       navigate('/login');
     } catch {
       setLogoutErrorMessage(true);
@@ -138,17 +139,29 @@ export const AdminPage: React.FC = ({}) => {
     }
   };
 
-  // const getQuestionsFromUsers = async () => {
-  //   try {
-  //     const response = await axios.get('/messages');
+  const getQuestionsFromUsers = async () => {
+    try {
+      const response = await axios.get('/messages', {
+        headers: { Authorization: `Bearer ${accessToken}` },
+      });
 
-  //     setQuestionsFromUsers(response.data);
-  //   } catch {
-  //     setErrorQuestionsFromUsers(true);
-  //   } finally {
-  //     setLoader(false);
-  //   }
-  // };
+      setQuestionsFromUsers(response.data);
+    } catch {
+      setErrorQuestionsFromUsers(true);
+    } finally {
+      setLoader(false);
+    }
+  };
+
+  const deleteQuestionFromUser = async (id: number) => {
+    try {
+      await axios.delete(`/messages/${id}`, {
+        headers: { Authorization: `Bearer ${accessToken}` },
+      });
+    } catch {
+      setErrorQuestionsFromUsers(true);
+    }
+  };
 
   useEffect(() => {
     setLoader(true);
@@ -166,9 +179,9 @@ export const AdminPage: React.FC = ({}) => {
     }
   }, [i18next.language]);
 
-  // useEffect(() => {
-  //   getQuestionsFromUsers();
-  // }, []);
+  useEffect(() => {
+    getQuestionsFromUsers();
+  }, []);
 
   return (
     <>
@@ -180,9 +193,9 @@ export const AdminPage: React.FC = ({}) => {
           <div className="admin-page__container">
             <h2 className="big-title">Admin Page</h2>
             <div className="admin-page__info">
-              {/* <p>{accessToken}</p> */}
+              <p>{accessToken}</p>
               <h3>Personal info</h3>
-              {/* <p>{user?.email}</p> */}
+              <p>{user?.email}</p>
               <p>{user?.firstName}</p>
               <p>{user?.lastName}</p>
               {refreshErrorMessage && <p>Something went wrong!</p>}
@@ -401,26 +414,35 @@ export const AdminPage: React.FC = ({}) => {
                 )}
               </div>
 
-              {/* {errorQuestionsFromUsers && <p>Something went wrong</p>} */}
-
-              {/* <ul className="contact-form-questions__list">
-              {questionsFromUsers.map(questionItem => (
-                <li
-                  className="contact-form-questions__item contact-form-item"
-                  key={questionItem.id}
-                >
-                  <p className="contact-form-item__name">{questionItem.name}</p>
-                  <p className="contact-form-item__email">
-                    {questionItem.email}
-                  </p>
-                  <p className="contact-form-item__message">
-                    {questionItem.message}
-                  </p>
-                  <button className="contact-form-item__delete">delete</button>
-                </li>
-              ))}
-            </ul> */}
+              {errorQuestionsFromUsers && <p>Something went wrong</p>}
               {!hideQuestionsFromUsers && (
+                <ul className="contact-form-questions__list">
+                  {questionsFromUsers.map(questionItem => (
+                    <li
+                      className="contact-form-questions__item contact-form-item"
+                      key={questionItem.id}
+                    >
+                      <p className="contact-form-item__name">
+                        {questionItem.name}
+                      </p>
+                      <p className="contact-form-item__email">
+                        {questionItem.email}
+                      </p>
+                      <p className="contact-form-item__message">
+                        {questionItem.message}
+                      </p>
+                      <button
+                        className="contact-form-item__delete"
+                        onClick={() => deleteQuestionFromUser(questionItem.id)}
+                      >
+                        delete
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              )}
+
+              {/* {!hideQuestionsFromUsers && (
                 <ul className="contact-form-questions__list">
                   <li
                     className="contact-form-questions__item 
@@ -479,7 +501,7 @@ export const AdminPage: React.FC = ({}) => {
                     </button>
                   </li>
                 </ul>
-              )}
+              )} */}
             </div>
           </div>
         </main>

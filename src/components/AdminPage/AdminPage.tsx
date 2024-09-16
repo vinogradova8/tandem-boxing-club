@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useCallback, useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './AdminPage.scss';
 import { useNavigate } from 'react-router-dom';
 import { ItemsContext } from '../../ItemsContext';
@@ -15,11 +15,11 @@ import { Message } from '../../types/Message';
 export const AdminPage: React.FC = ({}) => {
   const navigate = useNavigate();
 
-  const { accessToken, setAccessToken, user, setUser } =
+  const { accessToken, setAccessToken, user, setUser, refreshErrorMessage } =
     useContext(ItemsContext);
 
   const [logoutErrorMessage, setLogoutErrorMessage] = useState(false);
-  const [refreshErrorMessage, setRefreshErrorMessage] = useState(false);
+  // const [refreshErrorMessage, setRefreshErrorMessage] = useState(false);
 
   const [errorMessage, setErrorMessage] = useState(false);
 
@@ -40,24 +40,24 @@ export const AdminPage: React.FC = ({}) => {
 
   // const { firstName, lastName } = user;
 
-  const refreshToken = useCallback(async () => {
-    try {
-      const response = await axios.post(
-        '/auth/refresh',
-        {},
-        {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-            'Access-Control-Allow-Origin': 'http://localhost:3000',
-          },
-        },
-      );
+  // const refreshToken = useCallback(async () => {
+  //   try {
+  //     const response = await axios.post(
+  //       '/auth/refresh',
+  //       {},
+  //       {
+  //         headers: {
+  //           Authorization: `Bearer ${accessToken}`,
+  //           'Access-Control-Allow-Origin': 'http://localhost:3000',
+  //         },
+  //       },
+  //     );
 
-      setAccessToken(response.data.token);
-    } catch {
-      setRefreshErrorMessage(true);
-    }
-  }, [accessToken, setAccessToken, setRefreshErrorMessage]);
+  //     setAccessToken(response.data.token);
+  //   } catch {
+  //     setRefreshErrorMessage(true);
+  //   }
+  // }, [accessToken, setAccessToken, setRefreshErrorMessage]);
 
   // useEffect(() => {
   //   let refreshTokenInterval;
@@ -75,15 +75,15 @@ export const AdminPage: React.FC = ({}) => {
   //   };
   // }, [refreshToken]);
 
-  useEffect(() => {
-    const refreshTokenInterval = setInterval(() => {
-      refreshToken();
-    }, 180000);
+  // useEffect(() => {
+  //   const refreshTokenInterval = setInterval(() => {
+  //     refreshToken();
+  //   }, 180000);
 
-    return () => {
-      clearInterval(refreshTokenInterval);
-    };
-  }, [refreshToken]);
+  //   return () => {
+  //     clearInterval(refreshTokenInterval);
+  //   };
+  // }, [refreshToken]);
 
   const handleLogOut = async () => {
     try {

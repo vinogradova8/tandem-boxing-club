@@ -22,9 +22,7 @@
   }
 
   &__link {
-    &:hover {
-      color: $second-text-color;
-    }
+    @include hover(color, $gray-20-color);
   }
 }
 
@@ -37,7 +35,9 @@
   justify-content: center;
   width: 22px;
   height: 22px;
-  // padding: 0;
+
+  @include hover(opacity, 0.7);
+
   &::before {
     position: absolute;
     content: '';

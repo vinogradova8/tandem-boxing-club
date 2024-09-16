@@ -63,6 +63,9 @@ const resources = {
       'Our Team': 'YOUR TRAINERS',
       'Our Training': 'OUR TRAINING',
       'Support Us': 'SUPPORT US',
+
+      'or you can contact us via': 'or you can contact us via',
+      Send: 'Send',
     },
   },
   ukr: {
@@ -77,7 +80,7 @@ const resources = {
       'Main text-2': 'ЦЕ ШЛЯХ',
       'Main text-3': 'до самовдосконалення.',
 
-      'Contact us': 'Зв`язатись',
+      'Contact us': 'Зв`язатись з нами',
 
       'Section-1 title': 'Чому варто спробувати?',
       'Section-1 text':
@@ -120,6 +123,9 @@ const resources = {
       'Our Team': 'ВАШІ ТРЕНЕРИ',
       'Our Training': 'НАШЕ ТРЕНУВАННЯ',
       'Support Us': 'ПІДТРИМАТИ НАС',
+
+      'or you can contact us via': 'або ви можете зв`язатися з нами через',
+      Send: 'Надіслати',
     },
   },
   deu: {
@@ -177,6 +183,9 @@ const resources = {
       'Our Team': 'YOUR TRAINERS',
       'Our Training': 'OUR TRAINING',
       'Support Us': 'SUPPORT US',
+
+      'or you can contact us via': 'oder Sie können uns über',
+      Send: 'Abschicken',
     },
   },
 };

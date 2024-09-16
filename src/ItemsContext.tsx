@@ -15,6 +15,8 @@ type ItemsContextType = {
   setIsBurgerWindowOpen: React.Dispatch<React.SetStateAction<boolean>>;
   accessToken: string;
   setAccessToken: React.Dispatch<React.SetStateAction<string>>;
+  refreshErrorMessage: boolean;
+  setRefreshErrorMessage: React.Dispatch<React.SetStateAction<boolean>>;
   user: User | null;
   setUser: React.Dispatch<React.SetStateAction<User | null>>;
   language: string;
@@ -40,6 +42,8 @@ export const ItemsContext = React.createContext<ItemsContextType>({
   setUser: () => {},
   accessToken: '',
   setAccessToken: () => {},
+  refreshErrorMessage: false,
+  setRefreshErrorMessage: () => {},
   language: LOCALS.ENG,
   setLanguage: () => {},
 });
@@ -66,6 +70,11 @@ export const ItemsProvider: React.FC<Props> = ({ children }) => {
 
   const [accessToken, setAccessToken] = useLocalStorage('accessToken', '');
 
+  const [refreshErrorMessage, setRefreshErrorMessage] = useLocalStorage(
+    'refreshErrorMessage',
+    false,
+  );
+
   const [language, setLanguage] = useLocalStorage('language', LOCALS.ENG);
 
   // const [user, setUser] = useLocalStorage('user', {
@@ -87,6 +96,8 @@ export const ItemsProvider: React.FC<Props> = ({ children }) => {
       setUser,
       accessToken,
       setAccessToken,
+      refreshErrorMessage,
+      setRefreshErrorMessage,
       language,
       setLanguage,
       isCertificateWindowOpen,
@@ -101,6 +112,8 @@ export const ItemsProvider: React.FC<Props> = ({ children }) => {
       setUser,
       accessToken,
       setAccessToken,
+      refreshErrorMessage,
+      setRefreshErrorMessage,
       language,
       setLanguage,
       isCertificateWindowOpen,

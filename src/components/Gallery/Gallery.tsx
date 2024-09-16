@@ -9,6 +9,7 @@ import { useTranslation } from 'react-i18next';
 import { SlideVideo } from '../../types/SlideVideo';
 import { SlideImage } from '../../types/SlideImage';
 import { gallery } from '../../api/axios';
+import { ContactButton } from '../ContactButton';
 
 export const Gallery: React.FC = ({}) => {
   const [loader, setLoader] = useState(false);
@@ -88,20 +89,22 @@ export const Gallery: React.FC = ({}) => {
             </div>
           </div>
 
+          <ContactButton />
+
           {/* <div className="gallery__container">
             <button className="gallery__contact-button contact-button">
               {t('Contact us')}
             </button>
           </div> */}
 
-          <div className="support__contact-us-bottom contact-us-bottom">
+          {/* <div className="support__contact-us-bottom contact-us-bottom">
             <button
               className="support__contact-button 
 					contact-button"
             >
               {t('Contact us')}
             </button>
-          </div>
+          </div> */}
         </main>
       )}
 

@@ -7,6 +7,7 @@
   left: 0;
   top: 0;
   background-color: rgba(31, 31, 34, 0.7);
+  z-index: 50;
 
   &__container {
     position: absolute;
@@ -24,12 +25,12 @@
     width: 80%;
     min-width: 279px;
     max-width: 450px;
-		overflow: auto;
+    overflow: auto;
     animation: modal-window 1s linear 0s 1 normal forwards;
 
     @include on-tablet {
       width: 500px;
-			overflow: hidden;
+      overflow: hidden;
     }
 
     @keyframes modal-window {
@@ -76,10 +77,10 @@
         opacity: 1;
       }
     }
+  }
 
-    & div {
-      align-self: stretch;
-    }
+  &__item {
+    align-self: stretch;
   }
 
   &__title {
@@ -107,9 +108,10 @@
     }
   }
 
-  &__textarea-box {
-    margin-bottom: 19px;
-  }
+  // &__textarea-box {
+	// 	align-self: stretch;
+  //   margin-bottom: 19px;
+  // }
 
   &__textarea {
     background-color: transparent;
@@ -140,30 +142,10 @@
     }
   }
 
-  &__button {
+  &__contact-button {
     align-self: center;
     padding: 16px 66px;
-    font-family: 'Inter';
-    font-size: 24px;
-    font-weight: 600;
-    border: 1px solid $main-text-color;
-    border-radius: 12px;
-    color: $main-text-color;
-    box-sizing: border-box;
-    cursor: pointer;
-    transition: all 0.3s ease 0s;
-
-    &:hover {
-      outline: 3px solid $main-text-color;
-    }
-
-    &--disabled {
-      opacity: 0.5;
-      &:hover {
-        outline: none;
-        cursor: auto;
-      }
-    }
+		margin-top: 19px;
   }
 
   &__footer {
@@ -194,25 +176,8 @@
   }
 
   &__link {
-    transition: all 3s ease 0s;
-    &:hover {
-      color: $main-text-color;
-    }
+    @include hover(color, $main-text-color);
   }
-
-  // &__text {
-  //   font-family: $main-font-family;
-  //   font-weight: 700;
-  //   font-size: 20px;
-  //   line-height: 150%;
-  //   margin-bottom: 15px;
-  //   text-align: center;
-  // }
-
-  // &__actions {
-  //   display: flex;
-  //   gap: 15px;
-  // }
 }
 
 .danger {

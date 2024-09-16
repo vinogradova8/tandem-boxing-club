@@ -64,7 +64,6 @@ body {
 
 main {
   flex: 1 1 auto;
-  // height: 100vh;
 }
 
 // .main-block {
@@ -135,17 +134,13 @@ main {
   color: $main-text-color;
   box-sizing: border-box;
   cursor: pointer;
-  transition: all 0.3s ease 0s;
+
+	@include hover(outline, 3px solid $main-text-color);
 
   &--disabled {
-    opacity: 0.5;
-    &:hover {
-      outline: none;
-    }
-  }
+		@include hover(outline, none);
 
-  &:hover {
-    outline: 3px solid $main-text-color;
+    opacity: 0.5;
   }
 }
 
@@ -175,22 +170,22 @@ main {
   }
 }
 
-.contact-us-bottom {
-  padding-top: 104px;
-  padding-bottom: 53px;
-  max-width: 1400px;
-  margin: 0 auto;
+// .contact-us-bottom {
+//   padding-top: 104px;
+//   padding-bottom: 53px;
+//   max-width: 1400px;
+//   margin: 0 auto;
 
-  @include content-padding-inline;
+//   @include content-padding-inline;
 
-  @include on-tablet {
-    padding-bottom: 66px;
-  }
+//   @include on-tablet {
+//     padding-bottom: 66px;
+//   }
 
-  @include on-desktop {
-    padding-bottom: 87px;
-  }
-}
+//   @include on-desktop {
+//     padding-bottom: 87px;
+//   }
+// }
 
 .big-title {
   font-family: $second-font-family;

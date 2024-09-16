@@ -218,14 +218,10 @@ export const ModalWindow: React.FC = ({}) => {
         </button>
         {errorMessage && <p>Send message failed</p>}
 
-        <form
-          onSubmit={handleSubmit}
-          // action="http://localhost:8088/messages"
-          className="modal-window__form"
-        >
+        <form onSubmit={handleSubmit} className="modal-window__form">
           <p className="modal-window__title">{t('Contact us')}</p>
 
-          <div>
+          <div className="modal-window__item">
             <input
               ref={inputRef}
               autoComplete="off"
@@ -241,7 +237,7 @@ export const ModalWindow: React.FC = ({}) => {
             {nameErrorMessage && <p className="error">{nameErrorMessage}</p>}
           </div>
 
-          <div>
+          <div className="modal-window__item">
             <input
               autoComplete="off"
               onChange={e => setEmail(e.target.value)}
@@ -256,7 +252,7 @@ export const ModalWindow: React.FC = ({}) => {
             {emailErrorMessage && <p className="error">{emailErrorMessage}</p>}
           </div>
 
-          <div className="modal-window__textarea-box">
+          <div className="modal-window__item">
             <TextareaAutosize
               onChange={e => setBody(e.target.value)}
               value={body}
@@ -271,19 +267,17 @@ export const ModalWindow: React.FC = ({}) => {
           </div>
 
           <button
-            // onClick={submitForm}
             type="submit"
-            className={cn('modal-window__button', {
-              'modal-window__button--disabled': !name || !email || !body,
+            className={cn('modal-window__contact-button contact-button', {
+              'contact-button--disabled': !name || !email || !body,
             })}
-            // disabled={isSubmitButtonDisabled}
           >
-            Send
+            {t('Send')}
           </button>
         </form>
 
         <div className="modal-window__footer">
-          <p className="modal-window__text">or you can contact us via</p>
+          <p className="modal-window__text">{t('or you can contact us via')}</p>
 
           <div>
             <ul className="modal-window__list">

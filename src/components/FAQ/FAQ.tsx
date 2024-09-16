@@ -24,6 +24,7 @@ import { LOCALS } from '../../i18n/constants';
 import { NotFoundPage } from '../NotFoundPage';
 import { Loader } from '../Loader';
 import { Accordion } from '../Accordion';
+import { ContactButton } from '../ContactButton';
 
 export const FAQ: React.FC = ({}) => {
   const { t } = useTranslation();
@@ -209,14 +210,16 @@ export const FAQ: React.FC = ({}) => {
             <Accordion faqs={visibleFaqs} />
           </div>
 
-          <div className="faq__contact-us-bottom contact-us-bottom">
+          <ContactButton />
+
+          {/* <div className="faq__contact-us-bottom contact-us-bottom">
             <button
               className="faq__contact-button 
 					contact-button"
             >
               {t('Contact us')}
             </button>
-          </div>
+          </div> */}
         </main>
       )}
     </>

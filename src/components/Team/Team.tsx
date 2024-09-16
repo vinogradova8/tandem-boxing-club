@@ -10,6 +10,7 @@ import '../../i18n';
 import i18next from 'i18next';
 import { ItemsContext } from '../../ItemsContext';
 import { CertificateWindow } from '../CertificateWindow';
+import { ContactButton } from '../ContactButton';
 
 export const Team: React.FC = ({}) => {
   const [loader, setLoader] = useState(false);
@@ -114,14 +115,7 @@ export const Team: React.FC = ({}) => {
             <div className="team__certificat-container"></div>
           </div>
 
-          <div className="support__contact-us-bottom contact-us-bottom">
-            <button
-              className="support__contact-button 
-					contact-button"
-            >
-              {t('Contact us')}
-            </button>
-          </div>
+          <ContactButton />
         </main>
       )}
     </>

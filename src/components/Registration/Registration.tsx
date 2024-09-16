@@ -2,8 +2,8 @@ import React, { useContext, useState } from 'react';
 import './Registration.scss';
 import axios from '../../api/axios';
 import { ItemsContext } from '../../ItemsContext';
-import { NavLink } from 'react-router-dom';
-import { RoleName } from '../../types/RoleName';
+import { useNavigate } from 'react-router-dom';
+// import { RoleName } from '../../types/RoleName';
 
 export const Registration: React.FC = ({}) => {
   const [firstName, setFirstName] = useState('');
@@ -11,10 +11,12 @@ export const Registration: React.FC = ({}) => {
   const [email, setLogin] = useState('');
   const [password, setPassword] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
-  const [success, setSuccess] = useState(false);
+  // const [success, setSuccess] = useState(false);
   const [errorMessage, setErrorMessage] = useState(false);
 
-  const { user, setUser, setAccessToken } = useContext(ItemsContext);
+  const { setUser, setAccessToken } = useContext(ItemsContext);
+
+  const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -34,7 +36,7 @@ export const Registration: React.FC = ({}) => {
         },
       );
 
-      setSuccess(true);
+      // setSuccess(true);
 
       const response = await axios.post(
         '/auth/login',
@@ -47,10 +49,10 @@ export const Registration: React.FC = ({}) => {
         },
       );
 
-      const role = response.data.role;
-      const id = response.data.id;
-      const currentFirstName = response.data.firstName;
-      const currenLastName = response.data.lastName;
+      const role = response.data.userDto.role;
+      const id = response.data.userDto.id;
+      const currentFirstName = response.data.userDto.firstName;
+      const currenLastName = response.data.userDto.lastName;
 
       setUser({
         id,
@@ -69,7 +71,16 @@ export const Registration: React.FC = ({}) => {
       //   password,
       // });
 
-      setAccessToken(response.data.accessToken);
+      setAccessToken(response.data.token);
+      navigate('/profile');
+
+      // if (role === 'CUSTOMER') {
+      //   navigate('/profile');
+      // }
+
+      // if (role === 'ADMIN') {
+      //   navigate('/admin');
+      // }
     } catch {
       setErrorMessage(true);
     }
@@ -79,76 +90,60 @@ export const Registration: React.FC = ({}) => {
     <main className="registration">
       <div className="registration__container">
         <h2>REGISTRATION</h2>
-        {success ? (
-          <>
-            <p>Success!</p>
-            <p>Go to your profile</p>
-            {user?.role === RoleName.ADMIN ? (
-              <NavLink to="/admin">Admin page</NavLink>
-            ) : (
-              <NavLink to="/login">profile</NavLink>
-            )}
+        <form onSubmit={handleSubmit} action="#">
+          {errorMessage && <p>Registration failed</p>}
+          <div>
+            <label htmlFor="first-name">Ім`я</label>
+            <input
+              value={firstName}
+              onChange={e => setFirstName(e.target.value)}
+              type="text"
+              id="first-name"
+            />
+          </div>
 
-            {/* <NavLink to="/login">
-              profile
-            </NavLink> */}
-          </>
-        ) : (
-          <form onSubmit={handleSubmit} action="#">
-            {errorMessage && <p>Registration failed</p>}
-            <div>
-              <label htmlFor="first-name">Ім`я</label>
-              <input
-                value={firstName}
-                onChange={e => setFirstName(e.target.value)}
-                type="text"
-                id="first-name"
-              />
-            </div>
+          <div>
+            <label htmlFor="last-name">Прізвище</label>
+            <input
+              value={lastName}
+              onChange={e => setLastName(e.target.value)}
+              type="text"
+              id="last-name"
+            />
+          </div>
 
-            <div>
-              <label htmlFor="last-name">Прізвище</label>
-              <input
-                value={lastName}
-                onChange={e => setLastName(e.target.value)}
-                type="text"
-                id="last-name"
-              />
-            </div>
+          <div>
+            <label htmlFor="email">Логін (пошта)</label>
+            <input
+              value={email}
+              onChange={e => setLogin(e.target.value)}
+              type="email"
+              id="email"
+            />
+          </div>
 
-            <div>
-              <label htmlFor="email">Логін (пошта)</label>
-              <input
-                value={email}
-                onChange={e => setLogin(e.target.value)}
-                type="email"
-                id="email"
-              />
-            </div>
+          <div>
+            <label htmlFor="password">Пароль</label>
+            <input
+              value={password}
+              onChange={e => setPassword(e.target.value)}
+              type="password"
+              id="password"
+            />
+          </div>
 
-            <div>
-              <label htmlFor="password">Пароль</label>
-              <input
-                value={password}
-                onChange={e => setPassword(e.target.value)}
-                type="password"
-                id="password"
-              />
-            </div>
+          <div>
+            <label htmlFor="password-control">Перевірка паролю</label>
+            <input
+              value={repeatPassword}
+              onChange={e => setRepeatPassword(e.target.value)}
+              type="password"
+              id="password-control"
+            />
+          </div>
 
-            <div>
-              <label htmlFor="password-control">Перевірка паролю</label>
-              <input
-                value={repeatPassword}
-                onChange={e => setRepeatPassword(e.target.value)}
-                type="password"
-                id="password-control"
-              />
-            </div>
-
-            <button className="contact-button">Зареєструватися</button>
-          </form>
-        )}
+          <button className="contact-button">Зареєструватися</button>
+        </form>
       </div>
     </main>
   );

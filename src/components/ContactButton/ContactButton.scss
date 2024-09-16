@@ -1,0 +1,27 @@
+@import '../../styles/utils/';
+
+.contact-us-bottom {
+  padding-top: 104px;
+  padding-bottom: 40px;
+  max-width: 1400px;
+  margin: 0 auto;
+
+  @include content-padding-inline;
+
+  // @include on-tablet {
+  //   padding-bottom: 66px;
+  // }
+
+  // @include on-desktop {
+  //   padding-bottom: 87px;
+  // }
+
+  &__contact-button {
+    display: block;
+    margin: 0 auto;
+
+    @include on-tablet {
+      margin: 0 0 0 auto;
+    }
+  }
+}

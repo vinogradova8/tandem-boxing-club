@@ -1,28 +1,60 @@
-import React from 'react';
+import React, { useCallback, useContext, useEffect } from 'react';
 // import cn from 'classnames';
 import './App.scss';
 import './i18n';
 
 import { Header } from './components/Header';
-import { Navigate, Outlet, useParams } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 import { Footer } from './components/Footer/Footer';
-import { ItemsProvider } from './ItemsContext';
-// import { useTranslation } from 'react-i18next';
-// import { Footer } from './components/Footer';
-// import { BurgerMenu } from './components/BurgerMenu';
-// import { ItemsProvider } from './ItemsContext';
-// import { useLocalStorage } from './hooks/useLocalStorage';
+import { ItemsContext, ItemsProvider } from './ItemsContext';
+import axios from './api/axios';
 
 export const App: React.FC = () => {
   // const [isBurgerMenuOpen, setIsBurgerMenuOpen] = useState(false);
   // const [darkTheme, setDarkTheme] = useLocalStorage('darkTheme', false);
 
-  const { currentId } = useParams();
+  // const { currentId } = useParams();
+
+  const { accessToken, setAccessToken, setRefreshErrorMessage } =
+    useContext(ItemsContext);
   // const { t } = useTranslation();
 
-  if (currentId === 'home') {
-    return <Navigate to=".." />;
-  }
+  const refreshToken = useCallback(async () => {
+    try {
+      const response = await axios.post(
+        '/auth/refresh',
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+            // 'Access-Control-Allow-Origin': 'http://localhost:3000',
+          },
+        },
+      );
+
+      setAccessToken(response.data.token);
+    } catch {
+      setRefreshErrorMessage(true);
+    }
+  }, [accessToken, setAccessToken, setRefreshErrorMessage]);
+
+  useEffect(() => {
+    let refreshTokenInterval: NodeJS.Timer;
+
+    if (accessToken) {
+      refreshTokenInterval = setInterval(() => {
+        refreshToken();
+      }, 180000);
+    }
+
+    return () => {
+      clearInterval(refreshTokenInterval);
+    };
+  }, [accessToken, refreshToken]);
+
+  // if (currentId === 'home') {
+  //   return <Navigate to=".." />;
+  // }
 
   return (
     <ItemsProvider>

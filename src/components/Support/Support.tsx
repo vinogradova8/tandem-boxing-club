@@ -1,6 +1,7 @@
 import React from 'react';
 import './Support.scss';
 import { Trans, useTranslation } from 'react-i18next';
+import { ContactButton } from '../ContactButton';
 
 export const Support: React.FC = ({}) => {
   const { t } = useTranslation();
@@ -63,14 +64,16 @@ export const Support: React.FC = ({}) => {
         </section>
       </div>
 
-      <div className="support__contact-us-bottom contact-us-bottom">
+      <ContactButton />
+
+      {/* <div className="support__contact-us-bottom contact-us-bottom">
         <button
           className="support__contact-button 
 					contact-button"
         >
           {t('Contact us')}
         </button>
-      </div>
+      </div> */}
     </main>
   );
 };

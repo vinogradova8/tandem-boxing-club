@@ -5,6 +5,7 @@ import '../../i18n';
 import { useTranslation } from 'react-i18next';
 import { ModalWindow } from '../ModalWindow';
 import { ItemsContext } from '../../ItemsContext';
+import { ContactButton } from '../ContactButton';
 
 export const HomePage: React.FC = ({}) => {
   const { t } = useTranslation();
@@ -122,7 +123,9 @@ export const HomePage: React.FC = ({}) => {
           </section>
         </div>
 
-        <div className="homepage__contact-us-bottom contact-us-bottom">
+        <ContactButton />
+
+        {/* <div className="homepage__contact-us-bottom contact-us-bottom">
           <button
             onClick={() => {
               setIsModalWindowOpen(true);
@@ -132,7 +135,7 @@ export const HomePage: React.FC = ({}) => {
           >
             {t('Contact us')}
           </button>
-        </div>
+        </div> */}
       </main>
     </>
   );

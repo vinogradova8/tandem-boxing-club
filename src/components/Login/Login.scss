@@ -1,1 +1,111 @@
 @import '../../styles/utils';
+
+.login {
+  background: url('../../../public/images/decor/login-background-image.png')
+    center / cover no-repeat;
+  padding-block: 80px 198px;
+
+  @include content-padding-inline;
+
+  &__title {
+    margin-bottom: 112px;
+
+    @include on-tablet {
+      margin-bottom: 80px;
+    }
+
+    @include on-desktop {
+      margin-bottom: 40px;
+    }
+  }
+
+  &__container {
+    max-width: 543px;
+    margin: 0 auto;
+
+    @include on-desktop {
+      max-width: 1400px;
+    }
+
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+    color: $gray-40-color;
+
+    border-radius: 12px;
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 32px 24px;
+
+    @include on-desktop {
+      adding: 80px 40px;
+    }
+  }
+
+  &__form {
+    align-items: stretch;
+  }
+
+  &__socials {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  &__text {
+		align-self: center;
+  }
+}
+
+.socials {
+  &__item {
+    font-size: 16px;
+    border-bottom: 1px solid $gray-60-color;
+		font-family: $second-font-family;
+    color: $gray-40-color;
+    padding-block: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+		cursor: pointer;
+  }
+
+  &__name {
+    display: block;
+    position: relative;
+  }
+
+  &__icon {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+
+    &::before {
+      position: absolute;
+      content: '';
+      width: 24px;
+      height: 24px;
+    }
+
+		&--facebook {
+      &::before {
+        background: url('../../../public/images/icons/facebook.svg') no-repeat;
+      }
+    }
+
+		&--google {
+      &::before {
+        background: url('../../../public/images/icons/google.svg') no-repeat;
+      }
+    }
+
+    &--apple {
+      &::before {
+        background: url('../../../public/images/icons/apple.svg') no-repeat;
+      }
+    }
+  }
+}

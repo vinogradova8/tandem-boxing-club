@@ -19,7 +19,6 @@ export const AdminPage: React.FC = ({}) => {
     useContext(ItemsContext);
 
   const [logoutErrorMessage, setLogoutErrorMessage] = useState(false);
-  // const [refreshErrorMessage, setRefreshErrorMessage] = useState(false);
 
   const [errorMessage, setErrorMessage] = useState(false);
 

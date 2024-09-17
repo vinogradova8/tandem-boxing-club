@@ -3,17 +3,16 @@ import './Login.scss';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { ItemsContext } from '../../ItemsContext';
 import axios from '../../api/axios';
-// import { RoleName } from '../../types/RoleName';
 
 export const Login: React.FC = ({}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  // const [success, setSuccess] = useState(false);
   const [errorMessage, setErrorMessage] = useState(false);
   // const [refreshErrorMessage, setRefreshErrorMessage] = useState(false);
 
   const { setUser, setAccessToken } = useContext(ItemsContext);
   const navigate = useNavigate();
+  // const { t } = useTranslation();
 
   // const refreshToken = useCallback(async () => {
   //   try {
@@ -73,38 +72,83 @@ export const Login: React.FC = ({}) => {
 
   return (
     <>
-      <main className="profile">
-        <div className="profile__container">
-          <p>LOGIN</p>
-          <form onSubmit={handleSubmit} className="form" action="#">
-            {errorMessage && <p>Log in failed!</p>}
-            {/* {refreshErrorMessage && <p>Something went wrong!</p>} */}
-            <div>
-              <label htmlFor="email">Логін (пошта)</label>
-              <input
-                value={email}
-                onChange={e => setEmail(e.target.value)}
-                type="email"
-                id="email"
-              />
+      <main className="login">
+        {/* <h2 className="login__title big-title">{t('Your area')}</h2>
+
+        <div className="login__container">
+          <p className="login__header small-title">
+            Log in or create an account via
+          </p>
+
+          <form className="login__form" action="#">
+            <div className="login__socials socials">
+              <button className="socials__item">
+                <span className="socials__name">Continue with</span>
+                <span className="socials__icon socials__icon--facebook"></span>
+              </button>
+
+              <button className="socials__item">
+                <span className="socials__name">Continue with</span>
+                <span className="socials__icon socials__icon--google"></span>
+              </button>
+
+              <button className="socials__item">
+                <span className="socials__name">Continue with</span>
+                <span className="socials__icon socials__icon--apple"></span>
+              </button>
             </div>
 
-            <div>
-              <label htmlFor="password">Пароль</label>
+            <p className="login__text small-title">or</p>
+
+            <div className="login__email">
               <input
-                value={password}
-                onChange={e => setPassword(e.target.value)}
+                className="login__input"
+                placeholder="Continue with email"
+                type="text"
+              />
+
+              <input
+                className="login__input"
+                placeholder="Password"
                 type="password"
-                id="password"
               />
             </div>
 
-            <button className="contact-button">Вхiд</button>
-          </form>
+            <button className="login__contact-button contact-button">
+              Continue
+            </button>
+          </form> */}
 
-          <p>Ви ще не зареєстровані?</p>
-          <NavLink to="/registration">Зареєструватися</NavLink>
-        </div>
+        <p>LOGIN</p>
+        <form onSubmit={handleSubmit} className="form" action="#">
+          {errorMessage && <p>Log in failed!</p>}
+
+          <div>
+            <label htmlFor="email">Логін (пошта)</label>
+            <input
+              value={email}
+              onChange={e => setEmail(e.target.value)}
+              type="email"
+              id="email"
+            />
+          </div>
+
+          <div>
+            <label htmlFor="password">Пароль</label>
+            <input
+              value={password}
+              onChange={e => setPassword(e.target.value)}
+              type="password"
+              id="password"
+            />
+          </div>
+
+          <button className="contact-button">Вхiд</button>
+        </form>
+
+        <p>Ви ще не зареєстровані?</p>
+        <NavLink to="/registration">Зареєструватися</NavLink>
+        {/* </div> */}
       </main>
     </>
   );

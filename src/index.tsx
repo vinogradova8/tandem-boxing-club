@@ -37,46 +37,8 @@ createRoot(document.getElementById('root') as HTMLElement).render(
         <Route
           path="*"
           element={<NotFoundPage message="Page not found" />}
-          // element={
-          //   <h3 style={{ padding: 30 }} className="title">
-          //     Page not found
-          //   </h3>
-          // }
         ></Route>
-        {/* <Route path="phones">
-          <Route index element={<PhonesPage />}></Route>
-          <Route
-            path=":itemId"
-            element={<ProductDetailsPage productPage="Phones" />}
-          ></Route>
-        </Route>
-        <Route path="tablets">
-          <Route index element={<TabletsPage />}></Route>
-          <Route
-            path=":itemId"
-            element={<ProductDetailsPage productPage="Tablets" />}
-          ></Route>
-        </Route>
-        <Route path="accessories">
-          <Route index element={<AccessoriesPage />}></Route>
-          <Route
-            path=":itemId"
-            element={<ProductDetailsPage productPage="Accessories" />}
-          ></Route>
-        </Route>
-        <Route path="cart" element={<Cart />}></Route>
-        <Route path="favorites" element={<Favorites />}></Route> */}
       </Route>
-
-      {/* <Route
-        path="*"
-        element={<NotFoundPage />}
-        // element={
-        //   <h3 style={{ padding: 30 }} className="title">
-        //     Page not found
-        //   </h3>
-        // }
-      ></Route> */}
     </Routes>
   </HashRouter>,
 );

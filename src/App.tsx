@@ -17,7 +17,6 @@ export const App: React.FC = () => {
 
   const { accessToken, setAccessToken, setRefreshErrorMessage } =
     useContext(ItemsContext);
-  // const { t } = useTranslation();
 
   const refreshToken = useCallback(async () => {
     try {
@@ -27,7 +26,6 @@ export const App: React.FC = () => {
         {
           headers: {
             Authorization: `Bearer ${accessToken}`,
-            // 'Access-Control-Allow-Origin': 'http://localhost:3000',
           },
         },
       );

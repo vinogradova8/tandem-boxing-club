@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-param-reassign */
-import React, { useContext, useEffect, useMemo, useState } from 'react';
+import React, { useContext, useEffect, useMemo, useRef, useState } from 'react';
 import './Team.scss';
 import { gallery } from '../../api/axios';
 import { Trainer } from '../../types/Trainer';
@@ -17,6 +17,8 @@ export const Team: React.FC = ({}) => {
   const [trainers, setTrainers] = useState<Trainer[]>([]);
   const [errorMessage, setErrorMessage] = useState(false);
   const { t } = useTranslation();
+
+  const itemRef = useRef<HTMLDivElement>(null);
 
   const { setIsCertificateWindowOpen, isCertificateWindowOpen } =
     useContext(ItemsContext);
@@ -74,7 +76,10 @@ export const Team: React.FC = ({}) => {
           </div>
 
           <div className="team__trainers">
-            <div className="team__trainers-container">
+            <div
+              style={{ height: itemRef.current?.scrollHeight }}
+              className="team__trainers-container"
+            >
               {errorMessage && <p>Failer to load info about our team</p>}
               {trainersFromServer.map(trainer => (
                 <div

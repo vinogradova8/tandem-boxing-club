@@ -59,10 +59,11 @@ const resources = {
       'Support-Section-3 text':
         'In the initial phase of the development of the Boxing Club We need the following support:<br>Payment of the cost of renting premises suitable for housing a boxing club the following properties:<br>- Main room for setting up the ring, bags, warm-up area and functional area Training <br>-250-350 m²;<br>- Two changing rooms;<br>- Two shower rooms;<br>- toilet;<br>- Coaching room for trainers - 15-20 m²;<br>- Storage room for equipment - 10 m²;<br>- Practical location in places where there are many people.<br>- Expensive equipment (approx. 6500 euros). Ring (approx. 12,000 euros).<br>All other expenses related to paying trainers, cleaning and purchasing equipment, advertising, maintaining social pages, etc. are paid by us.',
 
-      Questions: 'HAVE QUESTIONS?',
-      'Our Team': 'YOUR TRAINERS',
-      'Our Training': 'OUR TRAINING',
-      'Support Us': 'SUPPORT US',
+      Questions: 'Have Questions?',
+      'Our Team': 'Your Trainers',
+      'Our Training': 'Our Training',
+      'Support Us': 'Support Us',
+      'Your area': 'Your Area',
 
       'or you can contact us via': 'or you can contact us via',
       Send: 'Send',
@@ -123,6 +124,7 @@ const resources = {
       'Our Team': 'ВАШІ ТРЕНЕРИ',
       'Our Training': 'НАШЕ ТРЕНУВАННЯ',
       'Support Us': 'ПІДТРИМАТИ НАС',
+      'Your area': 'Ваш простір',
 
       'or you can contact us via': 'або ви можете зв`язатися з нами через',
       Send: 'Надіслати',
@@ -152,7 +154,7 @@ const resources = {
 
       'Section-3 title': 'Private Trainingseinheiten.',
       'Section-3 text':
-        'Це індивідуальний підхід до ваших цілей. Ми пропонуємо приватні тренування з боксу, адаптовані до ваших потреб і рівня підготовки. Наші досвідчені тренери допоможуть вам досягти найкращих результатів — від покращення фізичної форми до підготовки до змагань. Ми тренуємо боксерів, які прагнуть до спортивної кар`єри. Ви отримаєте всі необхідні навички та стратегії для успішного виступу на рингу. Професійний підхід до підготовки, включаючи стратегію бою, техніку, витривалість і ментальну підготовку.',
+        'Dies ist ein individueller Ansatz, der auf Ihre Ziele abgestimmt ist.Wir bieten private Boxtrainingseinheiten an, die auf Ihre Bedürfnisse und Ihr Fitnesslevel zugeschnitten sind. Unsere erfahrenen Trainer helfen Ihnen, die besten Ergebnisse zu erzielen—von der Verbesserung Ihrer Fitness bis hin zur Vorbereitung auf Wettkämpfe. Wir trainieren Boxer, die eine Karriere im Sport anstreben, und sorgen dafür, dass Sie alle notwendigen Fähigkeiten und Strategien für eine erfolgreiche Performance im Ring entwickeln.Unser professioneller Trainingsansatz umfasst Kampfstrategie, Technik, Ausdauer und mentale Vorbereitung.',
 
       'Section-4 title': 'Wie die Ausbildung verläuft.',
       'Section-4 text-1': '1. Körperliche Ausdauer',
@@ -183,6 +185,7 @@ const resources = {
       'Our Team': 'YOUR TRAINERS',
       'Our Training': 'OUR TRAINING',
       'Support Us': 'SUPPORT US',
+      'Your area': 'Your area',
 
       'or you can contact us via': 'oder Sie können uns über',
       Send: 'Abschicken',

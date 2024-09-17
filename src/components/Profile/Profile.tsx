@@ -3,16 +3,16 @@ import './Profile.scss';
 import { ItemsContext } from '../../ItemsContext';
 import axios from '../../api/axios';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 // import { User } from '../../types/User';
 // import { getUser } from '../../api/fetchClient';
 
 export const Profile: React.FC = ({}) => {
-  // const [successLogOut, setSuccessLogOut] = useState(false);
   const [logoutErrorMessage, setLogoutErrorMessage] = useState(false);
-  // const [refreshErrorMessage, setRefreshErrorMessage] = useState(false);
 
   const { user, setUser, accessToken, setAccessToken, refreshErrorMessage } =
     useContext(ItemsContext);
+  const { t } = useTranslation();
 
   // const { firstName, lastName } = user;
 
@@ -68,6 +68,8 @@ export const Profile: React.FC = ({}) => {
   return (
     <>
       <main className="profile">
+        <h2 className="profile__title big-title">{t('Our Training')}</h2>
+
         <div className="profile__container">
           {refreshErrorMessage && <p>Something went wrong!</p>}
           {logoutErrorMessage && <p>Log out failed!</p>}

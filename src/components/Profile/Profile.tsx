@@ -10,8 +10,14 @@ import { useTranslation } from 'react-i18next';
 export const Profile: React.FC = ({}) => {
   const [logoutErrorMessage, setLogoutErrorMessage] = useState(false);
 
-  const { user, setUser, accessToken, setAccessToken, refreshErrorMessage } =
-    useContext(ItemsContext);
+  const {
+    user,
+    setUser,
+    accessToken,
+    setAccessToken,
+    refreshErrorMessage,
+    setRefreshErrorMessage,
+  } = useContext(ItemsContext);
   const { t } = useTranslation();
 
   // const { firstName, lastName } = user;
@@ -59,6 +65,7 @@ export const Profile: React.FC = ({}) => {
 
       setAccessToken('');
       setUser(null);
+      setRefreshErrorMessage(false);
       navigate('/login');
     } catch {
       setLogoutErrorMessage(true);

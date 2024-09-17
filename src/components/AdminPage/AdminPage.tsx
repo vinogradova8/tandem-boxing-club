@@ -15,8 +15,14 @@ import { Message } from '../../types/Message';
 export const AdminPage: React.FC = ({}) => {
   const navigate = useNavigate();
 
-  const { accessToken, setAccessToken, user, setUser, refreshErrorMessage } =
-    useContext(ItemsContext);
+  const {
+    accessToken,
+    setAccessToken,
+    user,
+    setUser,
+    refreshErrorMessage,
+    setRefreshErrorMessage,
+  } = useContext(ItemsContext);
 
   const [logoutErrorMessage, setLogoutErrorMessage] = useState(false);
 
@@ -96,6 +102,7 @@ export const AdminPage: React.FC = ({}) => {
 
       setAccessToken('');
       setUser(null);
+      setRefreshErrorMessage(false);
       navigate('/login');
     } catch {
       setLogoutErrorMessage(true);

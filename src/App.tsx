@@ -2,7 +2,6 @@ import React, { useCallback, useContext, useEffect } from 'react';
 // import cn from 'classnames';
 import './App.scss';
 import './i18n';
-
 import { Header } from './components/Header';
 import { Outlet } from 'react-router-dom';
 import { Footer } from './components/Footer/Footer';
@@ -15,8 +14,29 @@ export const App: React.FC = () => {
 
   // const { currentId } = useParams();
 
-  const { accessToken, setAccessToken, setRefreshErrorMessage } =
+  const { accessToken, setAccessToken, setRefreshErrorMessage, setUser } =
     useContext(ItemsContext);
+
+  // const navigate = useNavigate();
+
+  // const handleLogOut = useCallback(async () => {
+  //   try {
+  //     await axios.post(
+  //       '/auth/logout',
+  //       {},
+  //       {
+  //         headers: { Authorization: `Bearer ${accessToken}` },
+  //       },
+  //     );
+
+  //     setAccessToken('');
+  //     setUser(null);
+  //     setRefreshErrorMessage(false);
+  //     navigate('/login');
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }, [accessToken, navigate, setAccessToken, setRefreshErrorMessage, setUser]);
 
   const refreshToken = useCallback(async () => {
     try {
@@ -39,6 +59,14 @@ export const App: React.FC = () => {
   useEffect(() => {
     let refreshTokenInterval: NodeJS.Timer;
 
+    const handleDeleteUser = () => {
+      setAccessToken('');
+      setUser(null);
+      setRefreshErrorMessage(false);
+    };
+
+    window.addEventListener('beforeunload', () => handleDeleteUser());
+
     if (accessToken) {
       refreshTokenInterval = setInterval(() => {
         refreshToken();
@@ -47,8 +75,15 @@ export const App: React.FC = () => {
 
     return () => {
       clearInterval(refreshTokenInterval);
+      window.removeEventListener('beforeunload', () => handleDeleteUser());
     };
-  }, [accessToken, refreshToken]);
+  }, [
+    accessToken,
+    refreshToken,
+    setAccessToken,
+    setRefreshErrorMessage,
+    setUser,
+  ]);
 
   // if (currentId === 'home') {
   //   return <Navigate to=".." />;

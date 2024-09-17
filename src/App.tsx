@@ -6,7 +6,7 @@ import './i18n';
 import { Header } from './components/Header';
 import { Outlet } from 'react-router-dom';
 import { Footer } from './components/Footer/Footer';
-import { ItemsContext, ItemsProvider } from './ItemsContext';
+import { ItemsContext } from './ItemsContext';
 import axios from './api/axios';
 
 export const App: React.FC = () => {
@@ -55,12 +55,10 @@ export const App: React.FC = () => {
   // }
 
   return (
-    <ItemsProvider>
-      <div className="app">
-        <Header />
-        <Outlet />
-        <Footer />
-      </div>
-    </ItemsProvider>
+    <div className="app">
+      <Header />
+      <Outlet />
+      <Footer />
+    </div>
   );
 };

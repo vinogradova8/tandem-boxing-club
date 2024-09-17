@@ -16,29 +16,32 @@ import { Registration } from './components/Registration';
 import { Login } from './components/Login';
 import { AdminPage } from './components/AdminPage';
 import { NotFoundPage } from './components/NotFoundPage';
+import { ItemsProvider } from './ItemsContext';
 
 // createRoot(document.getElementById('root') as HTMLDivElement).render(<App />);
 
 createRoot(document.getElementById('root') as HTMLElement).render(
-  <HashRouter>
-    <Routes>
-      <Route path="/" element={<App />}>
-        <Route index element={<HomePage />}></Route>
-        <Route path="support-us" element={<Support />}></Route>
-        <Route path="team" element={<Team />}></Route>
-        <Route path="gallery" element={<Gallery />}></Route>
-        <Route path="faq" element={<FAQ />}></Route>
-        <Route path="сontacts" element={<Contacts />}></Route>
-        <Route path="login" element={<Login />}></Route>
-        <Route path="registration" element={<Registration />}></Route>
-        <Route path="profile" element={<Profile />}></Route>
-        <Route path="admin" element={<AdminPage />}></Route>
+  <ItemsProvider>
+    <HashRouter>
+      <Routes>
+        <Route path="/" element={<App />}>
+          <Route index element={<HomePage />}></Route>
+          <Route path="support-us" element={<Support />}></Route>
+          <Route path="team" element={<Team />}></Route>
+          <Route path="gallery" element={<Gallery />}></Route>
+          <Route path="faq" element={<FAQ />}></Route>
+          <Route path="сontacts" element={<Contacts />}></Route>
+          <Route path="login" element={<Login />}></Route>
+          <Route path="registration" element={<Registration />}></Route>
+          <Route path="profile" element={<Profile />}></Route>
+          <Route path="admin" element={<AdminPage />}></Route>
 
-        <Route
-          path="*"
-          element={<NotFoundPage message="Page not found" />}
-        ></Route>
-      </Route>
-    </Routes>
-  </HashRouter>,
+          <Route
+            path="*"
+            element={<NotFoundPage message="Page not found" />}
+          ></Route>
+        </Route>
+      </Routes>
+    </HashRouter>
+  </ItemsProvider>,
 );

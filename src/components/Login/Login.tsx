@@ -3,6 +3,7 @@ import './Login.scss';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { ItemsContext } from '../../ItemsContext';
 import axios from '../../api/axios';
+import { useTranslation } from 'react-i18next';
 
 export const Login: React.FC = ({}) => {
   const [email, setEmail] = useState('');
@@ -12,7 +13,7 @@ export const Login: React.FC = ({}) => {
 
   const { setUser, setAccessToken } = useContext(ItemsContext);
   const navigate = useNavigate();
-  // const { t } = useTranslation();
+  const { t } = useTranslation();
 
   // const refreshToken = useCallback(async () => {
   //   try {
@@ -73,14 +74,15 @@ export const Login: React.FC = ({}) => {
   return (
     <>
       <main className="login">
-        {/* <h2 className="login__title big-title">{t('Your area')}</h2>
+        <h2 className="login__title big-title">{t('Your area')}</h2>
 
         <div className="login__container">
           <p className="login__header small-title">
             Log in or create an account via
           </p>
+          {errorMessage && <p>Log in failed!</p>}
 
-          <form className="login__form" action="#">
+          <form onSubmit={handleSubmit} className="login__form" action="#">
             <div className="login__socials socials">
               <button className="socials__item">
                 <span className="socials__name">Continue with</span>
@@ -105,50 +107,56 @@ export const Login: React.FC = ({}) => {
                 className="login__input"
                 placeholder="Continue with email"
                 type="text"
+                value={email}
+                onChange={e => setEmail(e.target.value)}
               />
 
               <input
                 className="login__input"
                 placeholder="Password"
                 type="password"
+                onChange={e => setPassword(e.target.value)}
+                value={password}
               />
+              <p>Ви ще не зареєстровані?</p>
+              <NavLink to="/registration">Зареєструватися</NavLink>
             </div>
 
             <button className="login__contact-button contact-button">
               Continue
             </button>
-          </form> */}
+          </form>
 
-        <p>LOGIN</p>
-        <form onSubmit={handleSubmit} className="form" action="#">
-          {errorMessage && <p>Log in failed!</p>}
+          {/* <p>LOGIN</p>
+          <form onSubmit={handleSubmit} className="form" action="#">
+            {errorMessage && <p>Log in failed!</p>}
 
-          <div>
-            <label htmlFor="email">Логін (пошта)</label>
-            <input
-              value={email}
-              onChange={e => setEmail(e.target.value)}
-              type="email"
-              id="email"
-            />
-          </div>
+            <div>
+              <label htmlFor="email">Логін (пошта)</label>
+              <input
+                value={email}
+                onChange={e => setEmail(e.target.value)}
+                type="email"
+                id="email"
+              />
+            </div>
 
-          <div>
-            <label htmlFor="password">Пароль</label>
-            <input
-              value={password}
-              onChange={e => setPassword(e.target.value)}
-              type="password"
-              id="password"
-            />
-          </div>
+            <div>
+              <label htmlFor="password">Пароль</label>
+              <input
+                value={password}
+                onChange={e => setPassword(e.target.value)}
+                type="password"
+                id="password"
+              />
+            </div>
 
-          <button className="contact-button">Вхiд</button>
-        </form>
+            <button className="contact-button">Вхiд</button>
+          </form>
 
-        <p>Ви ще не зареєстровані?</p>
-        <NavLink to="/registration">Зареєструватися</NavLink>
-        {/* </div> */}
+          <p>Ви ще не зареєстровані?</p>
+          <NavLink to="/registration">Зареєструватися</NavLink> */}
+        </div>
       </main>
     </>
   );

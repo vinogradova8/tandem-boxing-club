@@ -37,11 +37,15 @@ export const AdminPage: React.FC = ({}) => {
   const [hideQuestions, setHideQuestions] = useState(true);
   const [hideQuestionsFromUsers, setHideQuestionsFromUsers] = useState(true);
 
-  const [questionToEditId, setquestionToEditId] = useState<number | null>(null);
+  const [questionToEditId, setQuestionToEditId] = useState<number | null>(null);
 
-  const [questionToEdit, setquestionToEdit] = useState('');
+  const [questionToEdit, setQuestionToEdit] = useState('');
   const [shortAnswerToEdit, setShortAnswerToEdit] = useState('');
   const [fullAnswerToEdit, setFullAnswerToEdit] = useState('');
+
+  const [newQuestion, setNewQuestion] = useState('');
+  const [newShortAnswer, setNewShortAnswer] = useState('');
+  const [newFullAnswer, setNewFullAnswer] = useState('');
 
   // const { firstName, lastName } = user;
 
@@ -89,6 +93,25 @@ export const AdminPage: React.FC = ({}) => {
   //     clearInterval(refreshTokenInterval);
   //   };
   // }, [refreshToken]);
+
+  const handleCancelCreateQuestion = (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+  ) => {
+    e.preventDefault();
+    setNewQuestion('');
+    setNewShortAnswer('');
+    setNewFullAnswer('');
+  };
+
+  const handleCancelEditQuestion = (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+  ) => {
+    e.preventDefault();
+    setQuestionToEdit('');
+    setShortAnswerToEdit('');
+    setFullAnswerToEdit('');
+    setQuestionToEditId(null);
+  };
 
   const handleLogOut = async () => {
     try {
@@ -164,10 +187,90 @@ export const AdminPage: React.FC = ({}) => {
       await axios.delete(`/messages/${id}`, {
         headers: { Authorization: `Bearer ${accessToken}` },
       });
+      getQuestionsFromUsers();
     } catch {
       setErrorQuestionsFromUsers(true);
     }
   };
+
+  const deleteQuestion = async (id: number) => {
+    try {
+      await axios.delete(`/questions/${id}`, {
+        headers: { Authorization: `Bearer ${accessToken}` },
+      });
+      if (i18next.language === LOCALS.ENG) {
+        getQuestionsEng();
+      }
+
+      if (i18next.language === LOCALS.DEU) {
+        getQuestionsDeu();
+      }
+
+      if (i18next.language === LOCALS.UKR) {
+        getQuestionsUkr();
+      }
+    } catch {
+      setErrorQuestionsFromUsers(true);
+    }
+  };
+
+  const handleSaveEditQuestion = async (id: number) => {
+    try {
+      await axios.put(
+        `/questions/${id}`,
+        JSON.stringify({
+          question: questionToEdit,
+          shortAnswer: shortAnswerToEdit,
+          fullAnswer: fullAnswerToEdit,
+        }),
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${accessToken}`,
+          },
+        },
+      );
+
+      if (i18next.language === LOCALS.ENG) {
+        getQuestionsEng();
+      }
+
+      if (i18next.language === LOCALS.DEU) {
+        getQuestionsDeu();
+      }
+
+      if (i18next.language === LOCALS.UKR) {
+        getQuestionsUkr();
+      }
+
+      setQuestionToEdit('');
+      setShortAnswerToEdit('');
+      setFullAnswerToEdit('');
+    } catch {}
+  };
+
+  // const handleSaveEditQuestion = (
+  //   e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+  //   currentId: number,
+  // ) => {
+  //   saveUpdatedQuestion(e, currentId);
+
+  //   // if (i18next.language === LOCALS.ENG) {
+  //   //   getQuestionsEng();
+  //   // }
+
+  //   // if (i18next.language === LOCALS.DEU) {
+  //   //   getQuestionsDeu();
+  //   // }
+
+  //   // if (i18next.language === LOCALS.UKR) {
+  //   //   getQuestionsUkr();
+  //   // }
+
+  //   setQuestionToEdit('');
+  //   setShortAnswerToEdit('');
+  //   setFullAnswerToEdit('');
+  // };
 
   useEffect(() => {
     setLoader(true);
@@ -204,7 +307,7 @@ export const AdminPage: React.FC = ({}) => {
               <p>{user?.email}</p>
               <p>{user?.firstName}</p>
               <p>{user?.lastName}</p>
-              {refreshErrorMessage && <p>Something went wrong!</p>}
+              {refreshErrorMessage && <p>AccessToken is invalid!</p>}
               {logoutErrorMessage && <p>Log out failed!</p>}
               <button className="logout-button" onClick={handleLogOut}>
                 Log out
@@ -247,18 +350,23 @@ export const AdminPage: React.FC = ({}) => {
                       <p className="faq-item__full-answer">{faq.fullAnswer}</p>
 
                       <div className="faq-item__actions">
-                        <button className="faq-item__delete">delete</button>
+                        <button
+                          onClick={() => deleteQuestion(faq.id)}
+                          className="faq-item__delete"
+                        >
+                          delete
+                        </button>
                         <button
                           className="faq-item__update"
                           onClick={() => {
                             if (questionToEditId === faq.id) {
-                              setquestionToEditId(null);
-                              setquestionToEdit('');
+                              setQuestionToEditId(null);
+                              setQuestionToEdit('');
                               setShortAnswerToEdit('');
                               setFullAnswerToEdit('');
                             } else {
-                              setquestionToEditId(faq.id);
-                              setquestionToEdit(faq.question);
+                              setQuestionToEditId(faq.id);
+                              setQuestionToEdit(faq.question);
                               setShortAnswerToEdit(faq.shortAnswer);
                               setFullAnswerToEdit(faq.fullAnswer);
                             }
@@ -288,6 +396,7 @@ export const AdminPage: React.FC = ({}) => {
                         id="edit-question"
                         className="edit-form__question"
                         type="text"
+                        onChange={e => setQuestionToEdit(e.target.value)}
                         value={questionToEdit}
                       />
                     </div>
@@ -303,6 +412,7 @@ export const AdminPage: React.FC = ({}) => {
                         id="edit-short-answer"
                         className="edit-form__short-answer"
                         type="text"
+                        onChange={e => setShortAnswerToEdit(e.target.value)}
                         value={shortAnswerToEdit}
                       />
                     </div>
@@ -318,13 +428,27 @@ export const AdminPage: React.FC = ({}) => {
                         id="edit-full-answer"
                         className="edit-form__full-answer"
                         rows={10}
+                        onChange={e => setFullAnswerToEdit(e.target.value)}
                         value={fullAnswerToEdit}
                       />
                     </div>
 
                     <div className="edit-form__actions">
-                      <button className="edit-form__save-button">Save</button>
-                      <button className="edit-form__cancel-button">
+                      <button
+                        onClick={() => {
+                          if (questionToEditId !== null) {
+                            handleSaveEditQuestion(questionToEditId);
+                          }
+                        }}
+                        className="edit-form__save-button"
+                        type="button"
+                      >
+                        Save
+                      </button>
+                      <button
+                        onClick={handleCancelEditQuestion}
+                        className="edit-form__cancel-button"
+                      >
                         Cancel
                       </button>
                     </div>
@@ -348,7 +472,8 @@ export const AdminPage: React.FC = ({}) => {
                         id="edit-question"
                         className="edit-form__question"
                         type="text"
-                        value={questionToEdit}
+                        onChange={e => setNewQuestion(e.target.value)}
+                        value={newQuestion}
                       />
                     </div>
 
@@ -363,7 +488,8 @@ export const AdminPage: React.FC = ({}) => {
                         id="edit-short-answer"
                         className="edit-form__short-answer"
                         type="text"
-                        value={shortAnswerToEdit}
+                        onChange={e => setNewShortAnswer(e.target.value)}
+                        value={newShortAnswer}
                       />
                     </div>
 
@@ -378,13 +504,17 @@ export const AdminPage: React.FC = ({}) => {
                         id="edit-full-answer"
                         className="edit-form__full-answer"
                         rows={10}
-                        value={fullAnswerToEdit}
+                        onChange={e => setNewFullAnswer(e.target.value)}
+                        value={newFullAnswer}
                       />
                     </div>
 
                     <div className="edit-form__actions">
                       <button className="edit-form__save-button">Create</button>
-                      <button className="edit-form__cancel-button">
+                      <button
+                        onClick={handleCancelCreateQuestion}
+                        className="edit-form__cancel-button"
+                      >
                         Cancel
                       </button>
                     </div>

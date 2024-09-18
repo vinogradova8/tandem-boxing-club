@@ -5,6 +5,7 @@ import { useLocalStorage } from './hooks/useLocalStorage';
 // import { RoleName } from './types/RoleName';
 import { User } from './types/User';
 import { LOCALS } from './i18n/constants';
+import { useSessionStorage } from './hooks/useSessionStorage';
 
 type ItemsContextType = {
   isModalWindowOpen: boolean;
@@ -68,9 +69,9 @@ export const ItemsProvider: React.FC<Props> = ({ children }) => {
     false,
   );
 
-  const [accessToken, setAccessToken] = useLocalStorage('accessToken', '');
+  const [accessToken, setAccessToken] = useSessionStorage('accessToken', '');
 
-  const [refreshErrorMessage, setRefreshErrorMessage] = useLocalStorage(
+  const [refreshErrorMessage, setRefreshErrorMessage] = useSessionStorage(
     'refreshErrorMessage',
     false,
   );
@@ -86,7 +87,7 @@ export const ItemsProvider: React.FC<Props> = ({ children }) => {
   //   password: '',
   // });
 
-  const [user, setUser] = useLocalStorage<User | null>('user', null);
+  const [user, setUser] = useSessionStorage<User | null>('user', null);
 
   const value = useMemo(
     () => ({

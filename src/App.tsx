@@ -9,17 +9,10 @@ import { ItemsContext } from './ItemsContext';
 import axios from './api/axios';
 
 export const App: React.FC = () => {
-  // const [isBurgerMenuOpen, setIsBurgerMenuOpen] = useState(false);
-  // const [darkTheme, setDarkTheme] = useLocalStorage('darkTheme', false);
-
   // const { currentId } = useParams();
 
   const { accessToken, setAccessToken, setRefreshErrorMessage, setUser } =
     useContext(ItemsContext);
-
-  // const navigate = useNavigate();
-
-  // const handleLogOut = useCallback(async () => {
   //   try {
   //     await axios.post(
   //       '/auth/logout',
@@ -59,14 +52,6 @@ export const App: React.FC = () => {
   useEffect(() => {
     let refreshTokenInterval: NodeJS.Timer;
 
-    const handleDeleteUser = () => {
-      setAccessToken('');
-      setUser(null);
-      setRefreshErrorMessage(false);
-    };
-
-    window.addEventListener('beforeunload', () => handleDeleteUser());
-
     if (accessToken) {
       refreshTokenInterval = setInterval(() => {
         refreshToken();
@@ -75,7 +60,6 @@ export const App: React.FC = () => {
 
     return () => {
       clearInterval(refreshTokenInterval);
-      window.removeEventListener('beforeunload', () => handleDeleteUser());
     };
   }, [
     accessToken,

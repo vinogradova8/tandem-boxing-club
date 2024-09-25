@@ -22,27 +22,38 @@
   &__container {
     max-width: 543px;
     margin: 0 auto;
-
-    @include on-desktop {
-      max-width: 1400px;
-    }
-
+    max-width: 716px;
     display: flex;
     flex-direction: column;
     gap: 48px;
     color: $gray-40-color;
-
     border-radius: 12px;
     background-color: rgba(0, 0, 0, 0.6);
     padding: 32px 24px;
 
     @include on-desktop {
-      adding: 80px 40px;
+			flex-direction: row;
+			justify-content: stretch;
+      max-width: 1400px;
+      padding: 80px 40px;
     }
   }
 
+	&__header {
+		@include on-desktop {
+			flex: 1 1 50%;
+		}
+	}
+
   &__form {
+    display: flex;
+    flex-direction: column;
     align-items: stretch;
+    gap: 48px;
+    
+		@include on-desktop {
+			flex: 1 1 50%;
+		}
   }
 
   &__socials {
@@ -52,7 +63,81 @@
   }
 
   &__text {
-		align-self: center;
+    align-self: center;
+  }
+
+  &__input {
+    padding: 16px;
+    background-color: transparent;
+    color: $gray-40-color;
+    padding-block: 16px;
+    border-bottom: 1px solid $gray-70-color;
+    width: 100%;
+
+    &::placeholder {
+      color: $gray-70-color;
+      font-size: 16px;
+    }
+
+    &--password {
+      margin-bottom: 10px;
+    }
+  }
+
+  &__label {
+    position: relative;
+    margin-bottom: 10px;
+  }
+
+  &__registration {
+    display: flex;
+    gap: 15px;
+  }
+
+  &__registration-link {
+    @include hover(color, $main-text-color);
+  }
+
+	&__button-container {
+		display: flex;
+		flex-direction: column;
+	}
+
+  &__contact-button {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  &__login-error {
+		text-align: center;
+    align-self: flex-end;
+		font-size: 20px;
+		width: 21px;
+  }
+}
+
+.password-show-btn {
+  position: absolute;
+  display: inline-block;
+  content: '';
+  background: url('../../../public/images/icons/eye.svg') no-repeat;
+  top: 0;
+  right: 16px;
+  width: 24px;
+  height: 24px;
+  transition: background 0.3s;
+
+  &--disabled {
+    opacity: 0.6;
+  }
+
+  &--enabled {
+    opacity: 1;
+    cursor: pointer;
+  }
+
+  &--eye-off {
+    background: url('../../../public/images/icons/eye-off.svg') no-repeat;
   }
 }
 
@@ -60,14 +145,14 @@
   &__item {
     font-size: 16px;
     border-bottom: 1px solid $gray-60-color;
-		font-family: $second-font-family;
+    font-family: $second-font-family;
     color: $gray-40-color;
     padding-block: 16px;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 8px;
-		cursor: pointer;
+    cursor: pointer;
   }
 
   &__name {
@@ -90,13 +175,13 @@
       height: 24px;
     }
 
-		&--facebook {
+    &--facebook {
       &::before {
         background: url('../../../public/images/icons/facebook.svg') no-repeat;
       }
     }
 
-		&--google {
+    &--google {
       &::before {
         background: url('../../../public/images/icons/google.svg') no-repeat;
       }

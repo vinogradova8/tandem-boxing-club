@@ -1,5 +1,7 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useContext, useState } from 'react';
 import './Login.scss';
+import cn from 'classnames';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { ItemsContext } from '../../ItemsContext';
 import axios from '../../api/axios';
@@ -11,28 +13,10 @@ export const Login: React.FC = ({}) => {
   const [errorMessage, setErrorMessage] = useState(false);
   // const [refreshErrorMessage, setRefreshErrorMessage] = useState(false);
 
-  const { setUser, setAccessToken } = useContext(ItemsContext);
+  const { setUser, setAccessToken, setRefreshErrorMessage } =
+    useContext(ItemsContext);
   const navigate = useNavigate();
   const { t } = useTranslation();
-
-  // const refreshToken = useCallback(async () => {
-  //   try {
-  //     const response = await axios.post(
-  //       '/auth/refresh',
-  //       {},
-  //       {
-  //         headers: {
-  //           Authorization: `Bearer ${accessToken}`,
-  //           'Access-Control-Allow-Origin': 'http://localhost:3000',
-  //         },
-  //       },
-  //     );
-
-  //     setAccessToken(response.data.token);
-  //   } catch {
-  //     setRefreshErrorMessage(true);
-  //   }
-  // }, [accessToken, setAccessToken, setRefreshErrorMessage]);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -57,7 +41,7 @@ export const Login: React.FC = ({}) => {
       setUser({ id, email, firstName, lastName, role, password });
 
       setAccessToken(response.data.token);
-      // refreshToken();
+      setRefreshErrorMessage(false);
 
       if (role === 'CUSTOMER') {
         navigate('/profile');
@@ -71,6 +55,21 @@ export const Login: React.FC = ({}) => {
     }
   };
 
+  const togglePassword = document.querySelector('.password-show-btn');
+  const passwordInput = document.querySelector('.login__input--password');
+
+  const handleTogglePassword = () => {
+    if (password) {
+      const type =
+        passwordInput?.getAttribute('type') === 'password'
+          ? 'text'
+          : 'password';
+
+      passwordInput?.setAttribute('type', type);
+      togglePassword?.classList.toggle('password-show-btn--eye-off');
+    }
+  };
+
   return (
     <>
       <main className="login">
@@ -80,21 +79,20 @@ export const Login: React.FC = ({}) => {
           <p className="login__header small-title">
             Log in or create an account via
           </p>
-          {errorMessage && <p>Log in failed!</p>}
 
-          <form onSubmit={handleSubmit} className="login__form" action="#">
+          <form onSubmit={handleSubmit} className="login__form">
             <div className="login__socials socials">
-              <button className="socials__item">
+              <button type="button" className="socials__item">
                 <span className="socials__name">Continue with</span>
                 <span className="socials__icon socials__icon--facebook"></span>
               </button>
 
-              <button className="socials__item">
+              <button type="button" className="socials__item">
                 <span className="socials__name">Continue with</span>
                 <span className="socials__icon socials__icon--google"></span>
               </button>
 
-              <button className="socials__item">
+              <button type="button" className="socials__item">
                 <span className="socials__name">Continue with</span>
                 <span className="socials__icon socials__icon--apple"></span>
               </button>
@@ -111,51 +109,52 @@ export const Login: React.FC = ({}) => {
                 onChange={e => setEmail(e.target.value)}
               />
 
-              <input
-                className="login__input"
-                placeholder="Password"
-                type="password"
-                onChange={e => setPassword(e.target.value)}
-                value={password}
-              />
-              <p>Ви ще не зареєстровані?</p>
-              <NavLink to="/registration">Зареєструватися</NavLink>
+              <label className="login__label">
+                <input
+                  className="login__input login__input--password"
+                  placeholder="Password"
+                  type="password"
+                  onChange={e => setPassword(e.target.value)}
+                  value={password}
+                />
+                <button
+                  type="button"
+                  onClick={handleTogglePassword}
+                  className={cn('login__password-show-btn password-show-btn', {
+                    'password-show-btn--disabled': !password,
+                    'password-show-btn--enabled': password,
+                  })}
+                  disabled={!password}
+                ></button>
+              </label>
+
+              <div className="login__registration">
+                <p>Ви ще не зареєстровані?</p>
+                <NavLink
+                  to="/registration"
+                  className="login__registration-link"
+                >
+                  Зареєструватися
+                </NavLink>
+              </div>
             </div>
 
-            <button className="login__contact-button contact-button">
-              Continue
-            </button>
+            <div className="login__button-container">
+              <button
+                type="submit"
+                className={cn('login__contact-button contact-button', {
+                  'contact-button--disabled': !password || !email,
+                })}
+                disabled={!password || !email}
+              >
+                Continue
+              </button>
+
+              {errorMessage && (
+                <p className="login__error error">Log in failed!</p>
+              )}
+            </div>
           </form>
-
-          {/* <p>LOGIN</p>
-          <form onSubmit={handleSubmit} className="form" action="#">
-            {errorMessage && <p>Log in failed!</p>}
-
-            <div>
-              <label htmlFor="email">Логін (пошта)</label>
-              <input
-                value={email}
-                onChange={e => setEmail(e.target.value)}
-                type="email"
-                id="email"
-              />
-            </div>
-
-            <div>
-              <label htmlFor="password">Пароль</label>
-              <input
-                value={password}
-                onChange={e => setPassword(e.target.value)}
-                type="password"
-                id="password"
-              />
-            </div>
-
-            <button className="contact-button">Вхiд</button>
-          </form>
-
-          <p>Ви ще не зареєстровані?</p>
-          <NavLink to="/registration">Зареєструватися</NavLink> */}
         </div>
       </main>
     </>

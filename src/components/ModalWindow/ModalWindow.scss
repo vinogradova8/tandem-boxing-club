@@ -109,7 +109,7 @@
   }
 
   // &__textarea-box {
-	// 	align-self: stretch;
+  // 	align-self: stretch;
   //   margin-bottom: 19px;
   // }
 
@@ -145,7 +145,7 @@
   &__contact-button {
     align-self: center;
     padding: 16px 66px;
-		margin-top: 19px;
+    margin-top: 19px;
   }
 
   &__footer {
@@ -180,10 +180,18 @@
   }
 }
 
-.danger {
+.error-border {
   border-bottom: 1px solid $error-color;
 }
 
 .error {
   color: $error-color;
+}
+
+.success-border {
+  border-bottom: 1px solid $success-color;
+}
+
+.success {
+  color: $success-color;
 }

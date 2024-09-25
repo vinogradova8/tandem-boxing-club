@@ -20,6 +20,10 @@ export const ModalWindow: React.FC = ({}) => {
   const [emailErrorMessage, setEmailErrorMessage] = useState('');
   const [bodyErrorMessage, setBodyErrorMessage] = useState('');
 
+  const [nameSuccessMessage, setNameSuccessMessage] = useState('');
+  const [emailSuccessMessage, setEmailSuccessMessage] = useState('');
+  const [bodySuccessMessage, setBodySuccessMessage] = useState('');
+
   const [errorMessage, setErrorMessage] = useState(false);
 
   const inputRef = useRef<HTMLInputElement>(null);
@@ -43,7 +47,7 @@ export const ModalWindow: React.FC = ({}) => {
   }, [bodyTag?.classList, isModalWindowOpen]);
 
   const EMAIL_REGEX = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
-  const NAME_REGEX = /^[a-zA-Zа-яА-Яії]{2,22}$/g;
+  const NAME_REGEX = /^[a-zA-Zа-яА-Яії\s]+[a-zA-Zа-яА-Яії\s]{2,22}$/g;
 
   // const app = document.querySelector('.app');
 
@@ -52,6 +56,11 @@ export const ModalWindow: React.FC = ({}) => {
   const handleCloseModalWindow = () => {
     setIsModalWindowOpen(false);
     bodyTag?.classList.remove('fixed');
+  };
+
+  const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setName(e.target.value);
+    setNameErrorMessage('');
   };
 
   const handleSubmit = async (event: React.FormEvent<HTMLElement>) => {
@@ -63,48 +72,64 @@ export const ModalWindow: React.FC = ({}) => {
 
     if (
       name &&
-      (name.length < 2 || !name.match(NAME_REGEX) || name.length > 22)
+      (name.trim().length < 2 ||
+        !name.match(NAME_REGEX) ||
+        name.trim().length > 22)
     ) {
       setNameErrorMessage(
         'Name should have from 2 to 22 chars and contain only letters',
       );
+      setNameSuccessMessage('');
     }
 
-    if (name.match(NAME_REGEX) && name.length >= 2 && name.length <= 22) {
+    if (
+      name.trim().match(NAME_REGEX) &&
+      name.trim().length >= 2 &&
+      name.trim().length <= 22
+    ) {
       setNameErrorMessage('');
+      setNameSuccessMessage('Name is valid');
     }
 
     if (!email) {
       setEmailErrorMessage('Please enter your email');
+      setEmailSuccessMessage('');
     }
 
-    if (email && !email.match(EMAIL_REGEX)) {
+    if (email && !email.trim().match(EMAIL_REGEX)) {
       setEmailErrorMessage('Invalid email address');
+      setEmailSuccessMessage('');
     }
 
-    if (email.match(EMAIL_REGEX)) {
+    if (email.trim().match(EMAIL_REGEX)) {
       setEmailErrorMessage('');
+      setEmailSuccessMessage('Email is valid');
     }
 
     if (!body) {
       setBodyErrorMessage('Please enter your message');
+      setBodySuccessMessage('');
     }
 
-    if (body && body.length < 10) {
+    if (body && body.trim().length < 10) {
       setBodyErrorMessage('Message should have at least 10 chars');
+      setBodySuccessMessage('');
     }
 
-    if (body.length >= 10) {
+    if (body.trim().length >= 10) {
       setBodyErrorMessage('');
+      setBodySuccessMessage('Body is valid');
     }
 
     if (
-      nameErrorMessage ||
-      emailErrorMessage ||
-      bodyErrorMessage ||
       !name ||
       !email ||
-      !body
+      !body ||
+      name.trim().length > 22 ||
+      name.trim().length < 2 ||
+      !name.trim().match(NAME_REGEX) ||
+      !email.trim().match(EMAIL_REGEX) ||
+      body.trim().length < 10
     ) {
       return false;
     }
@@ -113,9 +138,9 @@ export const ModalWindow: React.FC = ({}) => {
       await axios.post(
         '/messages',
         JSON.stringify({
-          name,
+          name: name.trim(),
           email,
-          message: body,
+          message: body.trim(),
         }),
         {
           headers: { 'Content-Type': 'application/json' },
@@ -126,8 +151,6 @@ export const ModalWindow: React.FC = ({}) => {
     } catch {
       setErrorMessage(true);
     }
-
-    return true;
   };
 
   // const submitForm = async () => {
@@ -216,7 +239,7 @@ export const ModalWindow: React.FC = ({}) => {
         >
           Close
         </button>
-        {errorMessage && <p>Send message failed</p>}
+        {errorMessage && <p>Send message failed, please try again later</p>}
 
         <form onSubmit={handleSubmit} className="modal-window__form">
           <p className="modal-window__title">{t('Contact us')}</p>
@@ -225,45 +248,63 @@ export const ModalWindow: React.FC = ({}) => {
             <input
               ref={inputRef}
               autoComplete="off"
-              onChange={e => setName(e.target.value)}
+              onChange={handleNameChange}
               value={name}
               type="text"
               placeholder="Your name"
               name="name"
               className={cn('modal-window__input', {
-                danger: nameErrorMessage,
+                'error-border': nameErrorMessage,
+                'success-border': nameSuccessMessage,
               })}
             />
             {nameErrorMessage && <p className="error">{nameErrorMessage}</p>}
+            {nameSuccessMessage && (
+              <p className="success">{nameSuccessMessage}</p>
+            )}
           </div>
 
           <div className="modal-window__item">
             <input
               autoComplete="off"
-              onChange={e => setEmail(e.target.value)}
+              onChange={e => {
+                setEmail(e.target.value);
+                setEmailErrorMessage('');
+              }}
               value={email}
               type="text"
               placeholder="Your email"
               name="email"
               className={cn('modal-window__input', {
-                danger: emailErrorMessage,
+                'error-border': emailErrorMessage,
+                'success-border': emailSuccessMessage,
               })}
             />
             {emailErrorMessage && <p className="error">{emailErrorMessage}</p>}
+            {emailSuccessMessage && (
+              <p className="success">{emailSuccessMessage}</p>
+            )}
           </div>
 
           <div className="modal-window__item">
             <TextareaAutosize
-              onChange={e => setBody(e.target.value)}
+              onChange={e => {
+                setBody(e.target.value);
+                setBodyErrorMessage('');
+              }}
               value={body}
               placeholder="Message"
               name="message"
               className={cn('modal-window__textarea', {
-                danger: bodyErrorMessage,
+                'error-border': bodyErrorMessage,
+                'success-border': bodySuccessMessage,
               })}
               maxRows={2}
             />
             {bodyErrorMessage && <p className="error">{bodyErrorMessage}</p>}
+            {bodySuccessMessage && (
+              <p className="success">{bodySuccessMessage}</p>
+            )}
           </div>
 
           <button
@@ -271,6 +312,7 @@ export const ModalWindow: React.FC = ({}) => {
             className={cn('modal-window__contact-button contact-button', {
               'contact-button--disabled': !name || !email || !body,
             })}
+            // disabled={!name || !email || !body}
           >
             {t('Send')}
           </button>

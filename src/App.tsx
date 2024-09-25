@@ -11,6 +11,8 @@ import axios from './api/axios';
 export const App: React.FC = () => {
   // const { currentId } = useParams();
 
+  // const timerRefresh = useRef();
+
   const { accessToken, setAccessToken, setRefreshErrorMessage, setUser } =
     useContext(ItemsContext);
   //   try {

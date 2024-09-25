@@ -4,36 +4,137 @@
   &__container {
     @include content-padding-inline;
 
+    padding-top: 80px;
+
     max-width: 1400px;
     margin: 0 auto;
   }
 
-  &__info {
-    padding-bottom: 40px;
+  &__title {
+    margin-bottom: 80px;
   }
 
-  &__faqs {
-    margin-bottom: 40px;
+  &__box {
+    @include page-grid;
+  }
+
+  &__info {
+    grid-column: span 1;
+    justify-self: start;
+  }
+
+  &__content-management {
+    grid-column: span 1;
+    justify-self: stretch;
+
+    @include on-tablet {
+      grid-column: span 2;
+    }
+
+    @include on-desktop {
+      grid-column: span 3;
+    }
+  }
+}
+
+.admin-page-info {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  padding-bottom: 40px;
+
+  &__header {
+    display: flex;
+    gap: 32px;
+    align-items: center;
+  }
+
+  &__edit {
+    width: 24px;
+    height: 24px;
+    background: url('../../../public/images/icons/edit.svg') no-repeat;
+  }
+
+  &__item {
+    max-width: 200px;
+    font-size: 16px;
+    color: $gray-60-color;
+    &:not(:last-child) {
+      margin-bottom: 16px;
+    }
+  }
+
+  &__logout-btn {
+    padding-inline: 16px;
+    align-self: start;
+  }
+}
+
+.admin-button {
+  font-size: 18px;
+  border-radius: 12px;
+  border: 1px solid $main-text-color;
+  color: $main-text-color;
+  width: 158px;
+  padding-block: 8px;
+  cursor: pointer;
+
+  @include hover(outline, 3px solid $main-text-color);
+
+  &--logout {
+    width: auto;
+  }
+
+  &--disabled {
+    cursor: auto;
+    opacity: 0.5;
+
+    @include hover(outline, none);
   }
 }
 
 .admin-faqs {
+  padding-block: 40px;
+  border-block: 1px solid $gray-40-color;
+
   &__header {
     display: flex;
-    gap: 20px;
-    padding-bottom: 30px;
+    justify-content: space-between;
+    gap: 60px;
+  }
+
+  &__title {
+    &--open {
+      margin-bottom: 48px;
+    }
   }
 
   &__hide-button {
-    color: $main-text-color;
-    border: 1px solid $gray-20-color;
+    width: 24px;
+    height: 24px;
+    background: url('../../../public/images/icons/arrow-down.svg') no-repeat;
+    transition: all 0.3s ease 0s;
+
+    &--open {
+      transform: rotate(180deg);
+      transform-origin: center;
+    }
   }
 
   &__list {
     display: flex;
     flex-direction: column;
-    gap: 15px;
-    margin-bottom: 40px;
+    border-radius: 12px;
+    border: 1px solid $gray-60-color;
+    margin-bottom: 48px;
+    // opacity: 0;
+    // animation: faqs 1s linear 0s 1 normal forwars;
+
+    // @keyframes faqs {
+    // 	100% {
+    // 		opacity: 1;
+    // 	}
+    // }
   }
 
   &__item {
@@ -42,95 +143,280 @@
 
 .faq-item {
   display: flex;
-  border: 1px solid $gray-20-color;
+  flex-direction: column;
+  padding: 32px 24px;
+  border-bottom: 1px solid $gray-60-color;
+	transition: all 0.3s ease 0s;
+
+	&--disabled {
+		opacity: 0.5;
+	}
 
   &__question {
-    flex: 0 1 20%;
-    border: 1px solid $gray-20-color;
-    padding: 15px;
+    font-size: 16px;
+    text-transform: uppercase;
+    color: $gray-40-color;
+    border-bottom: 1px solid $gray-60-color;
+    padding: 16px 8px;
+  }
+
+  &__answer {
+    color: $gray-60-color;
+
+    @include on-tablet {
+      display: flex;
+    }
   }
 
   &__short-answer {
-    flex: 0 1 20%;
-    border: 1px solid $gray-20-color;
-    padding: 15px;
+    padding-block: 16px 8px;
+    border-bottom: 1px solid $gray-60-color;
+    padding: 8px;
+
+    @include on-tablet {
+      border-right: 1px solid $gray-60-color;
+      flex: 0 0 222px;
+    }
   }
 
   &__full-answer {
-    flex: 0 1 50%;
-    border: 1px solid $gray-20-color;
-    padding: 15px;
+    padding: 8px;
+    border-bottom: 1px solid $gray-60-color;
+
+    @include on-tablet {
+      padding: 8px 8px 8px 24px;
+      flex: 1 1 auto;
+    }
   }
 
   &__actions {
-    flex: 0 1 10%;
+    align-self: center;
     display: flex;
     flex-direction: column;
-    gap: 15px;
-    border: 1px solid $gray-20-color;
-    padding: 15px;
+    gap: 16px;
+    padding-top: 24px;
+
+    @include on-tablet {
+      flex-direction: row;
+      gap: 24px;
+      align-self: end;
+    }
+
+    @include on-desktop {
+      align-self: stretch;
+      justify-content: space-between;
+    }
   }
 
   &__delete {
-    color: $main-text-color;
-    border: 1px solid $gray-20-color;
+    width: 158px;
+    // color: $main-text-color;
+    // border: 1px solid $gray-20-color;
   }
 
   &__update {
-    color: $main-text-color;
-    border: 1px solid $gray-20-color;
+    width: 158px;
+    // color: $main-text-color;
+    // border: 1px solid $gray-20-color;
   }
 }
 
-.edit {
-  background-color: palevioletred;
-}
+.admin-faqs-form {
+  &__title {
+    font-size: 20px;
+    margin-bottom: 16px;
+  }
 
-.edit-form {
-  &__question {
-    width: 1000px;
+  &__label {
+    display: inline-block;
+    color: $gray-60-color;
+    margin-bottom: 8px;
+  }
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  &__main {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+
+    @include on-tablet {
+      grid-template-columns: repeat(2, 1fr);
+      column-gap: 24px;
+    }
+
+    @include on-desktop {
+      grid-template-columns: repeat(3, 1fr);
+      column-gap: 40px;
+    }
+  }
+
+  &__box {
+    width: 100%;
+    // align-self: stretch;
+
+    &--question {
+      grid-column: span 1;
+      margin-bottom: 16px;
+
+      @include on-tablet {
+        grid-column: span 2;
+      }
+
+      @include on-desktop {
+        grid-column: span 3;
+      }
+    }
+
+    &--short-answer {
+      grid-column: span 1;
+      margin-bottom: 40px;
+
+      @include on-tablet {
+        margin-bottom: 0;
+      }
+    }
+
+    &--full-answer {
+      grid-column: span 1;
+
+      @include on-desktop {
+        grid-column: span 2;
+      }
+    }
+  }
+
+  &__item {
+    width: 100%;
+    font-size: 16px;
+    padding: 8px;
+    border-radius: 12px;
+    border: 1px solid $gray-60-color;
+    background-color: transparent;
+    color: $gray-40-color;
+
+    &::placeholder {
+      font-size: 16px;
+    }
+
+    &--short-answer {
+      @include on-tablet {
+        height: 105px;
+      }
+
+      @include on-desktop {
+        height: 223px;
+      }
+    }
+
+    &--full-answer {
+      height: 388px;
+
+      @include on-tablet {
+        height: 223px;
+      }
+    }
   }
 
   &__actions {
     display: flex;
-    flex-direction: row;
-    gap: 20px;
-  }
+    flex-direction: column;
+    gap: 16px;
+    align-self: center;
 
-  &__save-button {
-    color: $main-text-color;
-    border: 1px solid $gray-20-color;
-  }
+    @include on-tablet {
+      flex-direction: row;
+      gap: 24px;
+      align-self: end;
+    }
 
-  &__cancel-button {
-    color: $main-text-color;
-    border: 1px solid $gray-20-color;
+    @include on-desktop {
+      align-self: stretch;
+      justify-content: space-between;
+    }
   }
 }
 
 .contact-form-questions {
+  padding-block: 40px;
+  border-bottom: 1px solid $gray-60-color;
+
   &__header {
     display: flex;
-    gap: 20px;
-    padding-bottom: 30px;
+    justify-content: space-between;
+    gap: 60px;
+  }
+
+  &__title {
+    &--open {
+      margin-bottom: 48px;
+    }
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    border-radius: 12px;
+    border: 1px solid $gray-60-color;
+    margin-bottom: 40px;
   }
 }
 
 .contact-form-item {
   display: flex;
-  border: 1px solid $gray-20-color;
-  margin-bottom: 15px;
+  flex-direction: column;
+  gap: 32px;
+  border-bottom: 1px solid $gray-60-color;
+  padding: 32px 24px;
 
-  &__data {
-    flex: 0 1 90%;
-    display: flex;
-    flex-direction: column;
-    border-right: 1px solid $gray-20-color;
+  @include on-tablet {
+    flex-direction: row;
+    justify-content: stretch;
+    gap: 24px;
   }
 
+  &__info {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    color: $gray-40-color;
+
+    @include on-tablet {
+      border-right: 1px solid $gray-60-color;
+      flex: 1 1 auto;
+			padding-right: 8px;
+    }
+  }
+
+  &__message {
+    padding-bottom: 16px;
+    color: $gray-60-color;
+    border-bottom: 1px solid $gray-60-color;
+
+    @include on-tablet {
+      border-bottom: none;
+    }
+  }
+
+  // &__data {
+  //   flex: 0 1 90%;
+  //   display: flex;
+  //   flex-direction: column;
+  //   border-right: 1px solid $gray-20-color;
+  // }
+
   &__delete {
-    color: $main-text-color;
-    border: 1px solid $gray-20-color;
-    flex: 0 0 10%;
+    align-self: center;
+
+    @include on-tablet {
+      flex: 0 0 158px;
+    }
+
+		// @include on-desktop {
+    //   flex: 0 0 158px;
+    // }
   }
 }

@@ -64,9 +64,11 @@ const resources = {
       'Our Training': 'Our Training',
       'Support Us': 'Support Us',
       'Your area': 'Your Area',
+      Admin: 'Admin',
 
       'or you can contact us via': 'or you can contact us via',
       Send: 'Send',
+      'Log out': 'Log out',
     },
   },
   ukr: {
@@ -125,9 +127,12 @@ const resources = {
       'Our Training': 'НАШЕ ТРЕНУВАННЯ',
       'Support Us': 'ПІДТРИМАТИ НАС',
       'Your area': 'Ваш простір',
+      Admin: 'Адмін',
 
-      'or you can contact us via': 'або ви можете зв`язатися з нами через',
+      'or you can contact us via':
+        'або ви можете зв`язатися з нами за допомогою',
       Send: 'Надіслати',
+      'Log out': 'Вихід',
     },
   },
   deu: {
@@ -186,9 +191,11 @@ const resources = {
       'Our Training': 'OUR TRAINING',
       'Support Us': 'SUPPORT US',
       'Your area': 'Your area',
+      Admin: 'Admin',
 
       'or you can contact us via': 'oder Sie können uns über',
       Send: 'Abschicken',
+      'Log out': 'Log out',
     },
   },
 };

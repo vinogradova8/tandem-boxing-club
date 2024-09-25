@@ -80,16 +80,16 @@
     color: $gray-20-color;
     margin-bottom: 4px;
 
-    &::before {
-      position: absolute;
-      display: inline-block;
-      content: '';
-      background: url('../../../public/images/icons/search.svg') no-repeat;
-      top: 0;
-      left: 0;
-      width: 24px;
-      height: 24px;
-    }
+    // &::before {
+    //   position: absolute;
+    //   display: inline-block;
+    //   content: '';
+    //   background: url('../../../public/images/icons/search.svg') no-repeat;
+    //   top: 0;
+    //   left: 0;
+    //   width: 24px;
+    //   height: 24px;
+    // }
 
     &::placeholder {
       color: $gray-60-color;

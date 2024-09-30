@@ -121,12 +121,12 @@ export const Login: React.FC = ({}) => {
                 Sign in with Google
               </a> */}
               <GoogleLogin
-              // onSuccess={credentialResponse => {
-              //   console.log(credentialResponse);
-              // }}
-              // onError={() => {
-              //   console.log('Login Failed');
-              // }}
+                onSuccess={credentialResponse => {
+                  console.log(credentialResponse);
+                }}
+                onError={() => {
+                  console.log('Login Failed');
+                }}
               />
 
               <button type="button" className="socials__item">

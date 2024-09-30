@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 // import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { HashRouter, Routes, Route } from 'react-router-dom';
@@ -17,6 +18,7 @@ import { Login } from './components/Login';
 import { AdminPage } from './components/AdminPage';
 import { NotFoundPage } from './components/NotFoundPage';
 import { ItemsProvider } from './ItemsContext';
+// import { GoogleOAuthProvider } from '@react-oauth/google';
 
 // createRoot(document.getElementById('root') as HTMLDivElement).render(<App />);
 

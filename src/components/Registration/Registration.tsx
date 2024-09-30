@@ -113,7 +113,7 @@ export const Registration: React.FC = ({}) => {
           </div>
 
           <div>
-            <label htmlFor="email">Логін (пошта)</label>
+            <label htmlFor="email">Email</label>
             <input
               value={email}
               onChange={e => setLogin(e.target.value)}
@@ -133,7 +133,7 @@ export const Registration: React.FC = ({}) => {
           </div>
 
           <div>
-            <label htmlFor="password-control">Перевірка паролю</label>
+            <label htmlFor="password-control">Підтвердження паролю</label>
             <input
               value={repeatPassword}
               onChange={e => setRepeatPassword(e.target.value)}

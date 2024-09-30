@@ -368,10 +368,10 @@ export const AdminPage: React.FC = ({}) => {
                     className="admin-page-info__logout-btn
 										 admin-button admin-button--logout"
                   >
-                    Log out
+                    {t('Log out')}
                   </button>
 
-                  {logoutErrorMessage && <p>Log out failed!</p>}
+                  {logoutErrorMessage && <p>{t('Log out failed!')}</p>}
                 </div>
 
                 {/* {refreshErrorMessage && <p>AccessToken is invalid!</p>} */}
@@ -389,7 +389,7 @@ export const AdminPage: React.FC = ({}) => {
                         'admin-faqs__title--open': !hideQuestions,
                       })}
                     >
-                      Frequently asked questions
+                      {t('Frequently asked questions')}
                     </h3>
                     <button
                       className={cn('admin-faqs__hide-button', {
@@ -437,14 +437,14 @@ export const AdminPage: React.FC = ({}) => {
                                 }
                               }}
                             >
-                              Update
+                              {t('Update')}
                             </button>
 
                             <button
                               onClick={() => deleteQuestion(faq.id)}
                               className="faq-item__delete admin-button"
                             >
-                              Delete
+                              {t('Delete')}
                             </button>
                           </div>
                         </li>
@@ -651,7 +651,7 @@ export const AdminPage: React.FC = ({}) => {
                         },
                       )}
                     >
-                      Questions from users
+                      {t('Customer questions')}
                     </h3>
                     <button
                       className={cn('admin-faqs__hide-button', {
@@ -664,7 +664,9 @@ export const AdminPage: React.FC = ({}) => {
                     ></button>
                   </div>
 
-                  {errorQuestionsFromUsers && <p>Something went wrong</p>}
+                  {errorQuestionsFromUsers && (
+                    <p>{t('Something went wrong')}</p>
+                  )}
                   {!hideQuestionsFromUsers && (
                     <ul className="contact-form-questions__list">
                       {questionsFromUsers.map(questionItem => (
@@ -691,73 +693,12 @@ export const AdminPage: React.FC = ({}) => {
                               deleteQuestionFromUser(questionItem.id)
                             }
                           >
-                            Delete
+                            {t('Delete')}
                           </button>
                         </li>
                       ))}
                     </ul>
                   )}
-
-                  {/* {!hideQuestionsFromUsers && (
-                <ul className="contact-form-questions__list">
-                  <li
-                    className="contact-form-questions__item 
-									contact-form-item"
-                  >
-                    <div className="contact-form-item__data">
-                      <p className="contact-form-item__name">ім&aposя</p>
-                      <p className="contact-form-item__email">email-1</p>
-                      <p className="contact-form-item__message">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Recusandae vel numquam officia debitis illo dolorem
-                        assumenda id minus iusto illum.
-                      </p>
-                    </div>
-
-                    <button className="contact-form-item__delete">
-                      delete
-                    </button>
-                  </li>
-
-                  <li
-                    className="contact-form-questions__item 
-									contact-form-item"
-                  >
-                    <div className="contact-form-item__data">
-                      <p className="contact-form-item__name">ім&aposя</p>
-                      <p className="contact-form-item__email">email-2</p>
-                      <p className="contact-form-item__message">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Possimus temporibus harum accusamus inventore,
-                        reiciendis rem ullam placeat repellendus id delectus!
-                      </p>
-                    </div>
-
-                    <button className="contact-form-item__delete">
-                      delete
-                    </button>
-                  </li>
-
-                  <li
-                    className="contact-form-questions__item 
-									contact-form-item"
-                  >
-                    <div className="contact-form-item__data">
-                      <p className="contact-form-item__name">ім&aposя</p>
-                      <p className="contact-form-item__email">email-3</p>
-                      <p className="contact-form-item__message">
-                        Lorem, ipsum dolor sit amet consectetur adipisicing
-                        elit. Saepe magni fugiat quasi qui quae ex maxime
-                        praesentium nam. Optio, neque?
-                      </p>
-                    </div>
-
-                    <button className="contact-form-item__delete">
-                      delete
-                    </button>
-                  </li>
-                </ul>
-              )} */}
                 </div>
               </div>
             </div>

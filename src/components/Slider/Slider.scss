@@ -113,7 +113,7 @@
   // overflow: auto;
   // max-height: 300px;
   // width: 170px;
-  aspect-ratio: 9/16;
+  // aspect-ratio: 9/16;
 
   &--shadow {
     &::before {
@@ -151,6 +151,7 @@
 
   &__item {
     transition: all 0.3s ease 0s;
+    object-fit: fill;
 
     &:hover {
       transition: all 0.3s ease 0s;

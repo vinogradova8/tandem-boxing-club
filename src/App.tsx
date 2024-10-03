@@ -7,7 +7,7 @@ import { Outlet } from 'react-router-dom';
 import { Footer } from './components/Footer/Footer';
 import { ItemsContext } from './ItemsContext';
 import axios from './api/axios';
-import { GoogleOAuthProvider } from '@react-oauth/google';
+// import { GoogleOAuthProvider } from '@react-oauth/google';
 
 export const App: React.FC = () => {
   // const { currentId } = useParams();
@@ -78,12 +78,12 @@ export const App: React.FC = () => {
 
   return (
     // eslint-disable-next-line max-len
-    <GoogleOAuthProvider clientId="588544771236-bt2l09g8m0pj16k8kf2sf59rtbrid3e4.apps.googleusercontent.com">
-      <div className="app">
-        <Header />
-        <Outlet />
-        <Footer />
-      </div>
-    </GoogleOAuthProvider>
+    // <GoogleOAuthProvider clientId="588544771236-bt2l09g8m0pj16k8kf2sf59rtbrid3e4.apps.googleusercontent.com">
+    <div className="app">
+      <Header />
+      <Outlet />
+      <Footer />
+    </div>
+    // </GoogleOAuthProvider>
   );
 };

@@ -7,7 +7,7 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import { ItemsContext } from '../../ItemsContext';
 import axios from '../../api/axios';
 import { useTranslation } from 'react-i18next';
-import { GoogleLogin } from '@react-oauth/google';
+// import { GoogleLogin } from '@react-oauth/google';
 
 export const Login: React.FC = ({}) => {
   const [email, setEmail] = useState('');
@@ -118,17 +118,17 @@ export const Login: React.FC = ({}) => {
                 <span className="socials__name">Continue with</span>
                 <span className="socials__icon socials__icon--google"></span>
               </button> */}
-              {/* <a href="http://localhost:8088/login/oauth2/authorization/google">
+              <a href="http://localhost:8088/login/oauth2/authorization/google">
                 Sign in with Google
-              </a> */}
-              <GoogleLogin
+              </a>
+              {/* <GoogleLogin
                 onSuccess={credentialResponse => {
                   console.log(credentialResponse);
                 }}
                 onError={() => {
                   console.log('Login Failed');
                 }}
-              />
+              /> */}
 
               <button type="button" className="socials__item">
                 <span className="socials__name">{t('Continue with')}</span>

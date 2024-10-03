@@ -1,4 +1,6 @@
-import React, { useContext, useState } from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable no-console */
+import React, { useContext, useEffect, useState } from 'react';
 import './Profile.scss';
 import { ItemsContext } from '../../ItemsContext';
 import axios from '../../api/axios';
@@ -72,14 +74,52 @@ export const Profile: React.FC = ({}) => {
     }
   };
 
+  // function getCookie(name: string): string | null {
+  //   const value = `; ${document.cookie}`;
+  //   const parts = value.split(`; ${name}=`);
+
+  //   if (parts.length === 2) {
+  //     return parts.pop()?.split(';').shift() || null;
+  //   }
+
+  //   return null;
+  // }
+
+  // useEffect(() => {
+  //   const access: string | null = getCookie('accessToken');
+
+  //   console.log('Access Token:', access);
+  // }, []);
+
+  function getCookie(name: string): string | null {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+
+    if (parts.length === 2) {
+      return parts.pop()?.split(';').shift() || null;
+    }
+
+    return null;
+  }
+
+  useEffect(() => {
+    const access: string | null = getCookie('accessToken');
+
+    if (access) {
+      setAccessToken(access);
+    }
+
+    console.log('Access Token:', access);
+  }, []);
+
   return (
     <>
       <main className="profile">
-        <h2 className="profile__title big-title">{t('Our Training')}</h2>
+        <h2 className="profile__title big-title">{t('Your area')}</h2>
 
         <div className="profile__container">
-          {refreshErrorMessage && <p>Something went wrong!</p>}
-          {logoutErrorMessage && <p>Log out failed!</p>}
+          {refreshErrorMessage && <p>{t('Something went wrong!')}</p>}
+          {logoutErrorMessage && <p>{t('Log out failed!')}</p>}
 
           <>
             <p>YOUR PROFILE</p>
@@ -88,7 +128,7 @@ export const Profile: React.FC = ({}) => {
             <p>{user?.firstName}</p>
             <p>{user?.lastName}</p>
             <button className="logout-button" onClick={handleLogOut}>
-              Log out
+              {t('Log out')}
             </button>
           </>
         </div>

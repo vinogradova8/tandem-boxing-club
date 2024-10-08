@@ -9,7 +9,6 @@ import { LOCALS } from '../../i18n/constants';
 import { ItemsContext } from '../../ItemsContext';
 import { BurgerWindow } from '../BurgerWindow';
 // import { RoleName } from '../../types/RoleName';
-// import { ItemsContext } from '../../ItemsContext';
 
 export const Header: React.FC = ({}) => {
   const { t } = useTranslation();
@@ -24,13 +23,10 @@ export const Header: React.FC = ({}) => {
     [t('FAQ'), 'faq'],
     [t('Gallery'), 'gallery'],
     [t('Support'), 'support-us'],
-    [t('Contacts'), 'сontacts'],
   ];
 
   const [isLanguageDropDownVisible, setIsLanguageDropDownVisible] =
     useState(false);
-
-  // const [isBurgerMenuOpen, setIsBurgerMenuOpen] = useState(false);
 
   const languages = [LOCALS.ENG, LOCALS.UKR, LOCALS.DEU];
   const { user, accessToken } = useContext(ItemsContext);
@@ -64,7 +60,6 @@ export const Header: React.FC = ({}) => {
                 <li key={link[0]}>
                   <NavLink
                     to={link[1] === 'home' ? `/` : `/${link[1]}`}
-                    // className="menu-link"
                     className={({ isActive }) =>
                       cn('menu-link', {
                         'menu-link--active': isActive,
@@ -157,41 +152,6 @@ export const Header: React.FC = ({}) => {
               }}
             ></button>
           </div>
-
-          {/* <div
-          className={cn('header__burger', {
-            'header__burger--visible': isBurgerMenuOpen,
-          })}
-        >
-          <nav className="header__navigation header__navigation--burger">
-            <ul
-              className="header__navigation-list 
-						header__navigation-list--burger"
-            >
-              {links.map(link => (
-                <li key={link[0]}>
-                  <NavLink
-                    to={link[1] === 'home' ? `/` : `/${link[1]}`}
-                    className={({ isActive }) =>
-                      cn('menu-link menu-link--burger', {
-                        'menu-link--active': isActive,
-                      })
-                    }
-                    onClick={() => {
-                      setIsBurgerMenuOpen(false);
-                      bodyTag?.classList.remove('fixed');
-                    }}
-                  >
-                    <div className="menu-link__slider">
-                      <p className="menu-link__passive">{link[0]}</p>
-                      <p className="menu-link__active">{link[0]}</p>
-                    </div>
-                  </NavLink>
-                </li>
-              ))}
-            </ul>
-          </nav>
-        </div> */}
         </div>
       </header>
     </>

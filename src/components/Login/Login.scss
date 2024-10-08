@@ -32,38 +32,79 @@
     padding: 32px 24px;
 
     @include on-desktop {
-			flex-direction: row;
-			justify-content: stretch;
+      flex-direction: row;
+      justify-content: stretch;
       max-width: 1400px;
       padding: 80px 40px;
     }
   }
 
-	&__header {
-		@include on-desktop {
-			flex: 1 1 50%;
-		}
-	}
+  &__header {
+    @include on-desktop {
+      flex: 1 1 50%;
+    }
+  }
 
   &__form {
     display: flex;
     flex-direction: column;
     align-items: stretch;
     gap: 48px;
-    
-		@include on-desktop {
-			flex: 1 1 50%;
-		}
+
+    @include on-desktop {
+      flex: 1 1 50%;
+    }
   }
 
-  &__socials {
+  // &__socials {
+  //   display: flex;
+  //   flex-direction: column;
+  //   gap: 16px;
+  // }
+
+  &__google {
     display: flex;
-    flex-direction: column;
-    gap: 16px;
+
+    border-bottom: 1px solid $gray-60-color;
+    padding-block: 16px;
+    justify-items: center;
+  }
+
+  &__google-link {
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    gap: 8px;
+    margin: 0 auto;
+
+    @include hover(opacity, 0.5);
+
+    &:hover {
+      color: $gray-40-color;
+    }
+  }
+
+  &__google-icon {
+    position: relative;
+    width: 24px;
+    height: 24px;
+    &::before {
+      background: url('../../../public/images/icons/google.svg') no-repeat;
+      position: absolute;
+      content: '';
+      width: 24px;
+      height: 24px;
+    }
   }
 
   &__text {
     align-self: center;
+  }
+
+  &__email {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
   }
 
   &__input {
@@ -86,33 +127,38 @@
 
   &__label {
     position: relative;
-    margin-bottom: 10px;
-  }
-
-  &__registration {
-    display: flex;
-    gap: 15px;
+    // margin-bottom: 10px;
   }
 
   &__registration-link {
     @include hover(color, $main-text-color);
   }
 
-	&__button-container {
-		display: flex;
-		flex-direction: column;
-	}
+  &__button-container {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    align-self: center;
+  }
 
   &__contact-button {
-    width: 100%;
     margin-bottom: 10px;
+
+    &--sign-up {
+      align-self: center;
+      margin-bottom: 0;
+
+      &:hover {
+        color: $main-text-color;
+      }
+    }
   }
 
   &__login-error {
-		text-align: center;
+    text-align: center;
     align-self: flex-end;
-		font-size: 20px;
-		width: 21px;
+    font-size: 20px;
+    width: 21px;
   }
 }
 
@@ -121,7 +167,7 @@
   display: inline-block;
   content: '';
   background: url('../../../public/images/icons/eye.svg') no-repeat;
-  top: 0;
+  top: 13px;
   right: 16px;
   width: 24px;
   height: 24px;

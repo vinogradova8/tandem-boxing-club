@@ -6,6 +6,7 @@ import { ItemsContext } from '../../ItemsContext';
 import axios from '../../api/axios';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { NotFoundPage } from '../NotFoundPage';
 // import { User } from '../../types/User';
 // import { getUser } from '../../api/fetchClient';
 
@@ -91,6 +92,25 @@ export const Profile: React.FC = ({}) => {
   //   console.log('Access Token:', access);
   // }, []);
 
+  const getUser = async (acc: string) => {
+    try {
+      const response = await axios.get('/users/me', {
+        headers: { Authorization: `Bearer ${acc}` },
+      });
+
+      const role = response.data.role;
+      const id = response.data.id;
+      const firstName = response.data.firstName;
+      const lastName = response.data.lastName;
+      const email = response.data.email;
+      const password = response.data.password;
+
+      setUser({ id, email, firstName, lastName, role, password });
+    } catch {
+      console.log('error');
+    }
+  };
+
   function getCookie(name: string): string | null {
     const value = `; ${document.cookie}`;
     const parts = value.split(`; ${name}=`);
@@ -105,8 +125,9 @@ export const Profile: React.FC = ({}) => {
   useEffect(() => {
     const access: string | null = getCookie('accessToken');
 
-    if (access) {
+    if (access && !accessToken) {
       setAccessToken(access);
+      getUser(access);
     }
 
     console.log('Access Token:', access);
@@ -114,25 +135,30 @@ export const Profile: React.FC = ({}) => {
 
   return (
     <>
-      <main className="profile">
-        <h2 className="profile__title big-title">{t('Your area')}</h2>
+      {refreshErrorMessage ? (
+        <NotFoundPage message="Something went wrong" />
+      ) : (
+        <main className="profile">
+          <h2 className="profile__title">Hey, champ!</h2>
 
-        <div className="profile__container">
-          {refreshErrorMessage && <p>{t('Something went wrong!')}</p>}
-          {logoutErrorMessage && <p>{t('Log out failed!')}</p>}
-
-          <>
-            <p>YOUR PROFILE</p>
-            <p>{accessToken}</p>
-            <p>{user?.email}</p>
-            <p>{user?.firstName}</p>
-            <p>{user?.lastName}</p>
-            <button className="logout-button" onClick={handleLogOut}>
+          <div className="profile__container">
+            <p className="profile__text">
+              {`${user?.firstName} ${user?.lastName}, раді вітати тебе у нашій команді! 
+							Наразі особистий кабінет не має додаткових ф-цій але ми постійно розвиваємося і у
+              майбутньому вони з'являться!`}
+            </p>
+            <button
+              className="logout-button admin-button"
+              onClick={handleLogOut}
+            >
               {t('Log out')}
             </button>
-          </>
-        </div>
-      </main>
+            {logoutErrorMessage && (
+              <p className="error">{t('Log out failed!')}</p>
+            )}
+          </div>
+        </main>
+      )}
     </>
   );
 };

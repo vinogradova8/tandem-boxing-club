@@ -22,7 +22,6 @@ export const AdminPage: React.FC = ({}) => {
   const {
     accessToken,
     setAccessToken,
-    user,
     setUser,
     refreshErrorMessage,
     setRefreshErrorMessage,
@@ -51,52 +50,13 @@ export const AdminPage: React.FC = ({}) => {
   const [newShortAnswer, setNewShortAnswer] = useState('');
   const [newFullAnswer, setNewFullAnswer] = useState('');
 
-  // const { firstName, lastName } = user;
+  const scrollToForm = () => {
+    const form = document.getElementById('form');
 
-  // const refreshToken = useCallback(async () => {
-  //   try {
-  //     const response = await axios.post(
-  //       '/auth/refresh',
-  //       {},
-  //       {
-  //         headers: {
-  //           Authorization: `Bearer ${accessToken}`,
-  //           'Access-Control-Allow-Origin': 'http://localhost:3000',
-  //         },
-  //       },
-  //     );
-
-  //     setAccessToken(response.data.token);
-  //   } catch {
-  //     setRefreshErrorMessage(true);
-  //   }
-  // }, [accessToken, setAccessToken, setRefreshErrorMessage]);
-
-  // useEffect(() => {
-  //   let refreshTokenInterval;
-
-  //   if (accessToken) {
-  //     refreshToken();
-
-  //     refreshTokenInterval = setInterval(() => {
-  //       refreshToken();
-  //     }, 180000);
-  //   }
-
-  //   return () => {
-  //     clearInterval(refreshTokenInterval);
-  //   };
-  // }, [refreshToken]);
-
-  // useEffect(() => {
-  //   const refreshTokenInterval = setInterval(() => {
-  //     refreshToken();
-  //   }, 180000);
-
-  //   return () => {
-  //     clearInterval(refreshTokenInterval);
-  //   };
-  // }, [refreshToken]);
+    if (form) {
+      form.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   const handleCancelCreateQuestion = (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
@@ -291,29 +251,6 @@ export const AdminPage: React.FC = ({}) => {
     } catch {}
   };
 
-  // const handleSaveEditQuestion = (
-  //   e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
-  //   currentId: number,
-  // ) => {
-  //   saveUpdatedQuestion(e, currentId);
-
-  //   // if (i18next.language === LOCALS.ENG) {
-  //   //   getQuestionsEng();
-  //   // }
-
-  //   // if (i18next.language === LOCALS.DEU) {
-  //   //   getQuestionsDeu();
-  //   // }
-
-  //   // if (i18next.language === LOCALS.UKR) {
-  //   //   getQuestionsUkr();
-  //   // }
-
-  //   setQuestionToEdit('');
-  //   setShortAnswerToEdit('');
-  //   setFullAnswerToEdit('');
-  // };
-
   useEffect(() => {
     setLoader(true);
 
@@ -346,21 +283,9 @@ export const AdminPage: React.FC = ({}) => {
         <main className="admin-page">
           <div className="admin-page__container">
             <h2 className="admin-page__title big-title">{t('Admin')}</h2>
-            {/* <p className="admin-page-info__item">{accessToken}</p> */}
             <div className="admin-page__box">
               <div className="admin-page__info admin-page-info">
-                <div className="admin-page-info__header">
-                  <h3 className="admin-page-info__title small-title">
-                    Personal info
-                  </h3>
-
-                  <button className="admin-page-info__edit"></button>
-                </div>
-
-                <div className="admin-page-info__body">
-                  <p className="admin-page-info__item">{user?.firstName}</p>
-                  <p className="admin-page-info__item">{user?.lastName}</p>
-                </div>
+                <h3 className="admin-page-info__title small-title">Cabinet</h3>
 
                 <div>
                   <button
@@ -373,12 +298,6 @@ export const AdminPage: React.FC = ({}) => {
 
                   {logoutErrorMessage && <p>{t('Log out failed!')}</p>}
                 </div>
-
-                {/* {refreshErrorMessage && <p>AccessToken is invalid!</p>} */}
-
-                {/* <button className="logout-button" onClick={handleLogOut}>
-                Log out
-              </button> */}
               </div>
 
               <div className="admin-page__content-management">
@@ -392,8 +311,8 @@ export const AdminPage: React.FC = ({}) => {
                       {t('Frequently asked questions')}
                     </h3>
                     <button
-                      className={cn('admin-faqs__hide-button', {
-                        'admin-faqs__hide-button--open': !hideQuestions,
+                      className={cn('admin-faqs__hide-button hide-button', {
+                        'hide-button--open': !hideQuestions,
                       })}
                       onClick={() => setHideQuestions(!hideQuestions)}
                     ></button>
@@ -424,6 +343,8 @@ export const AdminPage: React.FC = ({}) => {
                             <button
                               className="faq-item__update admin-button"
                               onClick={() => {
+                                scrollToForm();
+
                                 if (questionToEditId === faq.id) {
                                   setQuestionToEditId(null);
                                   setQuestionToEdit('');
@@ -544,6 +465,7 @@ export const AdminPage: React.FC = ({}) => {
                   {!questionToEdit && !hideQuestions && (
                     <form
                       action="#"
+                      id="form"
                       className="admin-faqs__form admin-faqs-form"
                     >
                       <h3 className="admin-faqs-form__title">
@@ -654,20 +576,24 @@ export const AdminPage: React.FC = ({}) => {
                       {t('Customer questions')}
                     </h3>
                     <button
-                      className={cn('admin-faqs__hide-button', {
-                        'admin-faqs__hide-button--open':
-                          !hideQuestionsFromUsers,
-                      })}
+                      className={cn(
+                        'contact-form-questions__hide-button hide-button',
+                        {
+                          'hide-button--open': !hideQuestionsFromUsers,
+                          'hide-button--disabled': !questionsFromUsers.length,
+                        },
+                      )}
                       onClick={() =>
                         setHideQuestionsFromUsers(!hideQuestionsFromUsers)
                       }
+                      disabled={!questionsFromUsers.length}
                     ></button>
                   </div>
 
                   {errorQuestionsFromUsers && (
                     <p>{t('Something went wrong')}</p>
                   )}
-                  {!hideQuestionsFromUsers && (
+                  {!hideQuestionsFromUsers && questionsFromUsers && (
                     <ul className="contact-form-questions__list">
                       {questionsFromUsers.map(questionItem => (
                         <li
@@ -689,9 +615,12 @@ export const AdminPage: React.FC = ({}) => {
 
                           <button
                             className="contact-form-item__delete admin-button"
-                            onClick={() =>
-                              deleteQuestionFromUser(questionItem.id)
-                            }
+                            onClick={() => {
+                              deleteQuestionFromUser(questionItem.id);
+                              if (questionsFromUsers.length === 1) {
+                                setHideQuestionsFromUsers(true);
+                              }
+                            }}
                           >
                             {t('Delete')}
                           </button>

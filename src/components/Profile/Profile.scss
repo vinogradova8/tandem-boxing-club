@@ -1,9 +1,36 @@
 @import '../../styles/utils';
 
 .profile {
-	// height: 800px;
+	background: url('../../../public/images/decor/profile-background-image.png')
+    center / cover no-repeat;
+  padding-block: 80px 198px;
+
+  @include content-padding-inline;
+
+	&__title {
+		font-family: $second-font-family;
+		text-align: center;
+		font-size: 30px;
+    margin-bottom: 80px;
+
+		@include on-tablet {
+			font-size: 44px;
+		}
+
+		@include on-desktop {
+			font-size: 56px;
+		}
+  }
+
+	&__text {
+		margin-bottom: 20px;
+	}
 
 	&__container {
+		border-radius: 12px;
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 32px 24px;
+		
 		@include content-padding-inline;
 
 		max-width: 1400px;
@@ -12,13 +39,14 @@
 }
 
 
-.form {
-	display: flex;
-	flex-direction: column;
-	gap: 10px;
-}
+// .form {
+// 	display: flex;
+// 	flex-direction: column;
+// 	gap: 10px;
+// }
 
 .logout-button {
 	border: 1px solid #fff;
 	color: #fff;
+	margin-bottom: 10px;
 }

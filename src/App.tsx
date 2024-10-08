@@ -47,6 +47,13 @@ export const App: React.FC = () => {
       );
 
       setAccessToken(response.data.token);
+
+      // const role = response.data.userDto.role;
+      // const id = response.data.userDto.id;
+      // const firstName = response.data.userDto.firstName;
+      // const lastName = response.data.userDto.lastName;
+
+      // setUser({ id, email: '', firstName, lastName, role, password: '' });
     } catch {
       setRefreshErrorMessage(true);
     }

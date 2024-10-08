@@ -109,19 +109,17 @@ export const Login: React.FC = ({}) => {
           <p className="login__header small-title">{t('Log in or create')}</p>
 
           <form onSubmit={handleSubmit} className="login__form">
-            <div className="login__socials socials">
+            {/* <div className="login__socials socials">
               <button type="button" className="socials__item">
                 <span className="socials__name">{t('Continue with')}</span>
                 <span className="socials__icon socials__icon--facebook"></span>
-              </button>
-              {/* <button type="button" className="socials__item">
+              </button> */}
+            {/* <button type="button" className="socials__item">
                 <span className="socials__name">Continue with</span>
                 <span className="socials__icon socials__icon--google"></span>
               </button> */}
-              <a href="http://localhost:8088/login/oauth2/authorization/google">
-                Sign in with Google
-              </a>
-              {/* <GoogleLogin
+
+            {/* <GoogleLogin
                 onSuccess={credentialResponse => {
                   console.log(credentialResponse);
                 }}
@@ -130,15 +128,27 @@ export const Login: React.FC = ({}) => {
                 }}
               /> */}
 
-              <button type="button" className="socials__item">
+            {/* <button type="button" className="socials__item">
                 <span className="socials__name">{t('Continue with')}</span>
                 <span className="socials__icon socials__icon--apple"></span>
               </button>
+            </div> */}
+
+            <div className="login__google">
+              <a
+                className="login__google-link"
+                href="http://localhost:8088/login/oauth2/authorization/google"
+              >
+                {t('Continue with')}
+                <div className="login__google-icon"></div>
+              </a>
             </div>
 
             <p className="login__text small-title">{t('or')}</p>
 
             <div className="login__email">
+              <p>{t('I have an account')}</p>
+
               <input
                 className="login__input"
                 placeholder="Continue with email"
@@ -165,16 +175,6 @@ export const Login: React.FC = ({}) => {
                   disabled={!password}
                 ></button>
               </label>
-
-              <div className="login__registration">
-                <p>{t('Not registered')}</p>
-                <NavLink
-                  to="/registration"
-                  className="login__registration-link"
-                >
-                  {t('Sign up')}
-                </NavLink>
-              </div>
             </div>
 
             <div className="login__button-container">
@@ -192,6 +192,16 @@ export const Login: React.FC = ({}) => {
                 <p className="login__error error">{t('Log in failed!')}</p>
               )}
             </div>
+
+            <p>{t('I don’t have an account')}</p>
+
+            <NavLink
+              to="/registration"
+              className="login__contact-button contact-button 
+								login__contact-button--sign-up"
+            >
+              {t('Create an account')}
+            </NavLink>
           </form>
         </div>
       </main>

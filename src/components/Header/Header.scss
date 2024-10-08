@@ -132,6 +132,13 @@
 
   &__language-drop-down {
     position: relative;
+		cursor: pointer;
+
+		// @include on-desktop {
+    //   font-size: 20px;
+    // }
+
+		// @include hover(opacity, 0.5);
   }
 
   &__burger {
@@ -166,11 +173,10 @@
 
   &__profile {
     position: relative;
-    // display: flex;
-    // align-items: center;
-    // justify-content: center;
     width: 24px;
     height: 24px;
+
+		@include hover(opacity, 0.5);
 
     &::before {
       position: absolute;
@@ -192,31 +198,11 @@
   color: $main-text-color;
   height: 19px;
   overflow: hidden;
-  // z-index: 100;
 
 	@include on-desktop {
 		font-size: 18px;
 		height: 24px;
 	}
-
-  // transition: transform 0.3s ease 0s;
-  //   &:hover {
-  //     transform: translateY(-50%);
-  //     transition: transform 0.3s ease 0s;
-  //   }
-
-  // 	&--active {
-  // 		transform: translateY(-50%);
-  // 	}
-
-  // @include on-desktop {
-  // 	height: 24px;
-  //   font-size: 20px;
-  // }
-
-  // @media (min-width: 900px) {
-  // 	font-size: 20px;
-  // }
 
   &__slider {
     transition: transform 0.3s ease 0s;
@@ -275,11 +261,10 @@
     font-size: 14px;
 
     @include on-desktop {
-      font-size: 16px;
+      font-size: 20px;
     }
-  }
 
-  &__language {
+		@include hover(opacity, 0.5);
   }
 
   &__trigger {
@@ -324,6 +309,8 @@
   &__item {
     cursor: pointer;
     transition: all 0.3s;
+
+		@include hover(opacity, 0.5);
 
     &--disabled {
       opacity: 0.5;

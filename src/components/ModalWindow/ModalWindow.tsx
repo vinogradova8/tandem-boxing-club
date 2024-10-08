@@ -47,7 +47,7 @@ export const ModalWindow: React.FC = ({}) => {
   }, [bodyTag?.classList, isModalWindowOpen]);
 
   const EMAIL_REGEX = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
-  const NAME_REGEX = /^[a-zA-Zа-яА-Яії\s]+[a-zA-Zа-яА-Яії\s]{2,22}$/g;
+  const NAME_REGEX = /^[a-zA-Zа-яА-Яії\s]+[a-zA-Zа-яА-Яії\s]{2,40}$/g;
 
   // const app = document.querySelector('.app');
 
@@ -74,10 +74,10 @@ export const ModalWindow: React.FC = ({}) => {
       name &&
       (name.trim().length < 2 ||
         !name.match(NAME_REGEX) ||
-        name.trim().length > 22)
+        name.trim().length > 40)
     ) {
       setNameErrorMessage(
-        'Name should have from 2 to 22 chars and contain only letters',
+        'Name should have from 2 to 40 chars and contain only letters',
       );
       setNameSuccessMessage('');
     }
@@ -85,7 +85,7 @@ export const ModalWindow: React.FC = ({}) => {
     if (
       name.trim().match(NAME_REGEX) &&
       name.trim().length >= 2 &&
-      name.trim().length <= 22
+      name.trim().length <= 40
     ) {
       setNameErrorMessage('');
       setNameSuccessMessage('Name is valid');
@@ -251,7 +251,7 @@ export const ModalWindow: React.FC = ({}) => {
               onChange={handleNameChange}
               value={name}
               type="text"
-              placeholder="Your name"
+              placeholder={t('Your name')}
               name="name"
               className={cn('modal-window__input', {
                 'error-border': nameErrorMessage,
@@ -273,7 +273,7 @@ export const ModalWindow: React.FC = ({}) => {
               }}
               value={email}
               type="text"
-              placeholder="Your email"
+              placeholder={t('Your email')}
               name="email"
               className={cn('modal-window__input', {
                 'error-border': emailErrorMessage,
@@ -293,7 +293,7 @@ export const ModalWindow: React.FC = ({}) => {
                 setBodyErrorMessage('');
               }}
               value={body}
-              placeholder="Message"
+              placeholder={t('Your message')}
               name="message"
               className={cn('modal-window__textarea', {
                 'error-border': bodyErrorMessage,

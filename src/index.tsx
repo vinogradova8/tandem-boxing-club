@@ -17,7 +17,7 @@ import { Login } from './components/Login';
 import { AdminPage } from './components/AdminPage';
 import { NotFoundPage } from './components/NotFoundPage';
 import { ItemsProvider } from './ItemsContext';
-// import { GoogleOAuthProvider } from '@react-oauth/google';
+// import { useTranslation } from 'react-i18next';
 
 // createRoot(document.getElementById('root') as HTMLDivElement).render(<App />);
 
@@ -38,7 +38,7 @@ createRoot(document.getElementById('root') as HTMLElement).render(
 
           <Route
             path="*"
-            element={<NotFoundPage message="Page not found" />}
+            element={<NotFoundPage message="Page not found!" />}
           ></Route>
         </Route>
       </Routes>

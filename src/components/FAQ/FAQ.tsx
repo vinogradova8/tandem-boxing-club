@@ -164,7 +164,7 @@ export const FAQ: React.FC = ({}) => {
     <>
       {!errorMessage && loader && <Loader />}
       {errorMessage ? (
-        <NotFoundPage message="Something went wrong" />
+        <NotFoundPage message={t('Something went wrong!')} />
       ) : (
         <main className="faq">
           <div className="faq__main">
@@ -179,22 +179,19 @@ export const FAQ: React.FC = ({}) => {
                     type="text"
                     value={query}
                     onChange={handleSetQuerySearchParameter}
-                    placeholder="Start writing your question"
+                    placeholder={t('Start writing your question')}
                   />
                 </label>
 
                 {appliedQuery && visibleFaqs && visibleFaqs.length === 0 && (
-                  <p className="faq__erroe-message">
-                    Oops, sorry, we didn`t find your question. Please contact us
-                    to get an answer.
-                  </p>
+                  <p className="faq__erroe-message">{t('Oops, sorry')}</p>
                 )}
               </div>
             </div>
           </div>
 
           <div className="faq__questions">
-            {errorMessage && <p>Smth went wrong</p>}
+            {errorMessage && <p>{t('Something went wrong!')}</p>}
             {/* {visibleFaqs.map(faq => (
               <QuestionBlock
                 key={faq.id}

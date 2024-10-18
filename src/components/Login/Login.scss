@@ -34,7 +34,7 @@
     @include on-desktop {
       flex-direction: row;
       justify-content: stretch;
-      max-width: 1400px;
+      max-width: 1200px;
       padding: 80px 40px;
     }
   }
@@ -55,12 +55,6 @@
       flex: 1 1 50%;
     }
   }
-
-  // &__socials {
-  //   display: flex;
-  //   flex-direction: column;
-  //   gap: 16px;
-  // }
 
   &__google {
     display: flex;
@@ -147,6 +141,7 @@
     &--sign-up {
       align-self: center;
       margin-bottom: 0;
+			text-align: center;
 
       &:hover {
         color: $main-text-color;

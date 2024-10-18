@@ -7,8 +7,6 @@ import axios from '../../api/axios';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { NotFoundPage } from '../NotFoundPage';
-// import { User } from '../../types/User';
-// import { getUser } from '../../api/fetchClient';
 
 export const Profile: React.FC = ({}) => {
   const [logoutErrorMessage, setLogoutErrorMessage] = useState(false);
@@ -21,40 +19,10 @@ export const Profile: React.FC = ({}) => {
     refreshErrorMessage,
     setRefreshErrorMessage,
   } = useContext(ItemsContext);
+
   const { t } = useTranslation();
 
-  // const { firstName, lastName } = user;
-
   const navigate = useNavigate();
-
-  // const refreshToken = useCallback(async () => {
-  //   try {
-  //     const response = await axios.post(
-  //       '/auth/refresh',
-  //       {},
-  //       {
-  //         headers: {
-  //           Authorization: `Bearer ${accessToken}`,
-  //           'Access-Control-Allow-Origin': 'http://localhost:3000',
-  //         },
-  //       },
-  //     );
-
-  //     setAccessToken(response.data.token);
-  //   } catch {
-  //     setRefreshErrorMessage(true);
-  //   }
-  // }, [accessToken, setAccessToken, setRefreshErrorMessage]);
-
-  // useEffect(() => {
-  //   const refreshTokenInterval = setInterval(() => {
-  //     refreshToken();
-  //   }, 180000);
-
-  //   return () => {
-  //     clearInterval(refreshTokenInterval);
-  //   };
-  // }, [refreshToken]);
 
   const handleLogOut = async () => {
     try {
@@ -74,23 +42,6 @@ export const Profile: React.FC = ({}) => {
       setLogoutErrorMessage(true);
     }
   };
-
-  // function getCookie(name: string): string | null {
-  //   const value = `; ${document.cookie}`;
-  //   const parts = value.split(`; ${name}=`);
-
-  //   if (parts.length === 2) {
-  //     return parts.pop()?.split(';').shift() || null;
-  //   }
-
-  //   return null;
-  // }
-
-  // useEffect(() => {
-  //   const access: string | null = getCookie('accessToken');
-
-  //   console.log('Access Token:', access);
-  // }, []);
 
   const getUser = async (acc: string) => {
     try {
@@ -136,16 +87,14 @@ export const Profile: React.FC = ({}) => {
   return (
     <>
       {refreshErrorMessage ? (
-        <NotFoundPage message="Something went wrong" />
+        <NotFoundPage message={t('Something went wrong!')} />
       ) : (
         <main className="profile">
-          <h2 className="profile__title">Hey, champ!</h2>
+          <h2 className="profile__title">{t('Hey, champ!')}</h2>
 
           <div className="profile__container">
             <p className="profile__text">
-              {`${user?.firstName} ${user?.lastName}, раді вітати тебе у нашій команді! 
-							Наразі особистий кабінет не має додаткових ф-цій але ми постійно розвиваємося і у
-              майбутньому вони з'являться!`}
+              {`${user?.firstName} ${user?.lastName},`} {t('Welcome')}
             </p>
             <button
               className="logout-button admin-button"

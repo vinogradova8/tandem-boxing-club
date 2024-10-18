@@ -6,16 +6,6 @@
   color: $main-text-color;
   background-color: $black-color;
 
-  // @include on-tablet {
-  //   display: flex;
-  //   justify-content: space-between;
-  //   align-items: center;
-  // }
-
-  @include on-desktop {
-    // padding-block: 24px;
-  }
-
   &__container {
     @include content-padding-inline;
 
@@ -28,13 +18,8 @@
     max-width: 1400px;
     margin: 0 auto;
 
-    // @media (min-width: 800px) {
-    //   gap: 150px;
-    // }
-
     @include on-desktop {
       padding-block: 24px;
-      // gap: 200px;
     }
   }
 
@@ -58,7 +43,7 @@
     width: 24px;
     height: 24px;
     padding: 0;
-		z-index: 11;
+    z-index: 11;
     &::before {
       position: absolute;
       content: '';
@@ -69,22 +54,9 @@
 
     &--is-active {
       &::before {
-        background: url('../../../public/images/icons/close.svg') no-repeat;
-        z-index: 1;
+        background: none;
       }
     }
-    // justify-content: center;
-    // align-items: center;
-    // padding-inline: 16px;
-    // border-left: 1px solid $elements-color;
-    // border-bottom: 1px solid $elements-color;
-    // font-size: 16px;
-    // background-color: $white-color;
-
-    // &--dark-theme {
-    //   color: $bg-color;
-    //   background-color: $dark-bg-color;
-    // }
 
     @include on-tablet {
       display: none;
@@ -132,13 +104,7 @@
 
   &__language-drop-down {
     position: relative;
-		cursor: pointer;
-
-		// @include on-desktop {
-    //   font-size: 20px;
-    // }
-
-		// @include hover(opacity, 0.5);
+    cursor: pointer;
   }
 
   &__burger {
@@ -152,7 +118,7 @@
     background-color: rgba(31, 31, 34, 0.7);
     opacity: 0;
     animation: burger 1s linear 0s 1 normal forwards;
-		z-index: 10;
+    z-index: 10;
 
     @keyframes burger {
       100% {
@@ -176,7 +142,7 @@
     width: 24px;
     height: 24px;
 
-		@include hover(opacity, 0.5);
+    @include hover(opacity, 0.5);
 
     &::before {
       position: absolute;
@@ -199,10 +165,10 @@
   height: 19px;
   overflow: hidden;
 
-	@include on-desktop {
-		font-size: 18px;
-		height: 24px;
-	}
+  @include on-desktop {
+    font-size: 18px;
+    height: 24px;
+  }
 
   &__slider {
     transition: transform 0.3s ease 0s;
@@ -226,22 +192,6 @@
 
   @include hover(color, $main-text-color);
 
-  // &::after {
-  //   display: block;
-  //   content: '';
-  //   position: absolute;
-  //   bottom: 0;
-  //   left: 0;
-  //   background-color: $main-text-color;
-  //   width: 0;
-  //   height: 1px;
-  //   transition: all $transition-duration;
-
-  //   @include on-desktop {
-  //     bottom: -1px;
-  //   }
-  // }
-
   &:hover {
     &::after {
       width: 100%;
@@ -264,7 +214,7 @@
       font-size: 20px;
     }
 
-		@include hover(opacity, 0.5);
+    @include hover(opacity, 0.5);
   }
 
   &__trigger {
@@ -303,14 +253,11 @@
     }
   }
 
-  &__list {
-  }
-
   &__item {
     cursor: pointer;
     transition: all 0.3s;
 
-		@include hover(opacity, 0.5);
+    @include hover(opacity, 0.5);
 
     &--disabled {
       opacity: 0.5;
@@ -329,145 +276,3 @@
     }
   }
 }
-
-// .extra {
-//   display: none;
-
-//   @include on-tablet {
-//     display: block;
-//   }
-
-//   &__container {
-//     display: flex;
-//     height: 48px;
-//     align-items: center;
-
-//     @include on-desktop {
-//       height: 64px;
-//     }
-//   }
-
-//   // &__selected {
-//   //   display: flex;
-//   //   justify-content: center;
-//   //   align-items: center;
-//   //   padding-inline: 16px;
-//   //   border-left: 1px solid $elements-color;
-//   //   font-size: 16px;
-//   //   height: 100%;
-
-//   //   @include on-desktop {
-//   //     padding-inline: 24px;
-//   //   }
-
-//   //   &:hover {
-//   //     &::before {
-//   //       color: $second-text-color;
-//   //     }
-//   //   }
-//   // }
-// }
-
-// .favorites {
-//   position: relative;
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   padding-inline: 16px;
-//   font-size: 16px;
-//   height: 100%;
-//   border-left: 1px solid $elements-color;
-//   border-bottom: 2px solid transparent;
-
-//   @include on-desktop {
-//     padding-inline: 24px;
-//   }
-
-//   &--active {
-//     border-bottom: 2px solid $main-text-color;
-//   }
-
-//   &--dark-theme-active {
-//     border-bottom: 2px solid $bg-color;
-//   }
-
-//   &__number-of-favorites {
-//     position: absolute;
-//     height: 14px;
-//     width: 14px;
-//     // background-color: $pink-color;
-//     color: $white-color;
-//     top: 30%;
-//     left: 50%;
-//     border: 1px solid $white-color;
-//     border-radius: 50%;
-//     display: flex;
-//     justify-content: center;
-//     align-items: center;
-//     font-size: 9px;
-//     font-weight: 600;
-//     transition: background-color $transition-duration;
-//   }
-
-//   &:hover > div {
-//     background-color: #f59bd1;
-//   }
-
-//   &:hover {
-//     &::before {
-//       color: $second-text-color;
-//     }
-//   }
-// }
-
-// .selected {
-//   position: relative;
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   padding-inline: 16px;
-//   border-left: 1px solid $elements-color;
-//   font-size: 16px;
-//   height: 100%;
-//   border-bottom: 2px solid transparent;
-
-//   @include on-desktop {
-//     padding-inline: 24px;
-//   }
-
-//   &--active {
-//     border-bottom: 2px solid $main-text-color;
-//   }
-
-//   &--dark-theme-active {
-//     border-bottom: 2px solid $bg-color;
-//   }
-
-//   &__number-of-selected {
-//     position: absolute;
-//     height: 14px;
-//     width: 14px;
-//     // background-color: $pink-color;
-//     color: $white-color;
-//     top: 30%;
-//     left: 50%;
-//     border: 1px solid $white-color;
-//     border-radius: 50%;
-//     display: flex;
-//     justify-content: center;
-//     align-items: center;
-//     font-size: 9px;
-//     font-weight: 600;
-//     transition: background-color $transition-duration;
-//   }
-
-//   &:hover > div {
-//     background-color: #f59bd1;
-//   }
-
-//   &:hover {
-//     &::before {
-//       color: $second-text-color;
-//     }
-//   }
-// }

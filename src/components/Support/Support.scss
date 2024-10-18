@@ -16,11 +16,6 @@
       background: url('../../../public/images/decor/support-background-image.png')
         center 22% / 180% auto no-repeat;
     }
-
-    @include on-desktop {
-      // background: url('../../../public/images/decor/support-background-image.png')
-      //   center 22% / 225% auto no-repeat;
-    }
   }
 
   &__small-title {
@@ -40,17 +35,17 @@
     }
   }
 
-	&__title {
-		padding-top: 102px;
+  &__title {
+    padding-top: 102px;
 
-		@include on-tablet {
-			padding-top: 86px;
-		}
+    @include on-tablet {
+      padding-top: 86px;
+    }
 
-		@include on-desktop {
-			padding-top: 80px;
-		}
-	}
+    @include on-desktop {
+      padding-top: 80px;
+    }
+  }
 }
 
 .decor {

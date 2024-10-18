@@ -3,8 +3,6 @@
 import React, { useContext, useState } from 'react';
 import './Registration.scss';
 import axios from '../../api/axios';
-// import axios from 'axios';
-// import api from '../../api/axios';
 import { ItemsContext } from '../../ItemsContext';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
@@ -52,7 +50,7 @@ export const Registration: React.FC = ({}) => {
     setErrorMessage('');
 
     if (!firstName) {
-      setFirstNameErrorMessage('Please enter your first name');
+      setFirstNameErrorMessage(t('Please enter your first name'));
     }
 
     if (
@@ -61,9 +59,7 @@ export const Registration: React.FC = ({}) => {
         !firstName.match(NAME_REGEX) ||
         firstName.trim().length > 22)
     ) {
-      setFirstNameErrorMessage(
-        'First name should have from 2 to 22 chars and contain only letters',
-      );
+      setFirstNameErrorMessage(t('First length'));
       setFirstNameSuccessMessage('');
     }
 
@@ -73,11 +69,11 @@ export const Registration: React.FC = ({}) => {
       firstName.trim().length <= 22
     ) {
       setFirstNameErrorMessage('');
-      setFirstNameSuccessMessage('First name is valid');
+      setFirstNameSuccessMessage(t('First name is valid'));
     }
 
     if (!lastName) {
-      setLastNameErrorMessage('Please enter your last name');
+      setLastNameErrorMessage(t('Please enter your last name'));
     }
 
     if (
@@ -86,9 +82,7 @@ export const Registration: React.FC = ({}) => {
         !lastName.match(NAME_REGEX) ||
         lastName.trim().length > 22)
     ) {
-      setLastNameErrorMessage(
-        'Last name should have from 2 to 22 chars and contain only letters',
-      );
+      setLastNameErrorMessage(t('Last length'));
       setLastNameSuccessMessage('');
     }
 
@@ -98,43 +92,41 @@ export const Registration: React.FC = ({}) => {
       lastName.trim().length <= 22
     ) {
       setLastNameErrorMessage('');
-      setLastNameSuccessMessage('Last name is valid');
+      setLastNameSuccessMessage(t('Last name is valid'));
     }
 
     if (!email) {
-      setEmailErrorMessage('Please enter your email');
+      setEmailErrorMessage(t('Please enter your email'));
       setEmailSuccessMessage('');
     }
 
     if (email && !email.trim().match(EMAIL_REGEX)) {
-      setEmailErrorMessage('Invalid email address');
+      setEmailErrorMessage(t('Invalid email'));
       setEmailSuccessMessage('');
     }
 
     if (email.trim().match(EMAIL_REGEX)) {
       setEmailErrorMessage('');
-      setEmailSuccessMessage('Email is valid');
+      setEmailSuccessMessage(t('Email is valid'));
     }
 
     if (!password) {
-      setPasswordErrorMessage('Please enter your password');
+      setPasswordErrorMessage(t('Please enter your password'));
       setPasswordSuccessMessage('');
     }
 
     if (password && !password.match(PASSWORD_REGEX)) {
-      setPasswordErrorMessage(
-        'Password should have at least 8 chars, include at least 1 lowercase letter, 1 capital letter, 1 number, 1 special character',
-      );
+      setPasswordErrorMessage(t('Password validation'));
       setPasswordSuccessMessage('');
     }
 
     if (password.match(PASSWORD_REGEX)) {
       setPasswordErrorMessage('');
-      setPasswordSuccessMessage('Password is valid');
+      setPasswordSuccessMessage(t('Password is valid'));
     }
 
     if (!repeatPassword) {
-      setRepeatPasswordErrorMessage('Please confirm your password');
+      setRepeatPasswordErrorMessage(t('Please confirm your password'));
       setRepeatPasswordSuccessMessage('');
     }
 
@@ -143,13 +135,13 @@ export const Registration: React.FC = ({}) => {
       !repeatPassword.match(PASSWORD_REGEX) &&
       repeatPassword !== password
     ) {
-      setRepeatPasswordErrorMessage('Passwords don`t match');
+      setRepeatPasswordErrorMessage(t('Passwords don`t match'));
       setRepeatPasswordSuccessMessage('');
     }
 
     if (repeatPassword.match(PASSWORD_REGEX) && repeatPassword === password) {
       setRepeatPasswordErrorMessage('');
-      setRepeatPasswordSuccessMessage('Password confirmed');
+      setRepeatPasswordSuccessMessage(t('Password confirmed'));
     }
 
     if (
@@ -278,7 +270,7 @@ export const Registration: React.FC = ({}) => {
               <div>
                 <input
                   className="registration__input"
-                  placeholder="First name"
+                  placeholder={t('First name')}
                   type="text"
                   value={firstName}
                   onChange={e => setFirstName(e.target.value)}
@@ -295,7 +287,7 @@ export const Registration: React.FC = ({}) => {
               <div>
                 <input
                   className="registration__input"
-                  placeholder="Last name"
+                  placeholder={t('Last name')}
                   type="text"
                   value={lastName}
                   onChange={e => setLastName(e.target.value)}
@@ -330,7 +322,7 @@ export const Registration: React.FC = ({}) => {
                 <label className="registration__label">
                   <input
                     className="registration__input registration__input--password"
-                    placeholder="Password"
+                    placeholder={t('Password')}
                     type="password"
                     onChange={e => setPassword(e.target.value)}
                     value={password}
@@ -361,7 +353,7 @@ export const Registration: React.FC = ({}) => {
                 <label className="registration__label">
                   <input
                     className="registration__input registration__input--password-repeat"
-                    placeholder="Confirm password"
+                    placeholder={t('Password confirmation')}
                     type="password"
                     onChange={e => setRepeatPassword(e.target.value)}
                     value={repeatPassword}
@@ -395,7 +387,6 @@ export const Registration: React.FC = ({}) => {
                 className={cn('registration__contact-button contact-button', {
                   'contact-button--disabled': submitButtonDisabled,
                 })}
-                disabled={submitButtonDisabled}
               >
                 {t('Continue')}
               </button>
@@ -407,66 +398,6 @@ export const Registration: React.FC = ({}) => {
           </form>
         </div>
       </main>
-
-      {/* <main className="registration">
-        <div className="registration__container">
-          <h2>REGISTRATION</h2>
-          <form onSubmit={handleSubmit} action="#">
-            {errorMessage && <p>Registration failed</p>}
-            <div>
-              <label htmlFor="first-name">Ім`я</label>
-              <input
-                value={firstName}
-                onChange={e => setFirstName(e.target.value)}
-                type="text"
-                id="first-name"
-              />
-            </div>
-
-            <div>
-              <label htmlFor="last-name">Прізвище</label>
-              <input
-                value={lastName}
-                onChange={e => setLastName(e.target.value)}
-                type="text"
-                id="last-name"
-              />
-            </div>
-
-            <div>
-              <label htmlFor="email">Email</label>
-              <input
-                value={email}
-                onChange={e => setEmail(e.target.value)}
-                type="email"
-                id="email"
-              />
-            </div>
-
-            <div>
-              <label htmlFor="password">Пароль</label>
-              <input
-                value={password}
-                onChange={e => setPassword(e.target.value)}
-                type="password"
-                id="password"
-              />
-            </div>
-
-            <div>
-              <label htmlFor="password-control">Підтвердження паролю</label>
-              <input
-                value={repeatPassword}
-                onChange={e => setRepeatPassword(e.target.value)}
-                type="password"
-                id="password-control"
-              />
-            </div>
-
-            <button className="contact-button">Зареєструватися</button>
-          </form>
-        </div>
-      </main> */}
     </>
   );
 };

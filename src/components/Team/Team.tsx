@@ -71,7 +71,7 @@ export const Team: React.FC = ({}) => {
 
           <div className="team__title-container">
             <h2 className="team__title page-title big-title">
-              {t('Our Team')}
+              {t('Your trainers')}
             </h2>
           </div>
 
@@ -80,7 +80,7 @@ export const Team: React.FC = ({}) => {
               style={{ height: itemRef.current?.scrollHeight }}
               className="team__trainers-container"
             >
-              {errorMessage && <p>Failer to load info about our team</p>}
+              {errorMessage && <p>Failed to load info about our team</p>}
               {trainersFromServer.map(trainer => (
                 <div
                   key={trainer.id}

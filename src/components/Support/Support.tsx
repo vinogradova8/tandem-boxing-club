@@ -10,7 +10,7 @@ export const Support: React.FC = ({}) => {
     <main className="support">
       <div className="support__main">
         <div className="support__main-container">
-          <h2 className="support__title big-title">{t('Support Us')}</h2>
+          <h2 className="support__title big-title">{t('Support us')}</h2>
         </div>
       </div>
 
@@ -65,15 +65,6 @@ export const Support: React.FC = ({}) => {
       </div>
 
       <ContactButton />
-
-      {/* <div className="support__contact-us-bottom contact-us-bottom">
-        <button
-          className="support__contact-button 
-					contact-button"
-        >
-          {t('Contact us')}
-        </button>
-      </div> */}
     </main>
   );
 };

@@ -5,7 +5,6 @@ import { ItemsContext } from '../../ItemsContext';
 import { NavLink } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import cn from 'classnames';
-// import i18next from 'i18next';
 
 const portal = document.getElementById('portal') as HTMLElement;
 
@@ -48,9 +47,7 @@ export const BurgerWindow: React.FC = ({}) => {
           onClick={handleCloseBurgerWindow}
           className="burger__close"
           type="button"
-        >
-          Close
-        </button>
+        ></button>
 
         <nav className="burger__navigation">
           <ul className="burger__navigation-list">

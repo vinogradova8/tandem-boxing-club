@@ -67,7 +67,7 @@ export const ModalWindow: React.FC = ({}) => {
     event.preventDefault();
 
     if (!name) {
-      setNameErrorMessage('Please enter your name');
+      setNameErrorMessage(t('Please enter your name'));
     }
 
     if (
@@ -76,9 +76,7 @@ export const ModalWindow: React.FC = ({}) => {
         !name.match(NAME_REGEX) ||
         name.trim().length > 40)
     ) {
-      setNameErrorMessage(
-        'Name should have from 2 to 40 chars and contain only letters',
-      );
+      setNameErrorMessage(t('Name length'));
       setNameSuccessMessage('');
     }
 
@@ -88,37 +86,37 @@ export const ModalWindow: React.FC = ({}) => {
       name.trim().length <= 40
     ) {
       setNameErrorMessage('');
-      setNameSuccessMessage('Name is valid');
+      setNameSuccessMessage(t('Name is valid'));
     }
 
     if (!email) {
-      setEmailErrorMessage('Please enter your email');
+      setEmailErrorMessage(t('Please enter your email'));
       setEmailSuccessMessage('');
     }
 
     if (email && !email.trim().match(EMAIL_REGEX)) {
-      setEmailErrorMessage('Invalid email address');
+      setEmailErrorMessage(t('Invalid email'));
       setEmailSuccessMessage('');
     }
 
     if (email.trim().match(EMAIL_REGEX)) {
       setEmailErrorMessage('');
-      setEmailSuccessMessage('Email is valid');
+      setEmailSuccessMessage(t('Email is valid'));
     }
 
     if (!body) {
-      setBodyErrorMessage('Please enter your message');
+      setBodyErrorMessage(t('Please enter your message'));
       setBodySuccessMessage('');
     }
 
     if (body && body.trim().length < 10) {
-      setBodyErrorMessage('Message should have at least 10 chars');
+      setBodyErrorMessage(t('Message length'));
       setBodySuccessMessage('');
     }
 
     if (body.trim().length >= 10) {
       setBodyErrorMessage('');
-      setBodySuccessMessage('Body is valid');
+      setBodySuccessMessage(t('Message is valid'));
     }
 
     if (
@@ -153,82 +151,6 @@ export const ModalWindow: React.FC = ({}) => {
     }
   };
 
-  // const submitForm = async () => {
-  //   // event.preventDefault();
-
-  //   if (!name) {
-  //     setNameErrorMessage('Please enter your name');
-  //   }
-
-  //   if (
-  //     name &&
-  //     (name.length < 2 || !name.match(NAME_REGEX) || name.length > 22)
-  //   ) {
-  //     setNameErrorMessage(
-  //       'Name should have from 2 to 22 chars and contain only letters',
-  //     );
-  //   }
-
-  //   if (name.match(NAME_REGEX) && name.length >= 2 && name.length <= 22) {
-  //     setNameErrorMessage('');
-  //   }
-
-  //   if (!email) {
-  //     setEmailErrorMessage('Please enter your email');
-  //   }
-
-  //   if (email && !email.match(EMAIL_REGEX)) {
-  //     setEmailErrorMessage('Invalid email address');
-  //   }
-
-  //   if (email.match(EMAIL_REGEX)) {
-  //     setEmailErrorMessage('');
-  //   }
-
-  //   if (!body) {
-  //     setBodyErrorMessage('Please enter your message');
-  //   }
-
-  //   if (body && body.length < 10) {
-  //     setBodyErrorMessage('Message should have at least 10 chars');
-  //   }
-
-  //   if (body.length >= 10) {
-  //     setBodyErrorMessage('');
-  //   }
-
-  //   if (
-  //     nameErrorMessage ||
-  //     emailErrorMessage ||
-  //     bodyErrorMessage ||
-  //     !name ||
-  //     !email ||
-  //     !body
-  //   ) {
-  //     return false;
-  //   }
-
-  //   try {
-  //     await axios.post(
-  //       '/messages',
-  //       JSON.stringify({
-  //         name,
-  //         email,
-  //         message: body,
-  //       }),
-  //       {
-  //         headers: { 'Content-Type': 'application/json' },
-  //       },
-  //     );
-
-  //     setIsModalWindowOpen(false);
-  //   } catch {
-  //     setErrorMessage(true);
-  //   }
-
-  //   return true;
-  // };
-
   return createPortal(
     <div className="modal-window">
       <div className="modal-window__container">
@@ -239,7 +161,7 @@ export const ModalWindow: React.FC = ({}) => {
         >
           Close
         </button>
-        {errorMessage && <p>Send message failed, please try again later</p>}
+        {errorMessage && <p>{t('Send message failed')}</p>}
 
         <form onSubmit={handleSubmit} className="modal-window__form">
           <p className="modal-window__title">{t('Contact us')}</p>
@@ -312,7 +234,6 @@ export const ModalWindow: React.FC = ({}) => {
             className={cn('modal-window__contact-button contact-button', {
               'contact-button--disabled': !name || !email || !body,
             })}
-            // disabled={!name || !email || !body}
           >
             {t('Send')}
           </button>

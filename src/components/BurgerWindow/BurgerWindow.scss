@@ -8,8 +8,8 @@
   top: 0;
   background-color: rgba(31, 31, 34, 0.8);
   opacity: 0;
-	animation: burger 1s linear 0s 1 normal forwards;
-	z-index: 100;
+  animation: burger 1s linear 0s 1 normal forwards;
+  z-index: 100;
 
   @keyframes burger {
     100% {
@@ -18,7 +18,6 @@
   }
 
   &__container {
-    // height: 100%;
     @include content-padding-inline;
 
     display: flex;
@@ -31,6 +30,7 @@
 
   &__close {
     position: relative;
+		display: flex;
     align-self: end;
     align-items: center;
     justify-content: center;
@@ -43,6 +43,7 @@
       background: url('../../../public/images/icons/close.svg') no-repeat;
       width: 24px;
       height: 24px;
+			z-index: 10;
     }
   }
 

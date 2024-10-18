@@ -275,9 +275,11 @@ export const AdminPage: React.FC = ({}) => {
     <>
       {!questionsErrorMessage && loader && <Loader />}
       {refreshErrorMessage && (
-        <NotFoundPage message="AccessToken is invalid!" />
+        <NotFoundPage message={t('AccessToken is invalid!')} />
       )}
-      {questionsErrorMessage && <NotFoundPage message="Something went wrong" />}
+      {questionsErrorMessage && (
+        <NotFoundPage message={t('Something went wrong!')} />
+      )}
 
       {!refreshErrorMessage && !questionsErrorMessage && (
         <main className="admin-page">
@@ -285,7 +287,9 @@ export const AdminPage: React.FC = ({}) => {
             <h2 className="admin-page__title big-title">{t('Admin')}</h2>
             <div className="admin-page__box">
               <div className="admin-page__info admin-page-info">
-                <h3 className="admin-page-info__title small-title">Cabinet</h3>
+                <h3 className="admin-page-info__title small-title">
+                  {t('Cabinet')}
+                </h3>
 
                 <div>
                   <button
@@ -376,7 +380,7 @@ export const AdminPage: React.FC = ({}) => {
                   {!hideQuestions && questionToEdit && (
                     <form className="admin-faqs__form admin-faqs-form">
                       <h3 className="admin-faqs-form__title">
-                        Edit a question
+                        {t('Edit a question')}
                       </h3>
 
                       <div className="admin-faqs-form__body">
@@ -386,7 +390,7 @@ export const AdminPage: React.FC = ({}) => {
                               className="admin-faqs-form__label"
                               htmlFor="edit-question"
                             >
-                              Question
+                              {t('Question')}
                             </label>
                             <TextareaAutosize
                               id="edit-question"
@@ -402,7 +406,7 @@ export const AdminPage: React.FC = ({}) => {
                               htmlFor="edit-short-answer"
                               className="admin-faqs-form__label"
                             >
-                              Short answer
+                              {t('Short answer')}
                             </label>
                             <textarea
                               id="edit-short-answer"
@@ -422,7 +426,7 @@ export const AdminPage: React.FC = ({}) => {
                               htmlFor="edit-full-answer"
                               className="admin-faqs-form__label"
                             >
-                              Full answer
+                              {t('Full answer')}
                             </label>
                             <textarea
                               id="edit-full-answer"
@@ -444,7 +448,7 @@ export const AdminPage: React.FC = ({}) => {
                             onClick={handleCancelEditQuestion}
                             className="admin-faqs-form__button admin-button"
                           >
-                            Cancel
+                            {t('Cancel')}
                           </button>
                           <button
                             onClick={() => {
@@ -455,7 +459,7 @@ export const AdminPage: React.FC = ({}) => {
                             type="button"
                             className="admin-faqs-form__button admin-button"
                           >
-                            Save
+                            {t('Save')}
                           </button>
                         </div>
                       </div>
@@ -469,7 +473,7 @@ export const AdminPage: React.FC = ({}) => {
                       className="admin-faqs__form admin-faqs-form"
                     >
                       <h3 className="admin-faqs-form__title">
-                        Create a new question
+                        {t('Create a new question')}
                       </h3>
 
                       <div className="admin-faqs-form__body">
@@ -479,7 +483,7 @@ export const AdminPage: React.FC = ({}) => {
                               className="admin-faqs-form__label"
                               htmlFor="edit-question"
                             >
-                              Question
+                              {t('Question')}
                             </label>
                             <TextareaAutosize
                               id="edit-question"
@@ -495,7 +499,7 @@ export const AdminPage: React.FC = ({}) => {
                               htmlFor="edit-short-answer"
                               className="admin-faqs-form__label"
                             >
-                              Short answer
+                              {t('Short answer')}
                             </label>
                             <textarea
                               id="edit-short-answer"
@@ -513,7 +517,7 @@ export const AdminPage: React.FC = ({}) => {
                               htmlFor="edit-full-answer"
                               className="admin-faqs-form__label"
                             >
-                              Full answer
+                              {t('Full answer')}
                             </label>
                             <textarea
                               id="edit-full-answer"
@@ -533,7 +537,7 @@ export const AdminPage: React.FC = ({}) => {
                             onClick={handleCancelCreateQuestion}
                             className="admin-faqs-form__button admin-button"
                           >
-                            Cancel
+                            {t('Cancel')}
                           </button>
                           <button
                             onClick={handleCreateQuestion}
@@ -551,7 +555,7 @@ export const AdminPage: React.FC = ({}) => {
                               !newQuestion || !newShortAnswer || !newFullAnswer
                             }
                           >
-                            Create
+                            {t('Create')}
                           </button>
                         </div>
                       </div>

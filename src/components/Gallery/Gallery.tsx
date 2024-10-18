@@ -10,6 +10,7 @@ import { SlideVideo } from '../../types/SlideVideo';
 import { SlideImage } from '../../types/SlideImage';
 import { gallery } from '../../api/axios';
 import { ContactButton } from '../ContactButton';
+import { NotFoundPage } from '../NotFoundPage';
 
 export const Gallery: React.FC = ({}) => {
   const [loader, setLoader] = useState(false);
@@ -46,35 +47,14 @@ export const Gallery: React.FC = ({}) => {
 
   useEffect(() => {
     setLoader(true);
-
-    // setTimeout(() => {
-    //   getVideo();
-    //   getImages();
-    // }, 1000);
-
     getVideo();
     getImages();
-
-    // getSlidesImage()
-    //   .then(setSlidesImage)
-    //   .catch(error => {
-    //     setErrorMessage(true);
-    //     throw error;
-    //   })
-    //   .finally(() => setLoader(false));
-
-    // getSlidesVideo()
-    //   .then(setSlidesVideo)
-    //   .catch(error => {
-    //     setErrorMessage(true);
-    //     throw error;
-    //   })
-    //   .finally(() => setLoader(false));
   }, []);
 
   return (
     <>
       {loader && !errorMessage && <Loader></Loader>}
+      {errorMessage && <NotFoundPage message={t('Something went wrong')} />}
 
       {!loader && !errorMessage && (
         <main className="gallery">
@@ -90,25 +70,8 @@ export const Gallery: React.FC = ({}) => {
           </div>
 
           <ContactButton />
-
-          {/* <div className="gallery__container">
-            <button className="gallery__contact-button contact-button">
-              {t('Contact us')}
-            </button>
-          </div> */}
-
-          {/* <div className="support__contact-us-bottom contact-us-bottom">
-            <button
-              className="support__contact-button 
-					contact-button"
-            >
-              {t('Contact us')}
-            </button>
-          </div> */}
         </main>
       )}
-
-      {errorMessage && <p>False</p>}
     </>
   );
 };

@@ -23,7 +23,47 @@
 
   &__link {
     @include hover(color, $gray-20-color);
+
+    &--location {
+			display: flex;
+			gap: 7px;
+      &::before {
+				display: inline-block;
+        content: '';
+        background: url('../../../public/images/icons/location.svg') no-repeat;
+        width: 16px;
+        height: 16px;
+      }
+    }
   }
+
+	&__decor {
+		background-color: $main-text-color;
+		height: 1px;
+	}
+
+	&__creators {
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+		max-width: 1400px;
+		margin: 0 auto;
+		padding-block: 16px;
+
+		@include content-padding-inline;
+	}
+
+	&__creator-link {
+		display: flex;
+		gap: 20px;
+		text-transform: uppercase;
+
+		@include hover(color, $gray-20-color);
+	}
+}
+
+.position {
+	min-width: 80px;
 }
 
 .button-top {

@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-param-reassign */
 import React, { useContext, useEffect, useMemo, useRef, useState } from 'react';
@@ -114,7 +115,7 @@ export const Team: React.FC = ({}) => {
                   setIsCertificateWindowOpen(true);
                 }
               }}
-              src="../images/certificates/certificate-small.png"
+              src="https://vinogradova8.github.io/boxing/images/certificates/certificate-big.png"
               alt="Certificate"
             />
             <div className="team__certificat-container"></div>

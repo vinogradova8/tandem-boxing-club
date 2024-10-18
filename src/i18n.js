@@ -1,7 +1,6 @@
 /* eslint-disable max-len */
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
-// import Languagedetector from 'i18next-browser-languagedetector';
 import { LOCALS } from './i18n/constants';
 
 // the translations
@@ -330,16 +329,16 @@ const resources = {
         'In der Anfangsphase der Entwicklung des Boxclubs Wir benötigen folgende Unterstützung:<br>Zahlung der Kosten für die Anmietung von Räumlichkeiten, die für die Unterbringung eines Boxclubs geeignet sind die folgenden Eigenschaften:<br>- Hauptraum zum Aufstellen des Rings, der Taschen, des Aufwärmbereichs und des Funktionsbereichs Schulung<br>- 250-350 m²;<br>- Zwei Umkleidekabinen;<br>- Zwei Duschräume;<br>- Toilette;<br>- Coachingraum für Trainer – 15-20 м²;<br>- Lagerraum für Ausrüstung – 10 м²;<br>- Praktische Lage an Orten, an denen sich viele Menschen aufhalten.- Teure Ausrüstung (ca. 6500 Euro). Ring (ca. 12.000 Euro).Alle anderen Ausgaben im Zusammenhang mit der Bezahlung von Trainern, der Reinigung und dem Kauf anderer Ausrüstung, Werbung, Pflege sozialer Seiten usw. zahlen wir.',
 
       Questions: 'Sie haben Fragen?',
-      'Your trainers': 'Ihre Ausbilder',
+      'Your trainers': 'Ihre Trainer',
       'Our Training': 'Unsere Ausbildung',
-      'Support us': 'Unterstützen Sie uns',
+      'Support us': 'Unterstützt uns',
       'Your area': 'Ihr Bereich',
       Admin: 'Admin',
       'Hey, champ!': 'Hey, Champ!',
       'or you can contact us via': 'oder Sie können uns über',
       Send: 'Abschicken',
       'Log out': 'Abmelden',
-      'Please enter your name': 'Bitte geben Sie Ihren Namen ein',
+      'Please enter your name': 'Bitte geben Sie Ihren Namen an',
       'Please enter your email': 'Bitte geben Sie Ihre E-Mail ein',
       'Please enter your message': 'Bitte geben Sie Ihre Nachricht ein',
       'Continue with': 'Weiter mit',
@@ -365,19 +364,19 @@ const resources = {
       'Please enter your name': 'Bitte geben Sie Ihren Namen ein',
       'Please enter your first name': 'Bitte geben Sie Ihren Vornamen ein',
       'Please enter your last name': 'Bitte geben Sie Ihren Nachnamen ein',
-      'Please enter your password': 'Bitte geben Sie Ihr Passwort ein',
+      'Please enter your password': 'Bitte geben Sie Ihr Passwort an',
       'Please confirm your password': 'Bitte bestätigen Sie Ihr Passwort',
-      'Name is valid': 'Name ist gültig',
-      'First name is valid': 'Vorname ist gültig',
-      'Last name is valid': 'Nachname ist gültig',
-      'Email is valid': 'E-Mail ist gültig',
-      'Message is valid': 'Nachricht ist gültig',
-      'Password is valid': 'Passwort ist gültig',
+      'Name is valid': 'Der Name ist gültig',
+      'First name is valid': 'Der Vorname ist gültig',
+      'Last name is valid': 'Der Nachname ist gültig',
+      'Email is valid': 'Die E-Mail ist gültig',
+      'Message is valid': 'Die Nachricht ist gültig',
+      'Password is valid': 'Das Passwort ist gültig',
       'Message length': 'Die Nachricht sollte mindestens 10 Zeichen lang sein',
       'Passwords don`t match': 'Passwörter stimmen nicht überein',
       'Password validation':
         'Das Passwort sollte mindestens 8 Zeichen lang sein und mindestens 1 Kleinbuchstaben, 1 Großbuchstaben, 1 Zahl und 1 Sonderzeichen enthalten',
-      'Password confirmed': 'Passwort bestätigt',
+      'Password confirmed': 'Das Passwort wurde bestätigt',
 
       'Send message failed':
         'Nachricht senden fehlgeschlagen, bitte versuchen Sie es später noch einmal',
@@ -395,7 +394,7 @@ const resources = {
       'Short answer': 'Kurze Antwort',
       'Full answer': 'Vollständige Antwort',
       Cancel: 'Abbrechen',
-      Save: 'Speichern Sie',
+      Save: 'Speichern',
       'Create a new question': 'Eine neue Frage erstellen',
       Create: 'Erstellen',
       'Edit a question': 'Eine Frage bearbeiten',
@@ -416,17 +415,14 @@ const resources = {
   },
 };
 
-i18n
-  .use(initReactI18next) // passes i18n down to react-i18next
-  // .use(Languagedetector)
-  .init({
-    resources,
-    // fallbackLng: LOCALS.UKR,
-    lng: LOCALS.ENG,
+i18n.use(initReactI18next).init({
+  resources,
 
-    interpolation: {
-      escapeValue: false, // react already safes from xss
-    },
-  });
+  lng: LOCALS.ENG,
+
+  interpolation: {
+    escapeValue: false,
+  },
+});
 
 export default i18n;

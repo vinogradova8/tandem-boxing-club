@@ -1,7 +1,6 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import './HomePage.scss';
 import '../../i18n';
-// import i18next from 'i18next';
 import { useTranslation } from 'react-i18next';
 import { ModalWindow } from '../ModalWindow';
 import { ItemsContext } from '../../ItemsContext';
@@ -10,16 +9,7 @@ import { ContactButton } from '../ContactButton';
 export const HomePage: React.FC = ({}) => {
   const { t } = useTranslation();
 
-  // const [loader, setLoader] = useState(false);
-
   const { isModalWindowOpen, setIsModalWindowOpen } = useContext(ItemsContext);
-
-  useEffect(() => {
-    // setLoader(true);
-    // setTimeout(() => {
-    //   setLoader(false);
-    // }, 1000);
-  }, []);
 
   // const app = document.querySelector('.app');
 
@@ -124,18 +114,6 @@ export const HomePage: React.FC = ({}) => {
         </div>
 
         <ContactButton />
-
-        {/* <div className="homepage__contact-us-bottom contact-us-bottom">
-          <button
-            onClick={() => {
-              setIsModalWindowOpen(true);
-            }}
-            className="homepage__contact-button 
-					contact-button homepage__contact-button--second"
-          >
-            {t('Contact us')}
-          </button>
-        </div> */}
       </main>
     </>
   );

@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import React, { useContext, useEffect } from 'react';
 import './CertificateWindow.scss';
 import { createPortal } from 'react-dom';
@@ -40,7 +41,7 @@ export const CertificateWindow: React.FC = ({}) => {
 
           <div className="certificate-window__image">
             <img
-              src="../images/certificates/certificate-big.png"
+              src="https://vinogradova8.github.io/boxing/images/certificates/certificate-big.png"
               alt="Certificate"
             />
           </div>

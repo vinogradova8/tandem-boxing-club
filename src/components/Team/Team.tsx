@@ -12,6 +12,7 @@ import i18next from 'i18next';
 import { ItemsContext } from '../../ItemsContext';
 import { CertificateWindow } from '../CertificateWindow';
 import { ContactButton } from '../ContactButton';
+import { NotFoundPage } from '../NotFoundPage';
 
 export const Team: React.FC = ({}) => {
   const [loader, setLoader] = useState(false);
@@ -64,9 +65,9 @@ export const Team: React.FC = ({}) => {
 
   return (
     <>
-      {loader ? (
-        <Loader></Loader>
-      ) : (
+      {loader && !errorMessage && <Loader></Loader>}
+      {errorMessage && <NotFoundPage message={t('Something went wrong!')} />}
+      {!loader && !errorMessage && (
         <main className="team">
           {isCertificateWindowOpen && <CertificateWindow />}
 
@@ -81,13 +82,8 @@ export const Team: React.FC = ({}) => {
               style={{ height: itemRef.current?.scrollHeight }}
               className="team__trainers-container"
             >
-              {errorMessage && <p>Failed to load info about our team</p>}
               {trainersFromServer.map(trainer => (
-                <div
-                  key={trainer.id}
-                  id={`my${trainer.id}`}
-                  className="trainer"
-                >
+                <div key={trainer.id} className="trainer">
                   <div className="trainer__container">
                     <div className="trainer__photo">
                       <img src={trainer.media} alt="Trainer" />

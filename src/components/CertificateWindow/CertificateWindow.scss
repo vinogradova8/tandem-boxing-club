@@ -32,20 +32,11 @@
     transform: translate(-50%);
     display: flex;
     flex-direction: column;
-    // gap: 40px;
-    // width: 50%;
     max-width: 1200px;
-    // min-width: 279px;
-    // max-width: 1200px;
-    // margin: 0 auto;
-    // overflow: auto;
-    // animation: modal-window 1s linear 0s 1 normal forwards;
 
     & img {
       display: block;
       margin: 0 auto;
-      // opacity: 0;
-      // animation: certificate 0.5s linear 1s 1 normal forwards;
 
       @include on-tablet {
         padding: 10px 30px;
@@ -63,10 +54,6 @@
     }
 
     @keyframes certificate-window {
-      // 0% {
-      //   max-height: 0;
-      // }
-
       100% {
         opacity: 1;
       }
@@ -81,6 +68,8 @@
     justify-content: center;
     width: 24px;
     height: 24px;
+		
+		@include hover(opacity, 0.5);
 
     &::before {
       position: absolute;

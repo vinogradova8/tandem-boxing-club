@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import './Accordion.scss';
 import { Question } from '../../types/Questions';
-// import Marquee from 'react-fast-marquee';
-// import cn from 'classnames';
 import { AccordionItem } from '../AccordionItem/AccordionItem';
 
 type Props = {

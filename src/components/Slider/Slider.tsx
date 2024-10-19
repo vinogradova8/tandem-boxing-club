@@ -6,8 +6,6 @@ import 'swiper/css';
 import { SlideVideo } from '../../types/SlideVideo';
 import { SlideImage } from '../../types/SlideImage';
 import { VideoElement } from '../VideoElement';
-// import { useClickOutside } from '../../hooks/useClickOutside.js';
-// import 'swiper/swiper-bundle.css';
 
 type Props = {
   slidesVideo: SlideVideo[];
@@ -15,25 +13,12 @@ type Props = {
 };
 
 export const Slider: React.FC<Props> = ({ slidesVideo, slidesImage }) => {
-  // const video = document.querySelector('.video');
-
-  // const videoRef = useRef<HTMLVideoElement>(null);
-
-  // useClickOutside(videoRef, () => {
-  //   if (videoRef.current) {
-  //     videoRef.current.pause();
-  //   }
-  // });
-  // const videoRef = useRef(null);
-  // const [isPlaying, setIsPlaying] = useState(false);
-
   return (
     <Swiper
       modules={[Scrollbar, A11y, Pagination]}
       effect={'coverflow'}
       pagination={{ clickable: true }}
       scrollbar={{ draggable: true }}
-      // spaceBetween={55}
       touchRatio={3}
       grabCursor={true}
       slideToClickedSlide={true}

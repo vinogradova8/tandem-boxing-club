@@ -47,9 +47,7 @@ export const ModalWindow: React.FC = ({}) => {
   }, [bodyTag?.classList, isModalWindowOpen]);
 
   const EMAIL_REGEX = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
-  const NAME_REGEX = /^[a-zA-Zа-яА-Яії\s]+[a-zA-Zа-яА-Яії\s]{2,40}$/g;
-
-  // const app = document.querySelector('.app');
+  const NAME_REGEX = /^[a-zA-Zа-яА-Яії\s]+[a-zA-Zа-яА-Яії\s]{1,40}$/g;
 
   const { t } = useTranslation();
 
@@ -123,7 +121,7 @@ export const ModalWindow: React.FC = ({}) => {
       !name ||
       !email ||
       !body ||
-      name.trim().length > 22 ||
+      name.trim().length > 40 ||
       name.trim().length < 2 ||
       !name.trim().match(NAME_REGEX) ||
       !email.trim().match(EMAIL_REGEX) ||
@@ -161,7 +159,6 @@ export const ModalWindow: React.FC = ({}) => {
         >
           Close
         </button>
-        {errorMessage && <p>{t('Send message failed')}</p>}
 
         <form onSubmit={handleSubmit} className="modal-window__form">
           <p className="modal-window__title">{t('Contact us')}</p>
@@ -237,6 +234,11 @@ export const ModalWindow: React.FC = ({}) => {
           >
             {t('Send')}
           </button>
+          {errorMessage && (
+            <p className="modal-window__send-error error">
+              {t('Send message failed')}
+            </p>
+          )}
         </form>
 
         <div className="modal-window__footer">

@@ -11,8 +11,6 @@ export const HomePage: React.FC = ({}) => {
 
   const { isModalWindowOpen, setIsModalWindowOpen } = useContext(ItemsContext);
 
-  // const app = document.querySelector('.app');
-
   return (
     <>
       {isModalWindowOpen && <ModalWindow />}

@@ -10,11 +10,6 @@ import React, {
 } from 'react';
 import './FAQ.scss';
 import debounce from 'lodash.debounce';
-// import { getFAQ } from '../../api/fetchClient';
-
-// import i18next from '../../i18n';
-
-// import { LOCALS } from '../../i18n/constants';
 import { useTranslation } from 'react-i18next';
 import { Question } from '../../types/Questions';
 import { useSearchParams } from 'react-router-dom';
@@ -33,9 +28,6 @@ export const FAQ: React.FC = ({}) => {
 
   const [searchParams, setSearchParams] = useSearchParams();
   const [appliedQuery, setAppliedQuery] = useState('');
-  // const [whichAnswerIsOpen, setWhichAnswerIsOpen] = useState<number | null>(
-  //   null,
-  // );
   const [errorMessage, setErrorMessage] = useState(false);
 
   const query = searchParams.get('query') || '';
@@ -192,48 +184,13 @@ export const FAQ: React.FC = ({}) => {
 
           <div className="faq__questions">
             {errorMessage && <p>{t('Something went wrong!')}</p>}
-            {/* {visibleFaqs.map(faq => (
-              <QuestionBlock
-                key={faq.id}
-                id={faq.id}
-                question={faq.question}
-                shortAnswer={faq.shortAnswer}
-                fullAnswer={faq.fullAnswer}
-                whichAnswerIsOpen={whichAnswerIsOpen}
-                setWhichAnswerIsOpen={setWhichAnswerIsOpen}
-              />
-            ))} */}
 
             <Accordion faqs={visibleFaqs} />
           </div>
 
           <ContactButton />
-
-          {/* <div className="faq__contact-us-bottom contact-us-bottom">
-            <button
-              className="faq__contact-button 
-					contact-button"
-            >
-              {t('Contact us')}
-            </button>
-          </div> */}
         </main>
       )}
     </>
   );
 };
-
-// useEffect(() => {
-//   getFAQ('/questions').then(() => setFaqs);
-//   // if (i18next.language === LOCALS.ENG) {
-//   //   getFAQ('/questions/eng').then(() => setFaqs);
-//   // }
-
-//   // if (i18next.language === LOCALS.DEU) {
-//   //   getFAQ('/questions/deu').then(() => setFaqs);
-//   // }
-
-//   // if (i18next.language === LOCALS.UKR) {
-//   //   getFAQ('/questions/ukr').then(() => setFaqs);
-//   // }
-// }, [setFaqs]);

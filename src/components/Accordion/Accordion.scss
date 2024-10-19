@@ -17,16 +17,13 @@
     height: 0;
     overflow: hidden;
     transition: height 1s;
-
-    // &.open {
-    //   height: auto;
-    // }
   }
 }
 
 .question {
   font-family: $second-font-family;
   font-size: 24px;
+	text-transform: uppercase;
   padding-block: 24px;
   background-color: #000;
   color: $gray-0-color;

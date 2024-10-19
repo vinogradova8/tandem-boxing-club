@@ -8,7 +8,6 @@ import i18next from 'i18next';
 import { LOCALS } from '../../i18n/constants';
 import { ItemsContext } from '../../ItemsContext';
 import { BurgerWindow } from '../BurgerWindow';
-// import { RoleName } from '../../types/RoleName';
 
 export const Header: React.FC = ({}) => {
   const { t } = useTranslation();

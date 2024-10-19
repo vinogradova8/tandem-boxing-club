@@ -27,14 +27,6 @@ export const NotFoundPage: React.FC<Props> = ({ message }) => {
           src="https://vinogradova8.github.io/boxing/images/decor/decor-nock-out.png"
           alt="Stars"
         />
-
-        {/* <div className="not-found-page-decor">
-          <img
-            src="https://vinogradova8.github.io/boxing/images/loader/stars.gif"
-            // src="https://vinogradova8.github.io/boxing/images/decor/decor-nock-out.png"
-            alt="Stars"
-          />
-        </div> */}
       </div>
     </main>
   );

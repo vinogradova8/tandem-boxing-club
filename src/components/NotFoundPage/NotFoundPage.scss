@@ -3,15 +3,8 @@
 .not-found-page {
   background: url('../../../public/images/decor/not-found-page-background-image.png')
     center / cover no-repeat;
-  padding-top: 100px;
+  padding-block: 95px;
 
-  @include on-tablet {
-    padding-top: 100px;
-  }
-
-  @include on-desktop {
-    padding-top: 100px;
-  }
   &__container {
     position: relative;
     margin: 0 auto;
@@ -25,22 +18,6 @@
       max-width: 500px;
       padding: 40px 48.5px 222px;
     }
-
-    // & img {
-    //   position: absolute;
-    //   display: inline-block;
-    //   width: 70px;
-    //   height: 70px;
-    //   right: 44px;
-    //   top: 120px;
-
-    //   @include on-tablet {
-    //     width: 100px;
-    //     height: 100px;
-    //     right: 106px;
-    //     top: 108px;
-    //   }
-    // }
   }
 
   &__stars {
@@ -86,18 +63,6 @@
 
 .not-found-page-decor {
   position: absolute;
-  // background: url('../../../public/images/decor/decor-nock-out.png') center /
-  //   cover no-repeat;
-  // left: 14.5px;
-  // bottom: 24px;
-  // height: 78px;
-  // width: 250px;
-
-  // @include on-tablet {
-  //   height: 126px;
-  //   width: 403px;
-  //   left: 40px;
-  // }
 
   & img {
     position: absolute;

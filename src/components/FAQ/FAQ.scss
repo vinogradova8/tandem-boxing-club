@@ -1,13 +1,8 @@
 @import '../../styles/utils/';
 
 .faq {
-  // min-height: 100vh;
-
   &__main {
     border-bottom: 1px solid $gray-60-color;
-  }
-
-  &__questions {
   }
 
   &__main-container {
@@ -42,17 +37,6 @@
 
     position: relative;
     margin: 0 auto;
-
-    // &::before {
-    // 	position: absolute;
-    //   display: inline-block;
-    //   content: '';
-    //   background: url('../../../public/images/icons/search.svg') no-repeat;
-    // 	top: 0;
-    // 	left: 0;
-    //   width: 24px;
-    //   height: 24px;
-    // }
   }
 
   &__label {
@@ -80,17 +64,6 @@
     color: $gray-20-color;
     margin-bottom: 4px;
 
-    // &::before {
-    //   position: absolute;
-    //   display: inline-block;
-    //   content: '';
-    //   background: url('../../../public/images/icons/search.svg') no-repeat;
-    //   top: 0;
-    //   left: 0;
-    //   width: 24px;
-    //   height: 24px;
-    // }
-
     &::placeholder {
       color: $gray-60-color;
       font-family: $main-font-family;
@@ -101,8 +74,6 @@
   &__erroe-message {
     margin-left: 40px;
     position: relative;
-    // display: flex;
-    // align-items: center;
     color: $error-color;
 
     &::before {
@@ -126,8 +97,3 @@
     }
   }
 }
-
-// .block {
-//  height: 100%;
-//  flex: 1 1 auto ;
-// }

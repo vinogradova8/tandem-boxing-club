@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import './Gallery.scss';
 import { Slider } from '../Slider/Slider';
-// import slides from '../../api/slides.json';
 import { Loader } from '../Loader';
 import '../../i18n';
 import { useTranslation } from 'react-i18next';
-// import { getSlidesImage, getSlidesVideo } from '../../api/fetchClient';
 import { SlideVideo } from '../../types/SlideVideo';
 import { SlideImage } from '../../types/SlideImage';
 import { gallery } from '../../api/axios';

@@ -7,7 +7,6 @@ import { ItemsContext } from '../../ItemsContext';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import cn from 'classnames';
-// import { RoleName } from '../../types/RoleName';
 
 export const Registration: React.FC = ({}) => {
   const [firstName, setFirstName] = useState('');
@@ -45,10 +44,7 @@ export const Registration: React.FC = ({}) => {
   const submitButtonDisabled =
     !firstName || !lastName || !email || !repeatPassword || !password;
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setErrorMessage('');
-
+  const validation = () => {
     if (!firstName) {
       setFirstNameErrorMessage(t('Please enter your first name'));
     }
@@ -162,6 +158,135 @@ export const Registration: React.FC = ({}) => {
     ) {
       return false;
     }
+
+    return true;
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setErrorMessage('');
+
+    validation();
+
+    const isValid = validation();
+
+    if (!isValid) {
+      return;
+    }
+
+    // if (!firstName) {
+    //   setFirstNameErrorMessage(t('Please enter your first name'));
+    // }
+
+    // if (
+    //   firstName &&
+    //   (firstName.trim().length < 2 ||
+    //     !firstName.match(NAME_REGEX) ||
+    //     firstName.trim().length > 22)
+    // ) {
+    //   setFirstNameErrorMessage(t('First length'));
+    //   setFirstNameSuccessMessage('');
+    // }
+
+    // if (
+    //   firstName.trim().match(NAME_REGEX) &&
+    //   firstName.trim().length >= 2 &&
+    //   firstName.trim().length <= 22
+    // ) {
+    //   setFirstNameErrorMessage('');
+    //   setFirstNameSuccessMessage(t('First name is valid'));
+    // }
+
+    // if (!lastName) {
+    //   setLastNameErrorMessage(t('Please enter your last name'));
+    // }
+
+    // if (
+    //   lastName &&
+    //   (lastName.trim().length < 2 ||
+    //     !lastName.match(NAME_REGEX) ||
+    //     lastName.trim().length > 22)
+    // ) {
+    //   setLastNameErrorMessage(t('Last length'));
+    //   setLastNameSuccessMessage('');
+    // }
+
+    // if (
+    //   lastName.trim().match(NAME_REGEX) &&
+    //   lastName.trim().length >= 2 &&
+    //   lastName.trim().length <= 22
+    // ) {
+    //   setLastNameErrorMessage('');
+    //   setLastNameSuccessMessage(t('Last name is valid'));
+    // }
+
+    // if (!email) {
+    //   setEmailErrorMessage(t('Please enter your email'));
+    //   setEmailSuccessMessage('');
+    // }
+
+    // if (email && !email.trim().match(EMAIL_REGEX)) {
+    //   setEmailErrorMessage(t('Invalid email'));
+    //   setEmailSuccessMessage('');
+    // }
+
+    // if (email.trim().match(EMAIL_REGEX)) {
+    //   setEmailErrorMessage('');
+    //   setEmailSuccessMessage(t('Email is valid'));
+    // }
+
+    // if (!password) {
+    //   setPasswordErrorMessage(t('Please enter your password'));
+    //   setPasswordSuccessMessage('');
+    // }
+
+    // if (password && !password.match(PASSWORD_REGEX)) {
+    //   setPasswordErrorMessage(t('Password validation'));
+    //   setPasswordSuccessMessage('');
+    // }
+
+    // if (password.match(PASSWORD_REGEX)) {
+    //   setPasswordErrorMessage('');
+    //   setPasswordSuccessMessage(t('Password is valid'));
+    // }
+
+    // if (!repeatPassword) {
+    //   setRepeatPasswordErrorMessage(t('Please confirm your password'));
+    //   setRepeatPasswordSuccessMessage('');
+    // }
+
+    // if (
+    //   repeatPassword &&
+    //   !repeatPassword.match(PASSWORD_REGEX) &&
+    //   repeatPassword !== password
+    // ) {
+    //   setRepeatPasswordErrorMessage(t('Passwords don`t match'));
+    //   setRepeatPasswordSuccessMessage('');
+    // }
+
+    // if (repeatPassword.match(PASSWORD_REGEX) && repeatPassword === password) {
+    //   setRepeatPasswordErrorMessage('');
+    //   setRepeatPasswordSuccessMessage(t('Password confirmed'));
+    // }
+
+    // if (
+    //   !firstName ||
+    //   !lastName ||
+    //   !email ||
+    //   !password ||
+    //   !repeatPassword ||
+    //   firstName.trim().length > 22 ||
+    //   lastName.trim().length > 22 ||
+    //   firstName.trim().length < 2 ||
+    //   lastName.trim().length < 2 ||
+    //   !firstName.trim().match(NAME_REGEX) ||
+    //   !lastName.trim().match(NAME_REGEX) ||
+    //   !email.trim().match(EMAIL_REGEX) ||
+    //   !password.match(PASSWORD_REGEX) ||
+    //   !repeatPassword.match(PASSWORD_REGEX)
+    // ) {
+    //   return false;
+    // }
 
     try {
       await axios.post(

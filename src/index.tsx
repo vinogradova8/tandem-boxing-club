@@ -17,9 +17,6 @@ import { Login } from './components/Login';
 import { AdminPage } from './components/AdminPage';
 import { NotFoundPage } from './components/NotFoundPage';
 import { ItemsProvider } from './ItemsContext';
-// import { useTranslation } from 'react-i18next';
-
-// createRoot(document.getElementById('root') as HTMLDivElement).render(<App />);
 
 createRoot(document.getElementById('root') as HTMLElement).render(
   <ItemsProvider>

@@ -22,6 +22,7 @@ export const AdminPage: React.FC = ({}) => {
   const {
     accessToken,
     setAccessToken,
+    user,
     setUser,
     refreshErrorMessage,
     setRefreshErrorMessage,
@@ -273,6 +274,7 @@ export const AdminPage: React.FC = ({}) => {
 
   return (
     <>
+      {user?.role !== 'ADMIN' && navigate('/login')}
       {!questionsErrorMessage && loader && <Loader />}
       {refreshErrorMessage && (
         <NotFoundPage message={t('AccessToken is invalid!')} />

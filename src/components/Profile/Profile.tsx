@@ -77,8 +77,10 @@ export const Profile: React.FC = ({}) => {
     const access: string | null = getCookie('accessToken');
 
     if (access && !accessToken) {
-      setAccessToken(access);
       getUser(access);
+      if (user) {
+        setAccessToken(access);
+      }
     }
 
     console.log('Access Token:', access);
@@ -86,7 +88,31 @@ export const Profile: React.FC = ({}) => {
 
   return (
     <>
-      {refreshErrorMessage ? (
+      {user?.role !== 'CUSTOMER' && navigate('/login')}
+      {refreshErrorMessage && (
+        <NotFoundPage message={t('Something went wrong!')} />
+      )}
+      {!refreshErrorMessage && (
+        <main className="profile">
+          <h2 className="profile__title">{t('Hey, champ!')}</h2>
+
+          <div className="profile__container">
+            <p className="profile__text">
+              {`${user?.firstName} ${user?.lastName},`} {t('Welcome')}
+            </p>
+            <button
+              className="logout-button admin-button"
+              onClick={handleLogOut}
+            >
+              {t('Log out')}
+            </button>
+            {logoutErrorMessage && (
+              <p className="error">{t('Log out failed!')}</p>
+            )}
+          </div>
+        </main>
+      )}
+      {/* {refreshErrorMessage ? (
         <NotFoundPage message={t('Something went wrong!')} />
       ) : (
         <main className="profile">
@@ -107,7 +133,7 @@ export const Profile: React.FC = ({}) => {
             )}
           </div>
         </main>
-      )}
+      )} */}
     </>
   );
 };

@@ -3,16 +3,13 @@ import React, { useCallback, useContext, useEffect } from 'react';
 import './App.scss';
 import './i18n';
 import { Header } from './components/Header';
-import { Outlet } from 'react-router-dom';
+import { Navigate, Outlet, useParams } from 'react-router-dom';
 import { Footer } from './components/Footer/Footer';
 import { ItemsContext } from './ItemsContext';
 import axios from './api/axios';
-// import { GoogleOAuthProvider } from '@react-oauth/google';
 
 export const App: React.FC = () => {
-  // const { currentId } = useParams();
-
-  // const timerRefresh = useRef();
+  const { currentId } = useParams();
 
   const { accessToken, setAccessToken, setRefreshErrorMessage, setUser } =
     useContext(ItemsContext);
@@ -47,13 +44,6 @@ export const App: React.FC = () => {
       );
 
       setAccessToken(response.data.token);
-
-      // const role = response.data.userDto.role;
-      // const id = response.data.userDto.id;
-      // const firstName = response.data.userDto.firstName;
-      // const lastName = response.data.userDto.lastName;
-
-      // setUser({ id, email: '', firstName, lastName, role, password: '' });
     } catch {
       setRefreshErrorMessage(true);
     }
@@ -79,18 +69,17 @@ export const App: React.FC = () => {
     setUser,
   ]);
 
-  // if (currentId === 'home') {
-  //   return <Navigate to=".." />;
-  // }
+  if (currentId === 'home') {
+    return <Navigate to=".." />;
+  }
+
+  // console.log(accessToken);
 
   return (
-    // eslint-disable-next-line max-len
-    // <GoogleOAuthProvider clientId="588544771236-bt2l09g8m0pj16k8kf2sf59rtbrid3e4.apps.googleusercontent.com">
     <div className="app">
       <Header />
       <Outlet />
       <Footer />
     </div>
-    // </GoogleOAuthProvider>
   );
 };

@@ -41,7 +41,7 @@ export const CertificateWindow: React.FC = ({}) => {
 
           <div className="certificate-window__image">
             <img
-              src="https://vinogradova8.github.io/boxing/images/certificates/certificate-big.png"
+              src="https://vinogradova8.github.io/boxing/images/certificates/certificate.png"
               alt="Certificate"
             />
           </div>

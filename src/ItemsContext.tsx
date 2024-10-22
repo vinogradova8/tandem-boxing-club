@@ -1,8 +1,5 @@
 import React, { useMemo } from 'react';
-
 import { useLocalStorage } from './hooks/useLocalStorage';
-// import { Auth } from './types/Auth';
-// import { RoleName } from './types/RoleName';
 import { User } from './types/User';
 import { LOCALS } from './i18n/constants';
 import { useSessionStorage } from './hooks/useSessionStorage';
@@ -31,14 +28,6 @@ export const ItemsContext = React.createContext<ItemsContextType>({
   setIsCertificateWindowOpen: () => {},
   isBurgerWindowOpen: false,
   setIsBurgerWindowOpen: () => {},
-  // user: {
-  //   id: 0,
-  //   email: '',
-  //   firstName: '',
-  //   lastName: '',
-  //   role: '',
-  //   password: '',
-  // },
   user: null,
   setUser: () => {},
   accessToken: '',

@@ -27,6 +27,7 @@ export const Footer: React.FC = ({}) => {
               WhatsApp
             </a>
           </li>
+
           <li>
             <a
               className="footer__link footer__link--location"

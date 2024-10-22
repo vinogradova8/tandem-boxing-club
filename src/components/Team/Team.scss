@@ -20,7 +20,7 @@
 
   &__trainers-container {
     @include page-grid;
-   
+
     column-gap: 0px;
     height: 0;
     overflow: hidden;
@@ -28,7 +28,7 @@
 
     @keyframes block {
       100% {
-        height: 1067px;
+        height: 1167px;
       }
     }
 
@@ -67,9 +67,9 @@
 
   &__certificate {
     max-width: 1400px;
+    height: 194px;
+    width: 270px;
     margin: 0 auto;
-
-    @include content-padding-inline;
 
     img {
       padding-top: 48px;
@@ -169,5 +169,6 @@
 
   &__experience {
     color: $gray-60-color;
+    padding-bottom: 30px;
   }
 }

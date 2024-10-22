@@ -111,7 +111,7 @@ export const Team: React.FC = ({}) => {
                   setIsCertificateWindowOpen(true);
                 }
               }}
-              src="https://vinogradova8.github.io/boxing/images/certificates/certificate-big.png"
+              src="https://vinogradova8.github.io/boxing/images/certificates/certificate.png"
               alt="Certificate"
             />
             <div className="team__certificat-container"></div>

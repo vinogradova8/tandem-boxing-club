@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import TextareaAutosize from 'react-textarea-autosize';
@@ -247,18 +248,22 @@ export const ModalWindow: React.FC = ({}) => {
           <div>
             <ul className="modal-window__list">
               <li>
-                <a className="modal-window__link" href="#">
+                <a
+                  className="footer__link"
+                  target="_blanc"
+                  href="https://www.instagram.com/vitalii_boxing_?igsh=MXZwMm15ZmQzdmJ2cw=="
+                >
                   Instagram
                 </a>
               </li>
+
               <li>
-                <a className="modal-window__link" href="#">
-                  Email
-                </a>
-              </li>
-              <li>
-                <a className="modal-window__link" href="#">
-                  Telegram
+                <a
+                  className="footer__link"
+                  target="_blanc"
+                  href="https://wa.me/380509987274"
+                >
+                  WhatsApp
                 </a>
               </li>
             </ul>

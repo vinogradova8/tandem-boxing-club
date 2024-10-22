@@ -22,7 +22,7 @@ export const Footer: React.FC = ({}) => {
             <a
               className="footer__link"
               target="_blanc"
-              href="tel:+380509987274"
+              href="https://wa.me/380509987274"
             >
               WhatsApp
             </a>

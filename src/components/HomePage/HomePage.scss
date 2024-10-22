@@ -86,12 +86,9 @@
   &__small-title {
     color: $gray-0-color;
     margin-bottom: 24px;
-    justify-self: start;
   }
 
   &__text {
-    justify-self: start;
-
     @include on-desktop {
       grid-column: span 3;
       font-weight: 500;

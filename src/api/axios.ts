@@ -1,11 +1,7 @@
 import axios from 'axios';
 
-// export default axios.create({
-//   baseURL: 'http://localhost:8088',
-// });
-
 export default axios.create({
-  baseURL: 'http://ec2-54-162-241-210.compute-1.amazonaws.com/',
+  baseURL: 'http://localhost:8088',
 });
 
 export const gallery = axios.create({

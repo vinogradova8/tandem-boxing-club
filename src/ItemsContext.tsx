@@ -78,15 +78,6 @@ export const ItemsProvider: React.FC<Props> = ({ children }) => {
 
   const [language, setLanguage] = useLocalStorage('language', LOCALS.ENG);
 
-  // const [user, setUser] = useLocalStorage('user', {
-  //   id: 0,
-  //   email: '',
-  //   firstName: '',
-  //   lastName: '',
-  //   role: '',
-  //   password: '',
-  // });
-
   const [user, setUser] = useSessionStorage<User | null>('user', null);
 
   const value = useMemo(

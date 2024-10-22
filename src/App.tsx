@@ -1,5 +1,4 @@
 import React, { useCallback, useContext, useEffect } from 'react';
-// import cn from 'classnames';
 import './App.scss';
 import './i18n';
 import { Header } from './components/Header';
@@ -13,23 +12,6 @@ export const App: React.FC = () => {
 
   const { accessToken, setAccessToken, setRefreshErrorMessage, setUser } =
     useContext(ItemsContext);
-  //   try {
-  //     await axios.post(
-  //       '/auth/logout',
-  //       {},
-  //       {
-  //         headers: { Authorization: `Bearer ${accessToken}` },
-  //       },
-  //     );
-
-  //     setAccessToken('');
-  //     setUser(null);
-  //     setRefreshErrorMessage(false);
-  //     navigate('/login');
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // }, [accessToken, navigate, setAccessToken, setRefreshErrorMessage, setUser]);
 
   const refreshToken = useCallback(async () => {
     try {
@@ -72,8 +54,6 @@ export const App: React.FC = () => {
   if (currentId === 'home') {
     return <Navigate to=".." />;
   }
-
-  // console.log(accessToken);
 
   return (
     <div className="app">

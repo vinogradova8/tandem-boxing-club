@@ -9,18 +9,22 @@ export const Footer: React.FC = ({}) => {
       <div className="footer__container">
         <ul className="footer__list">
           <li>
-            <a className="footer__link" target="_blanc" href="#">
+            <a
+              className="footer__link"
+              target="_blanc"
+              href="https://www.instagram.com/vitalii_boxing_?igsh=MXZwMm15ZmQzdmJ2cw=="
+            >
               Instagram
             </a>
           </li>
+
           <li>
-            <a className="footer__link" target="_blanc" href="#">
-              Email
-            </a>
-          </li>
-          <li>
-            <a className="footer__link" target="_blanc" href="#">
-              Telegram
+            <a
+              className="footer__link"
+              target="_blanc"
+              href="tel:+380509987274"
+            >
+              WhatsApp
             </a>
           </li>
           <li>

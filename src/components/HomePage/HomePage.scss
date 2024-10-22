@@ -48,7 +48,6 @@
 
   &__main-text {
     font-family: $second-font-family;
-    // justify-items: start;
     font-size: 20px;
     margin-bottom: 48px;
 
@@ -213,7 +212,6 @@
   font-family: $third-font-family;
   color: $second-text-color;
   text-transform: uppercase;
-  letter-spacing: 4px;
   font-size: 64px;
 
   @include on-tablet {

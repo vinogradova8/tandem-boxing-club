@@ -4,7 +4,7 @@ import '../../i18n';
 import { useTranslation } from 'react-i18next';
 import { ModalWindow } from '../ModalWindow';
 import { ItemsContext } from '../../ItemsContext';
-import { ContactButton } from '../ContactButton';
+// import { ContactButton } from '../ContactButton';
 
 export const HomePage: React.FC = ({}) => {
   const { t } = useTranslation();
@@ -111,7 +111,7 @@ export const HomePage: React.FC = ({}) => {
           </section>
         </div>
 
-        <ContactButton />
+        {/* <ContactButton /> */}
       </main>
     </>
   );

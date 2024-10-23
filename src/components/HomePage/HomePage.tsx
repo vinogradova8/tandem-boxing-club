@@ -91,7 +91,7 @@ export const HomePage: React.FC = ({}) => {
                   {t('Section-4 title')}
                 </h2>
 
-                <p className="homepage__text">
+                <div className="homepage__text">
                   <ul>
                     <li>{t('Section-4 text-1')}</li>
                     <li>{t('Section-4 text-2')}</li>
@@ -104,7 +104,7 @@ export const HomePage: React.FC = ({}) => {
                     <li>{t('Section-4 text-9')}</li>
                     <li>{t('Section-4 text-10')}</li>
                   </ul>
-                </p>
+                </div>
               </div>
               <div className="decor decor--3"></div>
             </div>

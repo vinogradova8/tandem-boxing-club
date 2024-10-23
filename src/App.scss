@@ -148,19 +148,9 @@ main {
 .links-box {
   display: flex;
   flex-direction: column;
-  align-items: start;
+  align-items: flex-start;
   gap: 5px;
 }
-
-// .page-title {
-//   font-size: 32px;
-//   text-align: center;
-//   text-transform: uppercase;
-
-//   @include on-tablet {
-//     font-size: 44px;
-//   }
-// }
 
 .small-title {
   font-family: $second-font-family;

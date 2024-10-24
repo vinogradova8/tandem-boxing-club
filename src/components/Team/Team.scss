@@ -24,7 +24,7 @@
     column-gap: 0px;
     height: 0;
     overflow: hidden;
-    animation: block 1s linear 0.2s 1 normal forwards;
+    animation: block 2s linear 0.2s 1 normal forwards;
 
     @keyframes block {
       100% {
@@ -33,6 +33,8 @@
     }
 
     @include on-tablet {
+			animation-duration: 1s;
+			
       @keyframes block {
         100% {
           height: 598px;

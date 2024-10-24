@@ -22,7 +22,6 @@ export const BurgerWindow: React.FC = ({}) => {
     [t('FAQ'), 'faq'],
     [t('Gallery'), 'gallery'],
     [t('Support'), 'support-us'],
-    [t('Contacts'), 'сontacts'],
   ];
 
   useEffect(() => {

@@ -33,7 +33,7 @@ const resources = {
       'Section-3 text':
         'This is an individualized approach to your goals. We offer private boxing training sessions tailored to your needs and fitness level. Our experienced coaches will help you achieve the best results—from improving your fitness to preparing for competitions. We train boxers who aspire to a career in the sport, ensuring you develop all the necessary skills and strategies for a successful performance in the ring. Our professional approach to training includes fight strategy, technique, endurance, and mental preparation.',
 
-      'Section-4 title': 'About work out',
+      'Section-4 title': 'About workout',
       'Section-4 text-1': '1. Physical endurance',
       'Section-4 text-2': '2. Strength and muscle tone',
       'Section-4 text-3': '3. Strength and muscle tone',
@@ -190,10 +190,10 @@ const resources = {
 
       'Support-Section-3 title': 'Що нам потрібно',
       'Support-Section-3 text':
-        'На початковому етапі розвитку боксерського клубу ми потребуємо наступної підтримки:<br>Оплата вартості оренди приміщення, придатного для розміщення боксерського клубу наступних властивостей:<br>- Основне приміщення для встановлення рингу, мішків, зони розминки та функціональної зони тренувань - 250-350 m²;<br>- Дві роздягальні;<br>- Дві душові кімнати;<br>- Туалет;<br>- Тренерська для тренерів - 15-20 м²;<br>- Комора для зберігання інвентарю - 10 м²;<br>- Практичне розташування в місцях великого скупчення людей.<br>- Дороге обладнання (близько 6500 євро). Кільце (близько 12 000 євро).<br>Всі інші витрати, пов`язані з оплатою тренерів, прибиранням та придбанням обладнанням, рекламою, веденням соціальних сторінок тощо, ми беремо на себе.',
+        'На початковому етапі розвитку боксерського клубу ми потребуємо наступної підтримки:<br>Оплата вартості оренди приміщення, придатного для розміщення боксерського клубу що відповідатиме наступним вимогам:<br>- Основне приміщення для встановлення рингу, мішків, зони розминки та функціональної зони тренувань - 250-350 m²;<br>- Дві роздягальні;<br>- Дві душові кімнати;<br>- Туалет;<br>- Тренерська для тренерів - 15-20 м²;<br>- Комора для зберігання інвентарю - 10 м²;<br>- Практичне розташування в місцях великого скупчення людей.<br>- Дороге обладнання (близько 6500 євро). Кільце (близько 12 000 євро).<br>Всі інші витрати, пов`язані з оплатою тренерів, прибиранням та придбанням обладнанням, рекламою, веденням соціальних сторінок тощо, ми беремо на себе.',
 
       Questions: 'Є питання?',
-      'Your trainers': 'Вашы тренери',
+      'Your trainers': 'Ваші тренери',
       'Our Training': 'Наше тренування',
       'Support us': 'Підтримати нас',
       'Your area': 'Ваш простір',

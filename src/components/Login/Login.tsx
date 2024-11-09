@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable no-console */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useContext, useState } from 'react';
@@ -82,7 +83,8 @@ export const Login: React.FC = ({}) => {
             <div className="login__google">
               <a
                 className="login__google-link"
-                href="http://localhost:8088/login/oauth2/authorization/google"
+                // href="http://localhost:8088/login/oauth2/authorization/google"
+                href="https://d1g3i7mr74vp7j.cloudfront.net/login/oauth2/authorization/google"
               >
                 {t('Continue with')}
                 <div className="login__google-icon"></div>

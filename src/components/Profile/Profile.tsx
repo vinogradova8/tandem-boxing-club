@@ -88,12 +88,9 @@ export const Profile: React.FC = ({}) => {
 
     if (access && !accessToken) {
       getUser(access);
-      setAccessToken(access);
-
-      // getUser(access);
-      // if (user) {
-      //   setAccessToken(access);
-      // }
+      if (user) {
+        setAccessToken(access);
+      }
     }
 
     console.log('cookie:', document.cookie);
@@ -112,9 +109,14 @@ export const Profile: React.FC = ({}) => {
           <h2 className="profile__title">{t('Hey, champ!')}</h2>
 
           <div className="profile__container">
-            <p className="profile__text">
-              {`${user?.firstName} ${user?.lastName},`} {t('Welcome')}
-            </p>
+            {accessToken ? (
+              <p className="profile__text">
+                {`${user?.firstName} ${user?.lastName},`} {t('Welcome')}
+              </p>
+            ) : (
+              <p className="profile__text">{t('Welcome')}</p>
+            )}
+
             <button
               className="logout-button admin-button"
               onClick={handleLogOut}
@@ -127,28 +129,6 @@ export const Profile: React.FC = ({}) => {
           </div>
         </main>
       )}
-      {/* {refreshErrorMessage ? (
-        <NotFoundPage message={t('Something went wrong!')} />
-      ) : (
-        <main className="profile">
-          <h2 className="profile__title">{t('Hey, champ!')}</h2>
-
-          <div className="profile__container">
-            <p className="profile__text">
-              {`${user?.firstName} ${user?.lastName},`} {t('Welcome')}
-            </p>
-            <button
-              className="logout-button admin-button"
-              onClick={handleLogOut}
-            >
-              {t('Log out')}
-            </button>
-            {logoutErrorMessage && (
-              <p className="error">{t('Log out failed!')}</p>
-            )}
-          </div>
-        </main>
-      )} */}
     </>
   );
 };

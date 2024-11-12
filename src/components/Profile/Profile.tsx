@@ -88,9 +88,12 @@ export const Profile: React.FC = ({}) => {
 
     if (access && !accessToken) {
       getUser(access);
-      if (user) {
-        setAccessToken(access);
-      }
+      setAccessToken(access);
+
+      // getUser(access);
+      // if (user) {
+      //   setAccessToken(access);
+      // }
     }
 
     console.log('cookie:', document.cookie);

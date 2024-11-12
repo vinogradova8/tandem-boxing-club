@@ -62,19 +62,29 @@ export const Profile: React.FC = ({}) => {
     }
   };
 
-  function getCookie(name: string): string | null {
-    const value = `; ${document.cookie}`;
-    const parts = value.split(`; ${name}=`);
+  function getCookie(name: string) {
+    const matches = document.cookie.match(
+      new RegExp(
+        '(?:^|; )' + name.replace(/([$?*|{}\[\]\\/+^])/g, '\\$&') + '=([^;]*)',
+      ),
+    );
 
-    if (parts.length === 2) {
-      return parts.pop()?.split(';').shift() || null;
-    }
-
-    return null;
+    return matches ? decodeURIComponent(matches[1]) : undefined;
   }
 
+  // function getCookie(name: string): string | null {
+  //   const value = `; ${document.cookie}`;
+  //   const parts = value.split(`; ${name}=`);
+
+  //   if (parts.length === 2) {
+  //     return parts.pop()?.split(';').shift() || null;
+  //   }
+
+  //   return null;
+  // }
+
   useEffect(() => {
-    const access: string | null = getCookie('accessToken');
+    const access: string | undefined = getCookie('accessToken');
 
     if (access && !accessToken) {
       getUser(access);

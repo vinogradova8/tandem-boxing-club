@@ -93,7 +93,7 @@ export const Profile: React.FC = ({}) => {
       }
     }
 
-    console.log(document.cookie);
+    console.log('cookie:', document.cookie);
 
     console.log('Access Token:', access);
   }, []);

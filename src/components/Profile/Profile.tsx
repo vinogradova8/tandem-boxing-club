@@ -25,6 +25,8 @@ export const Profile: React.FC = ({}) => {
 
   const navigate = useNavigate();
 
+  let token: string | null;
+
   const handleLogOut = async () => {
     try {
       await axios.post(
@@ -41,6 +43,37 @@ export const Profile: React.FC = ({}) => {
       navigate('/login');
     } catch {
       setLogoutErrorMessage(true);
+    }
+  };
+
+  const handleGoogleLogin = async () => {
+    // e.preventDefault();
+
+    try {
+      const response = await axios.get(
+        `https://d1g3i7mr74vp7j.cloudfront.net/token/validate?tempToken=${token}`,
+      );
+
+      const role = response.data.userDto.role;
+      const id = response.data.userDto.id;
+      const firstName = response.data.userDto.firstName;
+      const lastName = response.data.userDto.lastName;
+      const email = response.data.userDto.email;
+
+      setUser({ id, email, firstName, lastName, role, password: '1' });
+
+      setAccessToken(response.data.token);
+      setRefreshErrorMessage(false);
+
+      // if (role === 'CUSTOMER') {
+      //   navigate('/profile');
+      // }
+
+      // if (role === 'ADMIN') {
+      //   navigate('/admin');
+      // }
+    } catch {
+      // setErrorMessage(true);
     }
   };
 
@@ -102,7 +135,10 @@ export const Profile: React.FC = ({}) => {
   useEffect(() => {
     if (!accessToken) {
       const params = new URLSearchParams(searchParams);
-      const token = params.get('token');
+
+      token = params.get('token');
+
+      handleGoogleLogin();
 
       console.log(token);
     }
@@ -119,13 +155,16 @@ export const Profile: React.FC = ({}) => {
           <h2 className="profile__title">{t('Hey, champ!')}</h2>
 
           <div className="profile__container">
-            {accessToken ? (
+            <p className="profile__text">
+              {`${user?.firstName} ${user?.lastName},`} {t('Welcome')}
+            </p>
+            {/* {accessToken ? (
               <p className="profile__text">
                 {`${user?.firstName} ${user?.lastName},`} {t('Welcome')}
               </p>
             ) : (
               <p className="profile__text">{t('Welcome')}</p>
-            )}
+            )} */}
 
             <button
               className="logout-button admin-button"

@@ -4,12 +4,13 @@ import React, { useContext, useEffect, useState } from 'react';
 import './Profile.scss';
 import { ItemsContext } from '../../ItemsContext';
 import axios from '../../api/axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { NotFoundPage } from '../NotFoundPage';
 
 export const Profile: React.FC = ({}) => {
   const [logoutErrorMessage, setLogoutErrorMessage] = useState(false);
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const {
     user,
@@ -43,24 +44,24 @@ export const Profile: React.FC = ({}) => {
     }
   };
 
-  const getUser = async (acc: string) => {
-    try {
-      const response = await axios.get('/users/me', {
-        headers: { Authorization: `Bearer ${acc}` },
-      });
+  // const getUser = async (acc: string) => {
+  //   try {
+  //     const response = await axios.get('/users/me', {
+  //       headers: { Authorization: `Bearer ${acc}` },
+  //     });
 
-      const role = response.data.role;
-      const id = response.data.id;
-      const firstName = response.data.firstName;
-      const lastName = response.data.lastName;
-      const email = response.data.email;
-      const password = response.data.password;
+  //     const role = response.data.role;
+  //     const id = response.data.id;
+  //     const firstName = response.data.firstName;
+  //     const lastName = response.data.lastName;
+  //     const email = response.data.email;
+  //     const password = response.data.password;
 
-      setUser({ id, email, firstName, lastName, role, password });
-    } catch {
-      console.log('error');
-    }
-  };
+  //     setUser({ id, email, firstName, lastName, role, password });
+  //   } catch {
+  //     console.log('error');
+  //   }
+  // };
 
   // function getCookie(name: string) {
   //   const matches = document.cookie.match(
@@ -72,30 +73,38 @@ export const Profile: React.FC = ({}) => {
   //   return matches ? decodeURIComponent(matches[1]) : undefined;
   // }
 
-  function getCookie(name: string): string | null {
-    const value = `; ${document.cookie}`;
-    const parts = value.split(`; ${name}=`);
+  // function getCookie(name: string): string | null {
+  //   const value = `; ${document.cookie}`;
+  //   const parts = value.split(`; ${name}=`);
 
-    if (parts.length === 2) {
-      return parts.pop()?.split(';').shift() || null;
-    }
+  //   if (parts.length === 2) {
+  //     return parts.pop()?.split(';').shift() || null;
+  //   }
 
-    return null;
-  }
+  //   return null;
+  // }
+
+  // useEffect(() => {
+  //   const access: string | null = getCookie('accessToken');
+
+  //   if (access && !accessToken) {
+  //     getUser(access);
+  //     if (user) {
+  //       setAccessToken(access);
+  //     }
+  //   }
+
+  //   console.log('cookie:', document.cookie);
+
+  //   console.log('Access Token:', access);
+  // }, []);
 
   useEffect(() => {
-    const access: string | null = getCookie('accessToken');
+    if (!accessToken) {
+      const token = searchParams;
 
-    if (access && !accessToken) {
-      getUser(access);
-      if (user) {
-        setAccessToken(access);
-      }
+      console.log(token);
     }
-
-    console.log('cookie:', document.cookie);
-
-    console.log('Access Token:', access);
   }, []);
 
   return (

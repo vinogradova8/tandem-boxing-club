@@ -101,7 +101,8 @@ export const Profile: React.FC = ({}) => {
 
   useEffect(() => {
     if (!accessToken) {
-      const token = searchParams;
+      const params = new URLSearchParams(searchParams);
+      const token = params.get('token');
 
       console.log(token);
     }

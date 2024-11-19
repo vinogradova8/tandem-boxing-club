@@ -10,7 +10,7 @@ import { NotFoundPage } from '../NotFoundPage';
 
 export const Profile: React.FC = ({}) => {
   const [logoutErrorMessage, setLogoutErrorMessage] = useState(false);
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
 
   const {
     user,

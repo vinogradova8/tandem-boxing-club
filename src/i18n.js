@@ -35,17 +35,7 @@ const resources = {
 
       'Section-4 title': 'About workout',
       'Section-4 text':
-        '1. Physical endurance<br>2. Strength and muscle tone<br>3. Strength and muscle tone<br>4. Balance and co-ordination<br>5. Flexibility and mobility<br>6. Psychological stability<br>7. Self-confidence<br>8. Discipline and self-control<br>9. Stress tolerance<br>10. Social skills',
-      // 'Section-4 text-1': '1. Physical endurance',
-      // 'Section-4 text-2': '2. Strength and muscle tone',
-      // 'Section-4 text-3': '3. Strength and muscle tone',
-      // 'Section-4 text-4': '4. Balance and co-ordination',
-      // 'Section-4 text-5': '5. Flexibility and mobility',
-      // 'Section-4 text-6': '6. Psychological stability',
-      // 'Section-4 text-7': '7. Self-confidence',
-      // 'Section-4 text-8': '8. Discipline and self-control',
-      // 'Section-4 text-9': '9. Stress tolerance',
-      // 'Section-4 text-10': '10. Social skills',
+        '1. Physical endurance<br>2. Strength and muscle tone<br>3. Speed and reflexes<br>4. Balance and co-ordination<br>5. Flexibility and mobility<br>6. Psychological stability<br>7. Self-confidence<br>8. Discipline and self-control<br>9. Stress tolerance<br>10. Social skills',
 
       'Support-Section-1 title': 'Advantages of co-operation',
       'Support-Section-1 text':
@@ -162,16 +152,8 @@ const resources = {
         'Бокс — це не лише вид спорту, а й спосіб самовдосконалення, який має безліч позитивних аспектів для фізичного та психологічного здоров`я людини. Тренування з боксу розвивають силу, витривалість, швидкість реакції та координацію. Крім фізичних переваг, бокс також позитивно впливає на психологічний стан людини. Регулярні тренування сприяють зниженню рівня стресу, покращенню настрою та підвищенню рівня самооцінки. Вміння контролювати свої емоції та витримувати фізичні навантаження допомагає розвивати самодисципліну, впевненість у собі та стійкість до труднощів.',
 
       'Section-4 title': 'Як проходять тренування.',
-      'Section-4 text-1': '1. Фізична витривалість',
-      'Section-4 text-2': '2. Сила і м`язовий тонус',
-      'Section-4 text-3': '3. Швидкість і рефлекси',
-      'Section-4 text-4': '4. Баланс і координація',
-      'Section-4 text-5': '5. Гнучкість і рухливість',
-      'Section-4 text-6': '6. Психологічна стійкість',
-      'Section-4 text-7': '7. Упевненість у собі',
-      'Section-4 text-8': '8. Дисципліна та самоконтроль',
-      'Section-4 text-9': '9. Стресостійкість',
-      'Section-4 text-10': '10. Соціальні навички',
+      'Section-4 text':
+        '1. Фізична витривалість<br>2. Сила і м`язовий тонус<br>3. Швидкість і рефлекси<br>4. Баланс і координація<br>5. Гнучкість і рухливість<br>6. Психологічна стійкість<br>7. Упевненість у собі<br>8. Дисципліна та самоконтроль<br>9. Стресостійкість<br>10. Соціальні навички',
 
       'Section-2 title': 'Групові тренування.',
       'Section-2 text':
@@ -306,16 +288,8 @@ const resources = {
         'Dies ist ein individueller Ansatz, der auf Ihre Ziele abgestimmt ist.Wir bieten private Boxtrainingseinheiten an, die auf Ihre Bedürfnisse und Ihr Fitnesslevel zugeschnitten sind. Unsere erfahrenen Trainer helfen Ihnen, die besten Ergebnisse zu erzielen—von der Verbesserung Ihrer Fitness bis hin zur Vorbereitung auf Wettkämpfe. Wir trainieren Boxer, die eine Karriere im Sport anstreben, und sorgen dafür, dass Sie alle notwendigen Fähigkeiten und Strategien für eine erfolgreiche Performance im Ring entwickeln.Unser professioneller Trainingsansatz umfasst Kampfstrategie, Technik, Ausdauer und mentale Vorbereitung.',
 
       'Section-4 title': 'Wie die Ausbildung verläuft.',
-      'Section-4 text-1': '1. Körperliche Ausdauer',
-      'Section-4 text-2': '2. Kraft und Muskeltonus',
-      'Section-4 text-3': '3. Schnelligkeit und Reflexe',
-      'Section-4 text-4': '4. Gleichgewicht und Koordinierung',
-      'Section-4 text-5': '5. Flexibilität und Beweglichkeit',
-      'Section-4 text-6': '6. Psychische Stabilität',
-      'Section-4 text-7': '7. Selbstvertrauen',
-      'Section-4 text-8': '8. Disziplin und Selbstbeherrschung',
-      'Section-4 text-9': '9. Stresstoleranz',
-      'Section-4 text-10': '10. Soziale Fähigkeiten',
+      'Section-4 text':
+        '1. Körperliche Ausdauer<br>2. Kraft und Muskeltonus<br>3. Schnelligkeit und Reflexe<br>4. Gleichgewicht und Koordinierung<br>5. Flexibilität und Beweglichkeit<br>6. Psychische Stabilität<br>7. Selbstvertrauen<br>8. Disziplin und Selbstbeherrschung<br>9. Stresstoleranz<br>10. Soziale Fähigkeiten',
 
       'Support-Section-1 title': 'Vorteile der Zusammenarbeit',
       'Support-Section-1 text':

@@ -93,18 +93,6 @@ export const HomePage: React.FC = ({}) => {
 
                 <div className="homepage__text">
                   <Trans i18nKey="Section-4 text" />
-                  <ul>
-                    <li>{t('Section-4 text-1')}</li>
-                    <li>{t('Section-4 text-2')}</li>
-                    <li>{t('Section-4 text-3')}</li>
-                    <li>{t('Section-4 text-4')}</li>
-                    <li>{t('Section-4 text-5')}</li>
-                    <li>{t('Section-4 text-6')}</li>
-                    <li>{t('Section-4 text-7')}</li>
-                    <li>{t('Section-4 text-8')}</li>
-                    <li>{t('Section-4 text-9')}</li>
-                    <li>{t('Section-4 text-10')}</li>
-                  </ul>
                 </div>
               </div>
               <div className="decor decor--3"></div>

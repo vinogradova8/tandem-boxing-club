@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import './HomePage.scss';
 import '../../i18n';
-import { useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 import { ModalWindow } from '../ModalWindow';
 import { ItemsContext } from '../../ItemsContext';
 import { ContactButton } from '../ContactButton';
@@ -92,6 +92,7 @@ export const HomePage: React.FC = ({}) => {
                 </h2>
 
                 <div className="homepage__text">
+                  <Trans i18nKey="Section-4 text" />
                   <ul>
                     <li>{t('Section-4 text-1')}</li>
                     <li>{t('Section-4 text-2')}</li>

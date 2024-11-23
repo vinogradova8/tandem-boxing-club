@@ -20,10 +20,6 @@
 @mixin content-padding-inline {
   padding-inline: 38px;
 
-  // @include on-tablet {
-  //   padding-inline: 24px;
-  // }
-
   @include on-desktop {
     padding-inline: 80px;
   }

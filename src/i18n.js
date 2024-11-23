@@ -34,16 +34,18 @@ const resources = {
         'This is an individualized approach to your goals. We offer private boxing training sessions tailored to your needs and fitness level. Our experienced coaches will help you achieve the best results—from improving your fitness to preparing for competitions. We train boxers who aspire to a career in the sport, ensuring you develop all the necessary skills and strategies for a successful performance in the ring. Our professional approach to training includes fight strategy, technique, endurance, and mental preparation.',
 
       'Section-4 title': 'About workout',
-      'Section-4 text-1': '1. Physical endurance',
-      'Section-4 text-2': '2. Strength and muscle tone',
-      'Section-4 text-3': '3. Strength and muscle tone',
-      'Section-4 text-4': '4. Balance and co-ordination',
-      'Section-4 text-5': '5. Flexibility and mobility',
-      'Section-4 text-6': '6. Psychological stability',
-      'Section-4 text-7': '7. Self-confidence',
-      'Section-4 text-8': '8. Discipline and self-control',
-      'Section-4 text-9': '9. Stress tolerance',
-      'Section-4 text-10': '10. Social skills',
+      'Section-4 text':
+        '1. Physical endurance<br>2. Strength and muscle tone<br>3. Strength and muscle tone<br>4. Balance and co-ordination<br>5. Flexibility and mobility<br>6. Psychological stability<br>7. Self-confidence<br>8. Discipline and self-control<br>9. Stress tolerance<br>10. Social skills',
+      // 'Section-4 text-1': '1. Physical endurance',
+      // 'Section-4 text-2': '2. Strength and muscle tone',
+      // 'Section-4 text-3': '3. Strength and muscle tone',
+      // 'Section-4 text-4': '4. Balance and co-ordination',
+      // 'Section-4 text-5': '5. Flexibility and mobility',
+      // 'Section-4 text-6': '6. Psychological stability',
+      // 'Section-4 text-7': '7. Self-confidence',
+      // 'Section-4 text-8': '8. Discipline and self-control',
+      // 'Section-4 text-9': '9. Stress tolerance',
+      // 'Section-4 text-10': '10. Social skills',
 
       'Support-Section-1 title': 'Advantages of co-operation',
       'Support-Section-1 text':

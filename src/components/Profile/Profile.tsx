@@ -10,6 +10,7 @@ import { NotFoundPage } from '../NotFoundPage';
 
 export const Profile: React.FC = ({}) => {
   const [logoutErrorMessage, setLogoutErrorMessage] = useState(false);
+  const [googleLoginErrorMessage, setGoogleLoginErrorMessage] = useState(false);
   const [searchParams] = useSearchParams();
 
   const {
@@ -47,8 +48,6 @@ export const Profile: React.FC = ({}) => {
   };
 
   const handleGoogleLogin = async () => {
-    // e.preventDefault();
-
     try {
       const response = await axios.get(
         `https://d1g3i7mr74vp7j.cloudfront.net/token/validate?tempToken=${token}`,
@@ -60,77 +59,15 @@ export const Profile: React.FC = ({}) => {
       const lastName = response.data.userDto.lastName;
       const email = response.data.userDto.email;
 
-      setUser({ id, email, firstName, lastName, role, password: '1' });
+      setUser({ id, email, firstName, lastName, role, password: 'password' });
 
       setAccessToken(response.data.token);
       setRefreshErrorMessage(false);
-
-      // if (role === 'CUSTOMER') {
-      //   navigate('/profile');
-      // }
-
-      // if (role === 'ADMIN') {
-      //   navigate('/admin');
-      // }
+      setGoogleLoginErrorMessage(false);
     } catch {
-      // setErrorMessage(true);
+      setGoogleLoginErrorMessage(true);
     }
   };
-
-  // const getUser = async (acc: string) => {
-  //   try {
-  //     const response = await axios.get('/users/me', {
-  //       headers: { Authorization: `Bearer ${acc}` },
-  //     });
-
-  //     const role = response.data.role;
-  //     const id = response.data.id;
-  //     const firstName = response.data.firstName;
-  //     const lastName = response.data.lastName;
-  //     const email = response.data.email;
-  //     const password = response.data.password;
-
-  //     setUser({ id, email, firstName, lastName, role, password });
-  //   } catch {
-  //     console.log('error');
-  //   }
-  // };
-
-  // function getCookie(name: string) {
-  //   const matches = document.cookie.match(
-  //     new RegExp(
-  //       '(?:^|; )' + name.replace(/([$?*|{}\[\]\\/+^])/g, '\\$&') + '=([^;]*)',
-  //     ),
-  //   );
-
-  //   return matches ? decodeURIComponent(matches[1]) : undefined;
-  // }
-
-  // function getCookie(name: string): string | null {
-  //   const value = `; ${document.cookie}`;
-  //   const parts = value.split(`; ${name}=`);
-
-  //   if (parts.length === 2) {
-  //     return parts.pop()?.split(';').shift() || null;
-  //   }
-
-  //   return null;
-  // }
-
-  // useEffect(() => {
-  //   const access: string | null = getCookie('accessToken');
-
-  //   if (access && !accessToken) {
-  //     getUser(access);
-  //     if (user) {
-  //       setAccessToken(access);
-  //     }
-  //   }
-
-  //   console.log('cookie:', document.cookie);
-
-  //   console.log('Access Token:', access);
-  // }, []);
 
   useEffect(() => {
     if (!accessToken) {
@@ -139,18 +76,16 @@ export const Profile: React.FC = ({}) => {
       token = params.get('token');
 
       handleGoogleLogin();
-
-      console.log(token);
     }
   }, []);
 
   return (
     <>
       {user?.role !== 'CUSTOMER' && navigate('/login')}
-      {refreshErrorMessage && (
+      {(refreshErrorMessage || googleLoginErrorMessage) && (
         <NotFoundPage message={t('Something went wrong!')} />
       )}
-      {!refreshErrorMessage && (
+      {!refreshErrorMessage && !googleLoginErrorMessage && (
         <main className="profile">
           <h2 className="profile__title">{t('Hey, champ!')}</h2>
 
@@ -158,13 +93,6 @@ export const Profile: React.FC = ({}) => {
             <p className="profile__text">
               {`${user?.firstName} ${user?.lastName},`} {t('Welcome')}
             </p>
-            {/* {accessToken ? (
-              <p className="profile__text">
-                {`${user?.firstName} ${user?.lastName},`} {t('Welcome')}
-              </p>
-            ) : (
-              <p className="profile__text">{t('Welcome')}</p>
-            )} */}
 
             <button
               className="logout-button admin-button"

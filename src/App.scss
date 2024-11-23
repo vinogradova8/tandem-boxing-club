@@ -1,27 +1,6 @@
 @import './styles/reset';
 @import './styles/utils';
 @import './styles/fonts';
-// @import './styles/iconsfont';
-
-// .app {
-//   position: relative;
-//   font-family: $main-font-family;
-//   font-weight: 500;
-//   font-size: 14px;
-//   line-height: 150%;
-//   // background-color: $bg-color;
-//   color: $main-text-color;
-//   min-width: 320px;
-
-//   &--dark-theme {
-//     background-color: $dark-bg-color;
-//     color: $bg-color;
-//   }
-
-//   &__brand-new-models {
-//     margin-bottom: 80px;
-//   }
-// }
 
 .app {
   min-height: 100vh;
@@ -29,31 +8,19 @@
   background-color: $black-color;
   display: flex;
   flex-direction: column;
-  // justify-content: stretch;
-  // min-height: 100%;
 }
 
-// html {
-//   overflow: auto;
-// }
-
 html::-webkit-scrollbar {
-  display: none; /* Hide scrollbar in WebKit browsers */
+  display: none;
 }
 
 body {
   font-family: 'Inter';
   position: relative;
-  // overflow: hidden;
   color: $main-text-color;
   font-weight: 400;
   font-size: 14px;
   line-height: 1.5;
-
-  // cursor:
-  //   url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='utf-8'%3F%3E%3Csvg fill='%23000000' width='800px' height='800px' viewBox='0 0 24 24' role='img' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701'/%3E%3C/svg%3E")
-  //     12 12,
-  //   auto;
 }
 
 .fixed {
@@ -66,27 +33,6 @@ main {
   flex: 1 1 auto;
 }
 
-// .main-block {
-//   display: flex;
-//   flex-direction: column;
-//   place-items: stretch, stretch;
-//   min-height: 100vh;
-// }
-
-// .main-title {
-//   position: absolute;
-//   width: 1px;
-//   height: 1px;
-//   margin: -1px;
-//   border: 0;
-//   padding: 0;
-// }
-
-// .page {
-//   flex: 1 1 auto;
-//   animation: smooth-appearance 1s linear 0s 1 normal forwards;
-// }
-
 @keyframes burger {
   0% {
     opacity: 0;
@@ -96,33 +42,6 @@ main {
     opacity: 1;
   }
 }
-
-// .title {
-//   font-size: 22px;
-//   line-height: 140%;
-//   font-weight: 800;
-//   text-align-last: left;
-
-//   @include on-tablet {
-//     font-size: 32px;
-//   }
-
-//   &--big {
-//     font-size: 32px;
-//     line-height: 130%;
-//     letter-spacing: -1%;
-
-//     @include on-tablet {
-//       font-size: 48px;
-//     }
-//   }
-
-//   &--small {
-//     font-size: 20px;
-//     line-height: 130%;
-//     font-weight: 800;
-//   }
-// }
 
 .contact-button {
   padding: 16px 32px;
@@ -160,23 +79,6 @@ main {
     font-weight: 500;
   }
 }
-
-// .contact-us-bottom {
-//   padding-top: 104px;
-//   padding-bottom: 53px;
-//   max-width: 1400px;
-//   margin: 0 auto;
-
-//   @include content-padding-inline;
-
-//   @include on-tablet {
-//     padding-bottom: 66px;
-//   }
-
-//   @include on-desktop {
-//     padding-bottom: 87px;
-//   }
-// }
 
 .big-title {
   font-family: $second-font-family;

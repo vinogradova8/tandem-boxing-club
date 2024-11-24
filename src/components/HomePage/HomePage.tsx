@@ -1,20 +1,14 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import './HomePage.scss';
 import '../../i18n';
 import { Trans, useTranslation } from 'react-i18next';
-import { ModalWindow } from '../ModalWindow';
-import { ItemsContext } from '../../ItemsContext';
 import { ContactButton } from '../ContactButton';
 
 export const HomePage: React.FC = ({}) => {
   const { t } = useTranslation();
 
-  const { isModalWindowOpen, setIsModalWindowOpen } = useContext(ItemsContext);
-
   return (
     <>
-      {isModalWindowOpen && <ModalWindow />}
-
       <main className="homepage">
         <section className="homepage__main-section main-section">
           <div className="main-section__container">
@@ -31,15 +25,14 @@ export const HomePage: React.FC = ({}) => {
                 <span>{t('Main text-3')}</span>
               </p>
 
-              <button
-                onClick={() => {
-                  setIsModalWindowOpen(true);
-                }}
+              <a
                 className="homepage__contact-button contact-button 
 					homepage__contact-button--first"
+                target="_blanc"
+                href="https://wa.me/380509987274"
               >
                 {t('Contact us')}
-              </button>
+              </a>
             </div>
           </div>
         </section>

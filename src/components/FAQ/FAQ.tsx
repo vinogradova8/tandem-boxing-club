@@ -15,6 +15,7 @@ import { Question } from '../../types/Questions';
 import { useSearchParams } from 'react-router-dom';
 import { gallery } from '../../api/axios';
 import i18next from 'i18next';
+import '../../i18n';
 // import { LOCALS } from '../../i18n/constants';
 import { NotFoundPage } from '../NotFoundPage';
 import { Loader } from '../Loader';
@@ -140,7 +141,7 @@ export const FAQ: React.FC = ({}) => {
     return questionsFromServer.filter(faq =>
       faq.question.toLowerCase().includes(appliedQuery.toLowerCase()),
     );
-  }, [appliedQuery, faqs]);
+  }, [appliedQuery, questionsFromServer]);
 
   return (
     <>

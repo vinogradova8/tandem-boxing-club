@@ -20,12 +20,6 @@
       padding: 130px 0 0 100px;
       margin-bottom: 40px;
     }
-
-    @include on-desktop {
-      // width: 615px;
-      // height: 679px;
-      // padding: 227px 0 0 121px;
-    }
   }
 
   &__main-info {
@@ -33,12 +27,9 @@
 
     margin-top: -61px;
     justify-content: space-between;
-    // justify-items: center;
-    // margin-bottom: 104px;
 
     @include on-tablet {
       margin-top: -175px;
-      // margin-bottom: 160px;
     }
 
     @include on-desktop {
@@ -54,15 +45,9 @@
     @include on-tablet {
       margin-bottom: 0;
     }
-
-    @include on-desktop {
-      // grid-column: span 2;
-    }
   }
 
   &__contact-button {
-    display: block;
-
     @include on-tablet {
       &--first {
         align-self: end;
@@ -71,14 +56,6 @@
         @include on-desktop {
           grid-column: 4/5;
         }
-      }
-    }
-
-    &--second {
-      margin: 0 auto;
-
-      @include on-tablet {
-        margin-right: 0;
       }
     }
   }

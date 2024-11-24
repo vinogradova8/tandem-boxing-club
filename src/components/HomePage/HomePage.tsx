@@ -25,14 +25,14 @@ export const HomePage: React.FC = ({}) => {
                 <span>{t('Main text-3')}</span>
               </p>
 
-              <a
+              <button
                 className="homepage__contact-button contact-button 
 					homepage__contact-button--first"
-                target="_blanc"
-                href="https://wa.me/380509987274"
               >
-                {t('Contact us')}
-              </a>
+                <a target="_blanc" href="https://wa.me/380509987274">
+                  {t('Contact us')}
+                </a>
+              </button>
             </div>
           </div>
         </section>

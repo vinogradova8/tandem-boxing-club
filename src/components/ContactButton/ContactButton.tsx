@@ -8,13 +8,13 @@ export const ContactButton: React.FC = ({}) => {
   return (
     <>
       <div className="contact-us-bottom">
-        <a
-          className="contact-us-bottom__contact-button contact-button"
-          target="_blanc"
-          href="https://wa.me/380509987274"
-        >
-          {t('Contact us')}
-        </a>
+        <div className="contact-us-bottom__container"></div>
+
+        <button className="contact-us-bottom__contact-button contact-button">
+          <a target="_blanc" href="https://wa.me/380509987274">
+            {t('Contact us')}
+          </a>
+        </button>
       </div>
     </>
   );

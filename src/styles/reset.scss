@@ -1,3 +1,5 @@
+@import './utils';
+
 * {
   box-sizing: border-box;
 }
@@ -32,6 +34,7 @@ textarea {
 a {
   text-decoration: none;
   color: inherit;
+  @include hover(color, $main-text-color);
 }
 
 button {

@@ -130,29 +130,6 @@
       display: block;
     }
   }
-
-  &__language-and-profile {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-
-  &__profile {
-    position: relative;
-    width: 24px;
-    height: 24px;
-
-    @include hover(opacity, 0.5);
-
-    &::before {
-      position: absolute;
-      display: block;
-      content: '';
-      background: url('../../../public/images/icons/profile.svg') no-repeat;
-      width: 24px;
-      height: 28px;
-    }
-  }
 }
 
 .menu-link {

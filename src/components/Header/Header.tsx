@@ -28,7 +28,6 @@ export const Header: React.FC = ({}) => {
     useState(false);
 
   const languages = [LOCALS.ENG, LOCALS.UKR, LOCALS.DEU];
-  const { user, accessToken } = useContext(ItemsContext);
 
   const bodyTag = document.querySelector('body');
 
@@ -76,63 +75,50 @@ export const Header: React.FC = ({}) => {
           </nav>
 
           <div className="header__actions">
-            <div className="header__language-and-profile">
-              <div className="header__language-drop-down  language-drop-down">
-                <div className="language-drop-down__control-box">
-                  <div className="language-drop-down__language">
-                    {i18next.language.toUpperCase()}
-                  </div>
-                  <button
-                    type="button"
-                    className={cn('language-drop-down__trigger', {
-                      'language-drop-down__trigger--rotate-arrow':
-                        isLanguageDropDownVisible,
-                    })}
-                    onClick={() =>
-                      setIsLanguageDropDownVisible(!isLanguageDropDownVisible)
-                    }
-                  ></button>
+            <div className="header__language-drop-down  language-drop-down">
+              <div className="language-drop-down__control-box">
+                <div className="language-drop-down__language">
+                  {i18next.language.toUpperCase()}
                 </div>
-
-                <div
-                  className={cn('language-drop-down__content', {
-                    'language-drop-down__content--visible':
+                <button
+                  type="button"
+                  className={cn('language-drop-down__trigger', {
+                    'language-drop-down__trigger--rotate-arrow':
                       isLanguageDropDownVisible,
                   })}
-                >
-                  <ul className="language-drop-down__list">
-                    {languages.map(language => (
-                      <li
-                        key={language}
-                        className={cn('language-drop-down__item', {
-                          'language-drop-down__item--disabled':
-                            i18next.language === language,
-                        })}
-                        onClick={() => {
-                          i18next.changeLanguage(language);
-                          setIsLanguageDropDownVisible(
-                            !isLanguageDropDownVisible,
-                          );
-                          setLanguage(language);
-                        }}
-                      >
-                        {language.toUpperCase()}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+                  onClick={() =>
+                    setIsLanguageDropDownVisible(!isLanguageDropDownVisible)
+                  }
+                ></button>
               </div>
-              {accessToken && user?.role === 'ADMIN' && (
-                <NavLink to="/admin" className="header__profile"></NavLink>
-              )}
 
-              {accessToken && user?.role === 'CUSTOMER' && (
-                <NavLink to="/profile" className="header__profile"></NavLink>
-              )}
-
-              {!accessToken && (
-                <NavLink to="/login" className="header__profile"></NavLink>
-              )}
+              <div
+                className={cn('language-drop-down__content', {
+                  'language-drop-down__content--visible':
+                    isLanguageDropDownVisible,
+                })}
+              >
+                <ul className="language-drop-down__list">
+                  {languages.map(language => (
+                    <li
+                      key={language}
+                      className={cn('language-drop-down__item', {
+                        'language-drop-down__item--disabled':
+                          i18next.language === language,
+                      })}
+                      onClick={() => {
+                        i18next.changeLanguage(language);
+                        setIsLanguageDropDownVisible(
+                          !isLanguageDropDownVisible,
+                        );
+                        setLanguage(language);
+                      }}
+                    >
+                      {language.toUpperCase()}
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
 
             <button

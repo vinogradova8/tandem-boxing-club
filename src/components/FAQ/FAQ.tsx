@@ -13,9 +13,9 @@ import debounce from 'lodash.debounce';
 import { useTranslation } from 'react-i18next';
 import { Question } from '../../types/Questions';
 import { useSearchParams } from 'react-router-dom';
-import axios from '../../api/axios';
+import { gallery } from '../../api/axios';
 import i18next from 'i18next';
-import { LOCALS } from '../../i18n/constants';
+// import { LOCALS } from '../../i18n/constants';
 import { NotFoundPage } from '../NotFoundPage';
 import { Loader } from '../Loader';
 import { Accordion } from '../Accordion';
@@ -67,9 +67,9 @@ export const FAQ: React.FC = ({}) => {
     [applyQuery, searchParams, setSearchParams],
   );
 
-  const getQuestionsEng = async () => {
+  const getTeam = async () => {
     try {
-      const response = await axios.get('/questions/eng');
+      const response = await gallery.get('/questions.json');
 
       setFaqs(response.data);
     } catch {
@@ -79,48 +79,65 @@ export const FAQ: React.FC = ({}) => {
     }
   };
 
-  const getQuestionsDeu = async () => {
-    try {
-      const response = await axios.get('/questions/deu');
+  // const getQuestionsEng = async () => {
+  //   try {
+  //     const response = await axios.get('/questions/eng');
 
-      setFaqs(response.data);
-    } catch {
-      setErrorMessage(true);
-    } finally {
-      setLoader(false);
-    }
-  };
+  //     setFaqs(response.data);
+  //   } catch {
+  //     setErrorMessage(true);
+  //   } finally {
+  //     setLoader(false);
+  //   }
+  // };
 
-  const getQuestionsUkr = async () => {
-    try {
-      const response = await axios.get('/questions/ukr');
+  // const getQuestionsDeu = async () => {
+  //   try {
+  //     const response = await axios.get('/questions/deu');
 
-      setFaqs(response.data);
-    } catch {
-      setErrorMessage(true);
-    } finally {
-      setLoader(false);
-    }
-  };
+  //     setFaqs(response.data);
+  //   } catch {
+  //     setErrorMessage(true);
+  //   } finally {
+  //     setLoader(false);
+  //   }
+  // };
+
+  // const getQuestionsUkr = async () => {
+  //   try {
+  //     const response = await axios.get('/questions/ukr');
+
+  //     setFaqs(response.data);
+  //   } catch {
+  //     setErrorMessage(true);
+  //   } finally {
+  //     setLoader(false);
+  //   }
+  // };
 
   useEffect(() => {
     setLoader(true);
+    getTeam();
 
-    if (i18next.language === LOCALS.ENG) {
-      getQuestionsEng();
-    }
+    // if (i18next.language === LOCALS.ENG) {
+    //   getQuestionsEng();
+    // }
 
-    if (i18next.language === LOCALS.DEU) {
-      getQuestionsDeu();
-    }
+    // if (i18next.language === LOCALS.DEU) {
+    //   getQuestionsDeu();
+    // }
 
-    if (i18next.language === LOCALS.UKR) {
-      getQuestionsUkr();
-    }
-  }, [i18next.language]);
+    // if (i18next.language === LOCALS.UKR) {
+    //   getQuestionsUkr();
+    // }
+  }, []);
+
+  const questionsFromServer = useMemo(() => {
+    return faqs.filter(trainer => trainer.language === i18next.language);
+  }, [faqs, i18next.language]);
 
   const visibleFaqs = useMemo(() => {
-    return faqs.filter(faq =>
+    return questionsFromServer.filter(faq =>
       faq.question.toLowerCase().includes(appliedQuery.toLowerCase()),
     );
   }, [appliedQuery, faqs]);

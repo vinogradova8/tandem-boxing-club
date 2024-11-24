@@ -11,10 +11,6 @@ import { Support } from './components/Support';
 import { Team } from './components/Team';
 import { Gallery } from './components/Gallery';
 import { FAQ } from './components/FAQ';
-import { Profile } from './components/Profile';
-import { Registration } from './components/Registration';
-import { Login } from './components/Login';
-import { AdminPage } from './components/AdminPage';
 import { NotFoundPage } from './components/NotFoundPage';
 import { ItemsProvider } from './ItemsContext';
 
@@ -28,11 +24,6 @@ createRoot(document.getElementById('root') as HTMLElement).render(
           <Route path="team" element={<Team />}></Route>
           <Route path="gallery" element={<Gallery />}></Route>
           <Route path="faq" element={<FAQ />}></Route>
-          <Route path="login" element={<Login />}></Route>
-          <Route path="registration" element={<Registration />}></Route>
-          <Route path="profile" element={<Profile />}></Route>
-          <Route path="admin" element={<AdminPage />}></Route>
-
           <Route
             path="*"
             element={<NotFoundPage message="Page not found!" />}

@@ -1,26 +1,20 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import './ContactButton.scss';
 import { useTranslation } from 'react-i18next';
-import { ItemsContext } from '../../ItemsContext';
-import { ModalWindow } from '../ModalWindow';
 
 export const ContactButton: React.FC = ({}) => {
   const { t } = useTranslation();
-  const { isModalWindowOpen, setIsModalWindowOpen } = useContext(ItemsContext);
 
   return (
     <>
-      {isModalWindowOpen && <ModalWindow />}
-
       <div className="contact-us-bottom">
-        <button
-          onClick={() => {
-            setIsModalWindowOpen(true);
-          }}
+        <a
           className="contact-us-bottom__contact-button contact-button"
+          target="_blanc"
+          href="https://wa.me/380509987274"
         >
           {t('Contact us')}
-        </button>
+        </a>
       </div>
     </>
   );

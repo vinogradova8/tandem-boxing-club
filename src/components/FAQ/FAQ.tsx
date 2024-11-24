@@ -67,7 +67,7 @@ export const FAQ: React.FC = ({}) => {
     [applyQuery, searchParams, setSearchParams],
   );
 
-  const getTeam = async () => {
+  const getQuestions = async () => {
     try {
       const response = await gallery.get('/questions.json');
 
@@ -117,7 +117,7 @@ export const FAQ: React.FC = ({}) => {
 
   useEffect(() => {
     setLoader(true);
-    getTeam();
+    getQuestions();
 
     // if (i18next.language === LOCALS.ENG) {
     //   getQuestionsEng();
@@ -133,7 +133,7 @@ export const FAQ: React.FC = ({}) => {
   }, []);
 
   const questionsFromServer = useMemo(() => {
-    return faqs.filter(trainer => trainer.language === i18next.language);
+    return faqs.filter(faq => faq.language === i18next.language);
   }, [faqs, i18next.language]);
 
   const visibleFaqs = useMemo(() => {

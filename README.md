@@ -27,5 +27,7 @@ This project is a website for a boxing school. The main task of the site is to e
 
 Link to the Figma design - [Tandem](<https://www.figma.com/design/EEVy3x55s4pMqpPwDlSkRW/Box?node-id=612-1935&node-type=frame&t=WY8LzeuKat8w6k1z-0>)
 
+Link to the project with personal account - https://github.com/vinogradova8/boxing
+
 Link to the preview - [DEMO LINK](https://tandem-boxing-club.netlify.app/)
 

@@ -43,35 +43,6 @@ export const Footer: React.FC = ({}) => {
       </div>
 
       <div className="footer__decor"></div>
-
-      <div className="footer__creators creators">
-        <a
-          className="creators__link"
-          href="https://www.linkedin.com/in/viktoriia-vynohradova-a5a217332"
-          target="_blanc"
-        >
-          <p className="creators__position">frontend</p>
-          <p className="creators__name">Viktoriia Vynohradova</p>
-        </a>
-
-        <a
-          className="creators__link"
-          href="https://www.behance.net/maripetr1"
-          target="_blanc"
-        >
-          <p className="creators__position">design</p>
-          <p className="creators__name">Maryna Petrenko</p>
-        </a>
-
-        <a
-          className="creators__link"
-          href="https://github.com/dizizzz"
-          target="_blanc"
-        >
-          <p className="creators__position">backend</p>
-          <p className="creators__name">Solomia Bobyak</p>
-        </a>
-      </div>
     </footer>
   );
 };
